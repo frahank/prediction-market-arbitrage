@@ -145,6 +145,10 @@ flowchart LR
 `arbx` is the Python import namespace used throughout the source, as in
 `from arbx.analysis import ...`.
 
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) covers the layering, the three
+seams the system is designed to be pulled apart at, what it would actually take
+to add a third venue, and the three module cycles that exist today.
+
 ### Pick a workflow
 
 | Goal | Start here | Credentials |

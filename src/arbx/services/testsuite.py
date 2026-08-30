@@ -4,6 +4,7 @@
 """Background pytest runner for the Paper Dashboard health check."""
 from __future__ import annotations
 
+import importlib.util
 import os
 import re
 import subprocess
@@ -192,6 +193,17 @@ class TestSuiteRunnerImpl:
         with self._lock:
             job = self._jobs[job_id]
         command = [sys.executable, "-m", "pytest", *self.pytest_args]
+        if importlib.util.find_spec("pytest") is None:
+            # ./run installs the runtime only. Say what to do instead of
+            # surfacing a bare "No module named pytest" from the subprocess.
+            self._finish_unavailable(
+                job_id,
+                "pytest is not installed in this environment. The one-command "
+                "bootstrap installs the runtime only; add the development "
+                "tools with:\n\n"
+                "    ./.venv/bin/python -m pip install -r requirements-dev.lock",
+            )
+            return
         started = datetime.now(timezone.utc)
         output = ""
         return_code = 1
@@ -257,6 +269,25 @@ class TestSuiteRunnerImpl:
             job.result = result
             job.error = error
             job.state = "done" if passed else "failed"
+            if self._active_job_id == job_id:
+                self._active_job_id = None
+
+    def _finish_unavailable(self, job_id: str, message: str) -> None:
+        """Mark a job as not runnable in this environment, with the fix."""
+        with self._lock:
+            job = self._jobs[job_id]
+            job.state = "failed"
+            job.error = message
+            job.result = TestSuiteResult(
+                passed=False,
+                total=0,
+                failures=0,
+                errors=1,
+                duration_s=0.0,
+                message="Test suite unavailable: development tools are not installed.",
+                detail_path=_detail_path_for_ui(self.repo_root, job.detail_path),
+            )
+            job.detail_path.write_text(message + "\n", encoding="utf-8")
             if self._active_job_id == job_id:
                 self._active_job_id = None
 

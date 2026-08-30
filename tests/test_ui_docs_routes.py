@@ -78,3 +78,50 @@ def test_save_note_roundtrip_via_api(tmp_path: Path):
     assert listed["data"] == [{"name": "shift_notes", "version": 1}]
     assert stale["ok"] is False
     assert stale["error"]["code"] == "conflict"
+
+
+def test_rendered_links_resolve_for_the_viewer(tmp_path: Path):
+    """Repo-relative links must not 404 against /docs-viewer.
+
+    Rendered markdown carries paths relative to the document, but the page is a
+    single view; images go to the asset route and markdown links become
+    in-viewer links.
+    """
+    (tmp_path / "docs" / "images").mkdir(parents=True)
+    (tmp_path / "docs" / "images" / "shot.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+    (tmp_path / "docs" / "other.md").write_text("# Other\n", encoding="utf-8")
+    (tmp_path / "docs" / "guide.md").write_text(
+        "# Guide\n\n![shot](images/shot.png)\n\n[other](other.md)\n"
+        "[up](../README.md)\n[ext](https://example.com/a.png)\n",
+        encoding="utf-8",
+    )
+    (tmp_path / "README.md").write_text("# Top\n", encoding="utf-8")
+
+    store = DocStoreImpl(tmp_path, ["docs", "README.md"])
+    html = store.read_doc("docs/guide.md")["rendered_html"]
+
+    assert '"/doc-asset/docs/images/shot.png"' in html
+    assert '"#doc=docs/other.md"' in html
+    assert '"#doc=README.md"' in html          # ../ normalized, not left relative
+    assert '"https://example.com/a.png"' in html  # absolute URLs untouched
+
+
+def test_doc_asset_route_serves_only_allowlisted_media(tmp_path: Path):
+    (tmp_path / "docs" / "images").mkdir(parents=True)
+    (tmp_path / "docs" / "images" / "shot.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+    (tmp_path / "docs" / "notes.md").write_text("# n\n", encoding="utf-8")
+    (tmp_path / "secret.yaml").write_text("api_key: x\n", encoding="utf-8")
+
+    store = DocStoreImpl(tmp_path, ["docs", "README.md"])
+    client = TestClient(create_app(ServiceRegistry(doc_store=store)))
+
+    assert client.get("/doc-asset/docs/images/shot.png").status_code == 200
+    # Not an allowlisted media type, outside the docs roots, and traversal.
+    assert client.get("/doc-asset/docs/notes.md").status_code == 404
+    assert client.get("/doc-asset/secret.yaml").status_code == 404
+    assert client.get("/doc-asset/../../etc/passwd").status_code == 404
+
+
+def test_favicon_does_not_404():
+    client = TestClient(create_app(ServiceRegistry()))
+    assert client.get("/favicon.ico").status_code in (200, 204)

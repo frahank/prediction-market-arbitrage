@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import os
+import posixpath
 import re
 import shutil
 from dataclasses import dataclass
@@ -16,6 +17,10 @@ from markdown_it import MarkdownIt
 from arbx.ui.envelope import OpError
 
 NOTE_NAME_RE = re.compile(r"^[a-z0-9_-]+$")
+
+# Media a rendered document may reference. Deliberately narrow: this route
+# serves files out of the checkout to a browser.
+_ASSET_SUFFIXES = frozenset({".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"})
 
 
 def _is_relative_to(path: Path, root: Path) -> bool:
@@ -43,7 +48,16 @@ class DocStoreImpl:
     def __init__(self, repo_root: Path, docs_roots: list[str]) -> None:
         self.repo_root = repo_root.resolve()
         self.docs_roots = self._resolve_roots(docs_roots)
-        self._markdown = MarkdownIt("commonmark", {"html": False})
+        # commonmark alone has no tables, so every table in the repository's
+        # own docs rendered as raw pipes in the Documents tab. Enabled
+        # explicitly rather than via the "gfm-like" preset, which also turns on
+        # linkify and would add a dependency. html stays off: this renderer
+        # feeds innerHTML.
+        self._markdown = (
+            MarkdownIt("commonmark", {"html": False})
+            .enable("table")
+            .enable("strikethrough")
+        )
 
     def list_docs(self) -> list[dict[str, Any]]:
         docs: dict[Path, dict[str, Any]] = {}
@@ -71,11 +85,74 @@ class DocStoreImpl:
         if not self._is_allowed_doc(candidate):
             return OpError("invalid_request", "document path is outside configured docs roots")
         markdown = candidate.read_text(encoding="utf-8")
+        base = candidate.parent.relative_to(self.repo_root)
         return {
             **self._doc_meta(candidate, markdown=markdown),
             "markdown": markdown,
-            "rendered_html": self._markdown.render(markdown),
+            "rendered_html": self._resolve_links(
+                self._markdown.render(markdown), base
+            ),
         }
+
+    def _resolve_links(self, html: str, base: Path) -> str:
+        """Make repo-relative links usable from the single-page viewer.
+
+        Rendered markdown carries paths relative to the document, but the page
+        lives at /docs-viewer, so the browser resolved them against that and
+        404ed. Images are pointed at the read-only asset route; links to other
+        markdown become viewer links the docs tab intercepts; absolute URLs and
+        anchors are left alone.
+        """
+
+        def _external(target: str) -> bool:
+            return target.startswith(
+                ("http://", "https://", "//", "#", "mailto:", "data:")
+            )
+
+        def _repo_rel(target: str) -> str:
+            return posixpath.normpath(posixpath.join(base.as_posix(), target)).lstrip("/")
+
+        def _img(match: re.Match[str]) -> str:
+            target = match.group(2)
+            if _external(target):
+                return match.group(0)
+            return f"{match.group(1)}/doc-asset/{_repo_rel(target)}{match.group(3)}"
+
+        def _href(match: re.Match[str]) -> str:
+            target = match.group(2)
+            if _external(target):
+                return match.group(0)
+            resolved = _repo_rel(target)
+            if resolved.lower().endswith(".md"):
+                # Handled in-page by docs.js; the href keeps it linkable.
+                return f'{match.group(1)}#doc={resolved}{match.group(3)}'
+            return f"{match.group(1)}/doc-asset/{resolved}{match.group(3)}"
+
+        html = re.sub(r'(<img\b[^>]*?\bsrc=")([^"]+)(")', _img, html)
+        return re.sub(r'(<a\b[^>]*?\bhref=")([^"]+)(")', _href, html)
+
+    def doc_asset(self, path: str) -> Path | None:
+        """Resolve a repo-relative asset referenced by a rendered document.
+
+        Same containment rule as :meth:`read_doc`: inside the repository, inside
+        a configured docs root, and an allowlisted media type. Returns ``None``
+        rather than raising so the route can answer 404 without detail.
+        """
+        requested = Path(path)
+        if not path or requested.is_absolute() or ".." in requested.parts:
+            return None
+        if requested.suffix.lower() not in _ASSET_SUFFIXES:
+            return None
+        try:
+            candidate = (self.repo_root / requested).resolve(strict=True)
+        except (OSError, RuntimeError):
+            return None
+        if not candidate.is_file() or not _is_relative_to(candidate, self.repo_root):
+            return None
+        for root in self.docs_roots:
+            if not root.is_file and _is_relative_to(candidate, root.resolved):
+                return candidate
+        return None
 
     def _resolve_roots(self, docs_roots: list[str]) -> tuple[_DocRoot, ...]:
         roots: list[_DocRoot] = []

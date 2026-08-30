@@ -32,7 +32,22 @@ def _not_connected(detail: str, profile: str | None = None) -> dict[str, Any]:
     return {"connected": False, "read_only": True, "profile": profile, "detail": detail}
 
 
+SKIP_ENV_VAR = "ARBX_NO_CREDENTIALS"
+
+
+def credentials_disabled() -> bool:
+    """True when the operator asked for a credential-free session.
+
+    ``./run --no-credentials`` sets this. Skipping only the onboarding prompt
+    was not enough: a credential left over from an earlier session would still
+    be picked up and probed.
+    """
+    return os.environ.get(SKIP_ENV_VAR) == "1"
+
+
 def _usable_kalshi_profile() -> str | None:
+    if credentials_disabled():
+        return None
     """Stored 600-perm profile the current process may load: live only behind
     its env gate, else paper."""
     stored = {

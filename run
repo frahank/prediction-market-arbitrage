@@ -9,11 +9,14 @@ cd "$ARBX_RUN_DIR"
 
 ARBX_SKIP_CREDENTIALS=0
 ARBX_CHECK_ONLY=0
+ARBX_NO_CREDENTIALS=0
+export ARBX_NO_CREDENTIALS
 
 for ARBX_RUN_ARG in "$@"; do
     case "$ARBX_RUN_ARG" in
         --no-credentials)
             ARBX_SKIP_CREDENTIALS=1
+            ARBX_NO_CREDENTIALS=1
             ;;
         --check)
             ARBX_CHECK_ONLY=1
@@ -23,7 +26,8 @@ for ARBX_RUN_ARG in "$@"; do
             printf '%s\n' \
                 'Usage: ./run [--no-credentials] [--check]' \
                 '' \
-                '  --no-credentials  Skip first-run Kalshi credential onboarding.' \
+                '  --no-credentials  Run without credentials: skip onboarding and ignore' \
+                '                    any key already stored under ~/.arbx/credentials.' \
                 '  --check           Bootstrap and run offline release checks; do not start UI.'
             exit 0
             ;;

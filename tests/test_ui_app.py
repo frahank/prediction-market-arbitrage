@@ -21,7 +21,18 @@ def test_five_tabs_and_no_stray_routes():
         for path in paths
         if path == "/" or (not path.startswith("/api/") and path != "/static")
     }
-    assert page_paths == {"/", "/live", "/paper", "/pairs", "/data", "/docs-viewer"}
+    assert page_paths == {
+        "/",
+        "/live",
+        "/paper",
+        "/pairs",
+        "/data",
+        "/docs-viewer",
+        # Not tabs: a favicon answer and the read-only asset route that serves
+        # images referenced by rendered documents.
+        "/favicon.ico",
+        "/doc-asset/{asset_path:path}",
+    }
     for path in paths:
         assert "mode" not in path
         assert "enable" not in path

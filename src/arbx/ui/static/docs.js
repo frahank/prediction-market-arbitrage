@@ -131,6 +131,21 @@
     }
   }
 
+  // A link between two repository documents is rendered as "#doc=<path>". The
+  // page is a single view, so open the target in this reader instead of letting
+  // the browser navigate to a fragment that means nothing to it.
+  renderedDoc.addEventListener("click", function (event) {
+    var anchor = event.target.closest ? event.target.closest("a[href^='#doc=']") : null;
+    if (!anchor) {
+      return;
+    }
+    event.preventDefault();
+    var target = decodeURIComponent(anchor.getAttribute("href").slice("#doc=".length));
+    if (target) {
+      loadDoc(target);
+    }
+  });
+
   async function loadNote(name) {
     setStatus(noteStatus, "Loading...", false);
     try {

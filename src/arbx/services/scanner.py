@@ -553,6 +553,12 @@ class ScannerControllerImpl:
             with self._lock:
                 if self._process is not process and self._state.state in TERMINAL_STATES:
                     return self._state.to_record()
+                # The monitor thread can reach here first on a stop: it sampled
+                # the state as "running", then the child exited on SIGINT. Honour
+                # the stop that is already in progress rather than recording the
+                # operator's own Stop as a failure.
+                if self._state.state == "stopping":
+                    stopped = True
             # Every caller reaches here only after the process has exited, so
             # there is nothing to wait for and nothing to drain: the streams
             # were written straight to disk.

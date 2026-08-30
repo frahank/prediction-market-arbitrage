@@ -101,17 +101,61 @@ visible:
 release check passed: mode=paper registry=23 scannable=23 strategy_eligible=0 ui_routes=5
 ```
 
-> **The bundled pairs are a dated snapshot — re-verify them before relying on
-> any of them.** Each was reviewed against the venues' rules text as it read on
-> that pair's approval date. Prediction markets expire, settle, get delisted,
-> get relisted under new tickers, and have their resolution criteria amended
-> after listing. `make pair-health` checks that both legs are still live — that
-> is **liveness, not equivalence**. A pair can be open on both venues and still
-> settle differently. Confirming equivalence means re-reading both venues'
-> current rules yourself; see
-> [`docs/pair_equivalence_checklist.md`](docs/pair_equivalence_checklist.md).
-> Treat the registry as a worked example of the review format, not a maintained
-> feed of tradeable pairs.
+### Pairs are the sensitive part — check them yourself
+
+Deciding that two markets settle on the same condition is the
+highest-consequence judgement in this project, and the one most likely to cost
+you money if you get it wrong. Two contracts with near-identical titles can
+resolve differently on a detail in the fine print. When that happens you are not
+holding an arbitrage; you are holding two positions that can both lose.
+
+**Human review is not optional here.** Nothing in this repository approves a
+pair on its own. The matcher proposes on a title heuristic, the prescreen only
+ever flags, and the deny-by-default gate keeps a pair out of every reported
+metric until a person records an `approve` decision under their own name.
+
+**The bundled registry is a dated snapshot that only shrinks.** Prediction
+markets expire — that is their normal life, not an edge case. The original
+research ran against a far larger, constantly churning candidate set; most of
+those markets are gone. Elections resolve, tournaments end, and anything built
+on a dated cutoff eventually settles and stops trading.
+
+You can see it in the repo: `configs/pairs.archived.yaml` holds three 2026 Men's
+World Cup continent-winner pairs, each with a decision log ending in `archive` —
+live and reviewed until the tournament finished. Two of the ~20 still active
+close in December 2026 for the same reason. Every pair here was reviewed against
+the venues' rules text **as it read on its approval date**, and venues amend
+resolution criteria after listing.
+
+`make pair-health` checks that both legs still answer on the public API. That is
+**liveness, not equivalence** — a pair can be open on both venues and still
+settle differently.
+
+**You can find and verify your own pairs.** The full pipeline ships here, is
+read-only, and needs no credentials: discover public markets, build a candidate
+queue, snapshot both venues' rules text, run the deterministic prescreen, work
+through the rules-diff audit (yourself or with a model as a first pass), then
+record the decision.
+
+```bash
+# discover → queue → snapshot + prescreen + audit prompt → record → check
+./.venv/bin/python scripts/discover_kalshi_public_markets.py --help
+./.venv/bin/python scripts/review_pair_candidates.py --list
+./.venv/bin/python scripts/audit_pair_equivalence.py <PAIR> --prompt-out audit.txt
+./.venv/bin/python scripts/pair_decide.py --pair <PAIR> --decision approve     --rationale "..." --auditor "you"
+make pair-health
+```
+
+Every tool takes `--pairs`, so you can keep your own registry and never touch
+the bundled one.
+
+**Start here:** [`docs/adding_pairs.md`](docs/adding_pairs.md) is the
+step-by-step guide, including what actually sank pairs in practice (grouping
+schemes that don't align, cutoff windows, subjective resolution language,
+replacement clauses). [`docs/pair_equivalence_checklist.md`](docs/pair_equivalence_checklist.md)
+is the standalone human checklist, and
+[`docs/pair_testing_pipeline.md`](docs/pair_testing_pipeline.md) covers the
+testing workflow once a pair is approved.
 
 ## How it works
 

@@ -149,11 +149,19 @@ def test_repo_contains_no_credentials():
     public_identifier = re.compile(
         r"condition_?id|question_?id|neg_?risk|market|token|pair|edge on ", re.IGNORECASE
     )
+
     credential_field = re.compile(
         r"^\s*\"?(wallet_private_key|api_secret|api_passphrase|"
         r"private_key_pem_path|api_key_id|api_key)\"?\s*:\s*(.*)$"
     )
     skip_dirs = {".git", ".venv", "__pycache__", ".pytest_cache", ".ruff_cache", "node_modules"}
+    # Generated output is not part of the repository, and .gitignore already
+    # keeps all of it untracked. A local scan writes Polymarket CLOB token ids
+    # into evidence/ and reports/; those share the 0x-64-hex shape of key
+    # material, so scanning them turned a successful capture into a failing
+    # test suite. This gate is about what the tree contains, not what a run
+    # produced in it.
+    generated_dirs = {"evidence", "reports", "dist", "build", "htmlcov", "site"}
 
     violations: list[str] = []
     for root, dirs, files in os.walk(REPO_ROOT):
@@ -161,7 +169,9 @@ def test_repo_contains_no_credentials():
         if root_path == REPO_ROOT:
             dirs[:] = [
                 d for d in dirs
-                if d not in skip_dirs and not d.startswith(("data", "logs"))
+                if d not in skip_dirs
+                and d not in generated_dirs
+                and not d.startswith(("data", "logs"))
             ]
         else:
             dirs[:] = [d for d in dirs if d not in skip_dirs]

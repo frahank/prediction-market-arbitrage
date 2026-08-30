@@ -18,7 +18,13 @@ from typing import Any
 from urllib.parse import urlsplit
 
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+from fastapi.responses import (
+    FileResponse,
+    HTMLResponse,
+    JSONResponse,
+    RedirectResponse,
+    Response,
+)
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -276,6 +282,28 @@ def create_app(services: ServiceRegistry | None = None) -> FastAPI:
     @app.get("/", include_in_schema=False)
     async def root() -> RedirectResponse:
         return RedirectResponse("/paper", status_code=307)
+
+    @app.get("/favicon.ico", include_in_schema=False)
+    async def favicon() -> Response:
+        # The browser asks for this unprompted; answer it rather than logging a
+        # 404 on every page load.
+        icon = STATIC_DIR / "favicon.ico"
+        if icon.is_file():
+            return FileResponse(icon)
+        return Response(status_code=204)
+
+    @app.get("/doc-asset/{asset_path:path}", include_in_schema=False)
+    async def doc_asset(asset_path: str) -> Response:
+        """Images referenced by a rendered document.
+
+        Read-only, and confined by ``DocStore.doc_asset`` to allowlisted media
+        inside a configured docs root. Anything else is a 404 with no detail.
+        """
+        resolver = getattr(registry.doc_store, "doc_asset", None)
+        resolved = resolver(asset_path) if callable(resolver) else None
+        if resolved is None:
+            return Response(status_code=404)
+        return FileResponse(resolved)
 
     for route_path, (template_name, page, title) in PAGE_ROUTES.items():
 

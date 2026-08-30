@@ -167,6 +167,10 @@ class ArbScanner:
         self._opp_sink = opportunity_sink
         self._edges_writer = edges_writer
         self.ntp_offset_ms = ntp_offset_ms
+        # Readable after run() is cancelled: an operator pressing Stop has
+        # still collected real data, and the caller needs it to write a
+        # summary instead of discarding the run.
+        self.last_stats = ScanStats()
         self._sleeper = sleeper
         self._clock = clock
         self._ntp_measure = ntp_measure
@@ -385,7 +389,7 @@ class ArbScanner:
 
         At least one bound should be set; with neither, runs until cancelled.
         """
-        stats = ScanStats()
+        stats = self.last_stats = ScanStats()
         start = self._clock()
         last_ntp = start
         next_tick_at = start

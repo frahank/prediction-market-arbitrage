@@ -139,8 +139,15 @@ async def _run(args: argparse.Namespace) -> dict:
           f"batch={config.batch_size} tick={config.tick_s}s "
           f"cycle~={cycle_s:.0f}s record_books={config.record_books} "
           f"ntp_offset_ms={ntp}")
+    # SIGINT is the operator pressing Stop, not a failure. Keep whatever was
+    # collected, write the summary, and exit cleanly; letting the exception
+    # escape would print a traceback and discard a run that captured real data.
+    interrupted = False
     try:
         stats = await scanner.run(duration_s=args.duration)
+    except (KeyboardInterrupt, asyncio.CancelledError):
+        interrupted = True
+        stats = scanner.last_stats
     finally:
         await client.aclose()
 
@@ -155,6 +162,7 @@ async def _run(args: argparse.Namespace) -> dict:
         "record_books": config.record_books,
         "edges_only": args.edges_only,
         "edges_written": edges_writer.count,
+        "interrupted": interrupted,
         "ntp_offset_ms_last": scanner.ntp_offset_ms,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         **stats.summary(),
@@ -203,7 +211,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.edges_only:
         args.no_record_books = True
-    asyncio.run(_run(args))
+    try:
+        asyncio.run(_run(args))
+    except KeyboardInterrupt:  # pragma: no cover - operator interrupt
+        print("[run_scanner] interrupted; summary written")
     return 0
 
 

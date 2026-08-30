@@ -38,7 +38,7 @@ arbx-pair-health = "arbx.pairs.health:main"
 
 [project.optional-dependencies]
 dev = [
-  "build==1.3.0",
+  "build==1.5.0",
   "httpx2==2.12.0",
   "pytest==9.1.1",
   "ruff==0.16.4",

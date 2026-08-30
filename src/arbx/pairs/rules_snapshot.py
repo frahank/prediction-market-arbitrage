@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — P4-T2 rules snapshot: pin both venues' resolution rules per pair.
 """Fetch and pin the resolution rules a pair-equivalence audit runs against.
 

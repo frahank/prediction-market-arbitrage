@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — CLI for the recorder data-quality report (Phase 4).
 """
 Data-quality report for the market-data recorder dataset.

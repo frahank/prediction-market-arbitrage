@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Runtime mode + real-order safety gate (deny-by-default).
 """Runtime mode guard for arbx.
 

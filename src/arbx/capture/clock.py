@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Host-clock NTP offset measurement (pure-stdlib SNTP).
 """Measure the host wall clock's offset from an NTP reference.
 

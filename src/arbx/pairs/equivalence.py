@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — P4-T3 pair-equivalence workflow: prescreen + AI audit prompt.
 """Deterministic equivalence pre-screens and the LLM rules-diff audit prompt.
 

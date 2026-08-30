@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — CLI for the live round-robin arbitrage scanner.
 #
 # Cycles the pair universe in fixed batches (default 20 pairs/tick, 1 tick/s),

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Heatmap builders over recorder-derived tables (Phase 5).
 """
 Heatmap tooling for the recorder dataset.

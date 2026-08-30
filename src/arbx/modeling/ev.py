@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Modules B/D/E/F/G: survival-, carry-, and failure-adjusted EV (P5-T2).
 """Per-pair EV model implementing the Phase 5 north-star equation:
 

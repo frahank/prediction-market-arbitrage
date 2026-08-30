@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 """Bounded live-public health check for the checked-in pair registry."""
 from __future__ import annotations
 

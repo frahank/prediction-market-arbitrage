@@ -1,3 +1,7 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+ * SPDX-License-Identifier: MIT
+ */
 :root {
   --bg: #101114;
   --surface: #181b20;
@@ -83,6 +87,38 @@ a { color: inherit; text-decoration: none; }
 nav {
   display: grid;
   gap: 4px;
+}
+
+/* Non-intrusive authorship credit at the foot of the sidebar. Deliberately
+   reuses the .brand small type scale so it reads as chrome, not content. */
+.sidebar-credit {
+  display: grid;
+  gap: 3px;
+  margin-top: 22px;
+  padding: 14px 8px 0;
+  border-top: 1px solid var(--border);
+  font: 400 11px/1.4 var(--mono);
+  color: var(--muted);
+}
+
+.sidebar-credit a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  justify-self: start;
+}
+
+.sidebar-credit a:hover,
+.sidebar-credit a:focus-visible {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+
+.sidebar-credit small {
+  margin-top: 3px;
+  color: var(--muted);
+  font: 400 10px/1.4 var(--mono);
+  opacity: 0.75;
 }
 
 nav a {

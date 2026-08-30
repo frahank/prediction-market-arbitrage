@@ -11,6 +11,13 @@ description = "Archived paper-only cross-venue prediction-market arbitrage resea
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "Farhan M Khan", email = "Farhan.khanev@gmail.com" },
+]
+maintainers = [
+  { name = "Farhan M Khan", email = "Farhan.khanev@gmail.com" },
+]
 keywords = ["kalshi", "polymarket", "prediction-markets", "research", "paper-trading"]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -29,6 +36,12 @@ dependencies = [
   "uvicorn==0.52.4",
   "websockets==17.0.1",
 ]
+
+[project.urls]
+Homepage = "https://farhank.dev"
+Repository = "https://github.com/frahank/arb-exec-github"
+Issues = "https://github.com/frahank/arb-exec-github/issues"
+Author = "https://github.com/frahank"
 
 [project.scripts]
 arbx-ui = "arbx.launcher:main"

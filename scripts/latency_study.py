@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Local public-endpoint latency baseline.
 #
 # For each venue endpoint, runs N timed probes on FRESH connections and reports

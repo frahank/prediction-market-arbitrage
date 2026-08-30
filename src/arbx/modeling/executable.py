@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Module A: displayed edge -> actually capturable edge (P5-T1).
 """Executable-edge model: what fraction of a displayed edge is capturable.
 

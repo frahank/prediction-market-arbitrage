@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — M2-T4 AnalysisService: one-button soak analysis (v1).
 """Run the full ported analysis battery over selected soaks and return the
 pinned ``AnalysisSummary`` v1 (formulas in ``docs/analysis_summary_v1.md``).

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 """Compatibility wrapper for :mod:`arbx.pairs.health`."""
 from __future__ import annotations
 

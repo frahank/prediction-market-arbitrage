@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Kalshi RSA-PSS request signer (read-only auth track).
 """Signed-request headers for Kalshi's authenticated API. Auth only — no orders.
 

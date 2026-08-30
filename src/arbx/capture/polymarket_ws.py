@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Polymarket CLOB WebSocket book stream (public market channel).
 """PolymarketBookStream: local books from the CLOB WS market channel.
 

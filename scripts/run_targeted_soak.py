@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — P4-T4 CLI: targeted single-pair soak + evidence pack.
 #
 # Runs one approved pair through the hybrid streaming capture for --hours and

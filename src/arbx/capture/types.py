@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Capture-layer types: the one seam between capture, decision, and replay.
 """Capture-layer snapshot types (Phase 3 contract).
 

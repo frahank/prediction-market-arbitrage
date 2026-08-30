@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Derive edge_observations from paired book_observations (Phase 5).
 """
 Derive the ``edge_observations`` table from the recorder's ``book_observations``.

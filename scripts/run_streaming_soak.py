@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Streaming soak: derive edges live and probe survival below 110ms.
 #
 # Runs StreamingSource for --hours, derives both directions' edge rows from

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Live round-robin arbitrage scanner (detection + capture).
 """Continuous batched scanner over the pair universe.
 

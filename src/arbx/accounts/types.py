@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Read-only account-state contract. No order capability by type.
 """AccountClient: the whole authenticated account surface this repo permits.
 

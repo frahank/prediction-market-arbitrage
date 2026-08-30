@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — First-class market-data recorder, independent of pair registry.
 """
 Decoupled market-data recorder (Phase 1).

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Persist capture snapshots as recorder-compatible JSONL rows.
 """ObservationSink: write ``BookSnapshot`` rows to the recorder's landing.
 

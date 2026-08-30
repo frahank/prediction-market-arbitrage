@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Tier-2 compaction of raw JSONL landing into Parquet/DuckDB (Phase 4).
 """
 Compact the recorder's append-only raw JSONL landing (Tier 1) into a columnar

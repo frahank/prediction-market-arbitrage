@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Cross-venue fee engine composing the per-venue models (Phase 2).
 """FeeEngine: one entry point for real per-venue fees.
 

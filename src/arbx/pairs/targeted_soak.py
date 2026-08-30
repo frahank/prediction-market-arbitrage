@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Targeted per-pair soak and evidence pack.
 """Single-pair streaming soak and the per-pair evidence pack.
 

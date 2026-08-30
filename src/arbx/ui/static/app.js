@@ -1,3 +1,7 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+ * SPDX-License-Identifier: MIT
+ */
 (function () {
   function applyStatus(payload) {
     var banner = document.getElementById("mode-banner");

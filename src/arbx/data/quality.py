@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Data-quality report over the recorder's raw landing (Phase 4).
 """
 Data-quality report for the market-data recorder dataset.

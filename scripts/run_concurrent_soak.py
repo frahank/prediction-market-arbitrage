@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — M2-T7 operator harness: drive a long true-concurrent
 # recorded soak through the tested ScannerController service, with graceful
 # SIGINT/SIGTERM finalization.

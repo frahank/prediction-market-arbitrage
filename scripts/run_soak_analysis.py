@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — One-shot soak analysis battery + dated markdown summary.
 #
 # Runs the full post-soak battery in one pass: DQ gate, evidence-pack export,

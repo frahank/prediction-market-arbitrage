@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Kalshi read-only account client (GET-only, no order capability).
 """KalshiAccountClient: authenticated *reads* of account state, nothing else.
 

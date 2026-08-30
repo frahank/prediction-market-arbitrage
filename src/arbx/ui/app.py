@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — FastAPI shell and facade operation wrapper (F-T3).
 """Five-tab local cockpit shell.
 

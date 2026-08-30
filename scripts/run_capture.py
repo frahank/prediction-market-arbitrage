@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Run a capture session (concurrent REST or streaming) to JSONL.
 #
 # Writes book_observations rows through ObservationSink (same Tier-1 layout as

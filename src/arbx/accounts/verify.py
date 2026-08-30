@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Lightweight read-only access verification per venue.
 """verify_access(): can we *read* account state right now? Nothing more.
 

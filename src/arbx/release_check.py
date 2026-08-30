@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 """Fast, offline validation used by ``./run --check`` and CI."""
 from __future__ import annotations
 

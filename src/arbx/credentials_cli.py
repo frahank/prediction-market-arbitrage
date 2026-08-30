@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 """Interactive credential onboarding for the public console entry point."""
 #
 # Prompts for credential fields and calls arbx.accounts.secrets.store_credentials

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Concurrent-REST paired capture source (kills sequential skew).
 """ConcurrentRestSource: fire both venue GETs concurrently per pair.
 

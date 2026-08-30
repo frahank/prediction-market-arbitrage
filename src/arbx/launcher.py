@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 """Local-only UI composition root used by the script and console entry point."""
 from __future__ import annotations
 

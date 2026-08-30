@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — Polymarket taker-fee model with per-token TTL cache (Phase 2).
 """Polymarket fee model backed by the public per-token ``/fee-rate`` endpoint.
 

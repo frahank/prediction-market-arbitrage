@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
+# SPDX-License-Identifier: MIT
 # Scope: BOT_RUNTIME — M2-T3 EDGES file writer: StandardizedEdgeRow at capture time.
 """Persist ``StandardizedEdgeRow`` rows into ``EDGES_<ts>.jsonl`` as they are
 detected — the capture-time twin of Module 4's read-side mapping.

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block extra_head %}
+  <script defer src="{{ url_for('static', path='docs.js') }}"></script>
+{% endblock %}
+{% block heading %}Documents{% endblock %}
+{% block content %}
+<div class="docs-workspace" data-docs-workspace>
+  <aside class="docs-sidebar" aria-label="Document sources">
+    <section class="docs-panel">
+      <h2>Repo Docs</h2>
+      <div class="docs-list" data-doc-list></div>
+    </section>
+    <section class="docs-panel">
+      <h2>Notes</h2>
+      <form class="new-note-form" data-new-note-form>
+        <input name="name" type="text" autocomplete="off" placeholder="new_note" aria-label="New note name">
+        <button type="submit">New</button>
+      </form>
+      <div class="docs-list" data-note-list></div>
+    </section>
+  </aside>
+
+  <section class="doc-reader" aria-live="polite">
+    <div class="reader-toolbar">
+      <div>
+        <span data-reader-kicker>Document</span>
+        <h2 data-reader-title>Select a document</h2>
+      </div>
+      <span class="reader-status" data-doc-status></span>
+    </div>
+    <article class="rendered-doc" data-doc-rendered></article>
+  </section>
+
+  <section class="note-editor" aria-label="Operator note editor">
+    <div class="reader-toolbar">
+      <div>
+        <span>Operator Note</span>
+        <h2 data-note-title>No note selected</h2>
+      </div>
+      <span class="reader-status" data-note-status></span>
+    </div>
+    <textarea data-note-markdown spellcheck="false" aria-label="Note markdown"></textarea>
+    <div class="editor-actions">
+      <button type="button" data-save-note disabled>Save</button>
+    </div>
+  </section>
+</div>
+{% endblock %}

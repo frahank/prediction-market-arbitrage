@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block extra_head %}
+  <script defer src="{{ url_for('static', path='paper.js') }}"></script>
+{% endblock %}
+{% block heading %}Paper{% endblock %}
+{% block content %}
+<div
+  class="paper-workspace"
+  data-paper-workspace
+  data-default-batch="{{ paper_defaults.batch_size }}"
+  data-default-tick="{{ paper_defaults.tick_s }}"
+>
+  <section class="paper-panel paper-panel-wide">
+    <div class="reader-toolbar">
+      <div>
+        <span>Scanner</span>
+        <h2 data-scanner-state>Idle</h2>
+      </div>
+      <span class="reader-status" data-scanner-status></span>
+    </div>
+    <form class="paper-form" data-scanner-form>
+      <div class="paper-control-row">
+        <label class="switch-row">
+          <input type="checkbox" data-scanner-enabled>
+          <span>On</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" data-record-toggle checked>
+          <span>Record</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" data-edges-only-toggle>
+          <span>Edges only</span>
+        </label>
+      </div>
+      <div class="paper-field-grid">
+        <label>
+          Pairs
+          <select multiple size="6" data-pair-select>
+            <option value="__all__" selected>All scannable</option>
+          </select>
+          <small class="pair-scope-note" data-pair-scope-note hidden></small>
+        </label>
+        <label>
+          Batch
+          <input type="number" min="1" step="1" value="{{ paper_defaults.batch_size }}" data-batch-size>
+        </label>
+        <label>
+          Tick seconds
+          <input type="number" min="0.001" step="0.001" value="{{ paper_defaults.tick_s }}" data-tick-s>
+        </label>
+      </div>
+      <div class="paper-actions">
+        <button type="submit" data-start-scanner>Start scanner</button>
+        <button type="button" data-stop-scanner disabled>Stop</button>
+      </div>
+    </form>
+    <div class="status-grid paper-status-grid">
+      <article>
+        <span>Cadence</span>
+        <strong data-cadence-display>0 pairs</strong>
+      </article>
+      <article>
+        <span>Ticks</span>
+        <strong data-scanner-ticks>0</strong>
+      </article>
+      <article>
+        <span>Candidates</span>
+        <strong data-scanner-arbs>0</strong>
+      </article>
+      <article>
+        <span>Qualifying</span>
+        <strong data-scanner-qualifying>0</strong>
+      </article>
+      <article>
+        <span>Errors</span>
+        <strong data-scanner-errors>0</strong>
+      </article>
+    </div>
+    <p class="paper-link-row" data-started-scan hidden>
+      <a href="/data" data-started-scan-link></a>
+    </p>
+  </section>
+
+  <section class="paper-panel">
+    <div class="reader-toolbar">
+      <div>
+        <span>Analysis</span>
+        <h2 data-analysis-state>Ready</h2>
+      </div>
+      <span class="reader-status" data-analysis-status></span>
+    </div>
+    <form class="paper-form" data-analysis-form>
+      <label>
+        Recorded data
+        <select multiple size="7" data-analysis-soaks></select>
+      </label>
+      <div class="paper-actions">
+        <button type="submit" data-run-analysis>Run Full Analysis</button>
+        <button type="button" data-refresh-analysis-data>Refresh</button>
+      </div>
+    </form>
+    <div class="paper-summary" data-analysis-summary>
+      <p class="empty-state">No analysis result.</p>
+    </div>
+  </section>
+
+  <section class="paper-panel">
+    <div class="reader-toolbar">
+      <div>
+        <span>Test suite</span>
+        <h2 data-test-state>Ready</h2>
+      </div>
+      <span class="reader-status" data-test-status></span>
+    </div>
+    <div class="paper-actions">
+      <button type="button" data-run-tests>Run Test Suite</button>
+    </div>
+    <div class="paper-summary" data-test-summary>
+      <p class="empty-state">No test result.</p>
+    </div>
+    <pre class="json-block paper-detail" data-test-detail hidden></pre>
+  </section>
+</div>
+{% endblock %}

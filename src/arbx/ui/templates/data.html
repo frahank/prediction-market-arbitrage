@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block extra_head %}
+  <script defer src="{{ url_for('static', path='data.js') }}"></script>
+{% endblock %}
+{% block heading %}Data{% endblock %}
+{% block content %}
+<div class="data-workspace" data-data-workspace>
+  <section class="data-toolbar">
+    <label class="toggle-row">
+      <input type="checkbox" data-edge-only-filter>
+      <span>Edges only</span>
+    </label>
+    <button type="button" data-refresh-soaks>Refresh</button>
+    <span class="reader-status" data-data-status></span>
+  </section>
+
+  <section class="soak-list" aria-label="Recorded soaks" data-soak-list></section>
+
+  <section class="rows-panel">
+    <div class="reader-toolbar">
+      <div>
+        <span data-selected-soak>Soak</span>
+        <h2 data-row-title>Select a soak</h2>
+      </div>
+      <div class="row-mode" role="group" aria-label="Row kind">
+        <button type="button" class="active" data-row-kind="edges">Edges</button>
+        <button type="button" data-row-kind="books">Books</button>
+      </div>
+    </div>
+    <p class="honesty-caption">Positive estimated profit rows are candidates from displayed public books, not fills or realized profit.</p>
+    <div class="table-wrap data-table-wrap">
+      <table data-row-table>
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="editor-actions">
+      <button type="button" data-load-more disabled>Load more</button>
+    </div>
+  </section>
+</div>
+{% endblock %}

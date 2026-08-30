@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block extra_head %}
+  <script defer src="{{ url_for('static', path='pairs.js') }}"></script>
+{% endblock %}
+{% block heading %}Pairs{% endblock %}
+{% block content %}
+<div class="pairs-workspace" data-pairs-workspace>
+  <section class="pairs-toolbar">
+    <div class="row-mode" role="tablist" aria-label="Pair registry views">
+      <button type="button" class="active" data-pair-tab="active">Approved</button>
+      <button type="button" data-pair-tab="approval">Needs approval</button>
+      <button type="button" data-pair-tab="archived">Archived</button>
+    </div>
+    <button type="button" data-refresh-pairs>Refresh</button>
+    <span class="reader-status" data-pairs-status></span>
+  </section>
+
+  <div class="pairs-layout">
+    <section class="pair-list-panel" aria-label="Pair list">
+      <div class="reader-toolbar">
+        <div>
+          <span data-pair-list-kicker>Active</span>
+          <h2 data-pair-list-title>Approved registry</h2>
+        </div>
+      </div>
+      <div class="pair-list" data-pair-list></div>
+      <div class="editor-actions">
+        <button type="button" data-load-more-pairs disabled>Load more</button>
+      </div>
+    </section>
+
+    <section class="pair-detail-panel" aria-live="polite">
+      <div class="reader-toolbar">
+        <div>
+          <span data-pair-detail-kicker>Pair summary</span>
+          <h2 data-pair-detail-title>Select a pair</h2>
+        </div>
+      </div>
+      <div class="pair-detail-body" data-pair-detail>
+        <p class="empty-state">Select a pair to view the standardized summary.</p>
+      </div>
+    </section>
+
+    <section class="pair-review-panel" data-pair-review hidden>
+      <div class="reader-toolbar">
+        <div>
+          <span>Review decision</span>
+          <h2 data-review-title>No pair selected</h2>
+        </div>
+        <button type="button" class="iconless-close" data-close-review>Close</button>
+      </div>
+      <form data-review-form>
+        <input type="hidden" name="pair_key" data-review-pair-key>
+        <input type="hidden" name="decision" data-review-decision-value>
+        <label>
+          Reviewer
+          <input name="reviewer" autocomplete="off" required>
+        </label>
+        <label>
+          Notes <span class="field-hint">(optional)</span>
+          <textarea name="notes"></textarea>
+        </label>
+        <p class="confirm-phrase" data-review-consequence></p>
+        <div class="editor-actions" data-review-action-step>
+          <button type="button" class="pair-action-button" data-review-action>Approve</button>
+        </div>
+        <div class="editor-actions review-sure" data-review-confirm-step hidden>
+          <span class="are-you-sure" data-are-you-sure>Are you sure?</span>
+          <button type="submit" class="pair-action-button" data-confirm-yes>Yes</button>
+          <button type="button" data-confirm-cancel>Cancel</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+{% endblock %}

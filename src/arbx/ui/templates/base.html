@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} · arbx</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='app.css') }}">
+  <script defer src="{{ url_for('static', path='app.js') }}"></script>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <div id="mode-banner" class="mode-banner is-paper" data-status-poll-ms="{{ status_poll_ms }}">PAPER</div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>arbx</strong>
+        <small>schema {{ schema_version }}</small>
+      </div>
+      <nav aria-label="Primary">
+        {% for slug, label, href in nav_items %}
+          <a href="{{ href }}" class="{{ 'active' if page == slug else '' }}">{{ label }}</a>
+        {% endfor %}
+      </nav>
+    </aside>
+    <main>
+      <header class="page-header">
+        <h1>{% block heading %}{{ title }}{% endblock %}</h1>
+      </header>
+      <section class="module-surface">
+        {% block content %}{% endblock %}
+      </section>
+    </main>
+  </div>
+</body>
+</html>

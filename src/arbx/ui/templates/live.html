@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block extra_head %}
+  <script defer src="{{ url_for('static', path='live.js') }}"></script>
+{% endblock %}
+{% block heading %}Access &amp; Safety{% endblock %}
+{% block content %}
+<div class="live-workspace" data-live-workspace>
+  <section class="live-hero" data-live-hero>
+    <div>
+      <span>Runtime</span>
+      <strong data-live-mode>PAPER</strong>
+    </div>
+    <p data-live-subtitle>Real orders disabled</p>
+  </section>
+
+  <section class="paper-panel paper-panel-wide">
+    <div class="reader-toolbar">
+      <div>
+        <span>Main Dashboard</span>
+        <h2 data-live-state>Loading</h2>
+      </div>
+      <span class="reader-status" data-live-status></span>
+    </div>
+    <div class="status-grid live-status-grid">
+      <article>
+        <span>Mode</span>
+        <strong data-mode-card>Paper</strong>
+      </article>
+      <article>
+        <span>Real Orders</span>
+        <strong data-real-orders-card>Off</strong>
+      </article>
+      <article>
+        <span>Kill Switch</span>
+        <strong data-kill-card>Clear</strong>
+      </article>
+    </div>
+    <div class="live-kill-bar" data-kill-bar hidden>
+      <strong>KILL ENGAGED</strong>
+      <span data-kill-reason></span>
+      <code data-kill-clear></code>
+    </div>
+  </section>
+
+  <section class="paper-panel">
+    <div class="reader-toolbar">
+      <div>
+        <span>Kill Switch</span>
+        <h2>Safety stop</h2>
+      </div>
+      <span class="reader-status" data-kill-status></span>
+    </div>
+    <form class="paper-form" data-kill-form>
+      <label>
+        Reason
+        <input type="text" data-kill-reason-input maxlength="160" required>
+      </label>
+      <div class="paper-actions">
+        <button type="submit" class="danger-button">KILL SWITCH</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="paper-panel">
+    <div class="reader-toolbar">
+      <div>
+        <span>Credentials</span>
+        <h2>STORAGE ONLY - not connected to trading</h2>
+      </div>
+      <span class="reader-status" data-credential-status></span>
+    </div>
+    <div class="credential-grid">
+      <div class="account-badge-row">
+        <div class="account-badge-group">
+          <strong>Kalshi</strong>
+          <span class="account-badge" data-account-badge="kalshi"></span>
+          <span class="account-detail" data-account-detail="kalshi"></span>
+        </div>
+      </div>
+      <div class="account-badge-row">
+        <div class="account-badge-group">
+          <strong>Polymarket</strong>
+          <span class="account-badge" data-account-badge="polymarket"></span>
+          <span class="account-detail" data-account-detail="polymarket"></span>
+        </div>
+      </div>
+      <form class="credential-form" data-credential-form data-venue="kalshi" data-profile="paper">
+        <h3>Kalshi paper</h3>
+        <label>API key id<input name="api_key_id" autocomplete="off" required></label>
+        <label>Private key PEM path<input name="private_key_pem_path" autocomplete="off" required></label>
+        <button type="submit">Store</button>
+        <p data-credential-row="kalshi.paper">Not present</p>
+      </form>
+      <form class="credential-form" data-credential-form data-venue="kalshi" data-profile="live">
+        <h3>Kalshi live</h3>
+        <label>API key id<input name="api_key_id" autocomplete="off" required></label>
+        <label>Private key PEM path<input name="private_key_pem_path" autocomplete="off" required></label>
+        <button type="submit">Store</button>
+        <p data-credential-row="kalshi.live">Not present</p>
+      </form>
+      <form class="credential-form" data-credential-form data-venue="polymarket" data-profile="paper">
+        <h3>Polymarket paper</h3>
+        <label>Wallet private key<input name="wallet_private_key" type="password" autocomplete="off" required></label>
+        <label>API key<input name="api_key" type="password" autocomplete="off" required></label>
+        <label>API secret<input name="api_secret" type="password" autocomplete="off" required></label>
+        <label>API passphrase<input name="api_passphrase" type="password" autocomplete="off" required></label>
+        <label>Funder address<input name="funder_address" autocomplete="off" required></label>
+        <button type="submit">Store</button>
+        <p data-credential-row="polymarket.paper">Not present</p>
+      </form>
+      <form class="credential-form" data-credential-form data-venue="polymarket" data-profile="live">
+        <h3>Polymarket live</h3>
+        <label>Wallet private key<input name="wallet_private_key" type="password" autocomplete="off" required></label>
+        <label>API key<input name="api_key" type="password" autocomplete="off" required></label>
+        <label>API secret<input name="api_secret" type="password" autocomplete="off" required></label>
+        <label>API passphrase<input name="api_passphrase" type="password" autocomplete="off" required></label>
+        <label>Funder address<input name="funder_address" autocomplete="off" required></label>
+        <button type="submit">Store</button>
+        <p data-credential-row="polymarket.live">Not present</p>
+      </form>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

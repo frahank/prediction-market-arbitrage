@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,8 +17,8 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: "3.12"
           cache: pip
@@ -29,8 +31,13 @@ jobs:
         run: .venv/bin/python -m pip install -r requirements-dev.lock
       - name: Lint
         run: make lint
+      - name: Type check
+        run: make typecheck
       - name: Test
         run: make test
+      - name: Coverage
+        if: matrix.os == 'ubuntu-latest'
+        run: make coverage
       - name: Build distributions
         run: make build
       - name: Verify packaged UI assets
@@ -39,8 +46,8 @@ jobs:
   analytics:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: "3.12"
           cache: pip
@@ -53,3 +60,16 @@ jobs:
           .venv/bin/python -m pip install --no-build-isolation --no-deps -e .
       - name: Run analytics test
         run: .venv/bin/python -m pytest tests/test_compaction.py -q
+
+  # This project's whole premise is credential discipline, so the scan that
+  # proves no key ever landed in the tree belongs in CI, not in a checklist.
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+      - name: Scan history for secrets
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

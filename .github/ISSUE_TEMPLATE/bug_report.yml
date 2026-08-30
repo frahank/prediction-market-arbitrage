@@ -1,0 +1,44 @@
+name: Bug report
+description: Something behaves differently from what the documentation says
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not include API keys, PEM contents, or captured authorization
+        headers in this report. Redact them before pasting any output.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you observe, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: The exact commands you ran, starting from a fresh clone if possible.
+      placeholder: |
+        1. git clone ...
+        2. ./run --check
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Output of `./run --check`, plus your OS and `python3 --version`.
+      render: shell
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I am not reporting a security issue (those go through SECURITY.md)
+          required: true
+        - label: I have removed credentials and personal paths from any pasted output
+          required: true

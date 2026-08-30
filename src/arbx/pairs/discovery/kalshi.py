@@ -77,7 +77,7 @@ def _fetch_all_pages(
     page_size: int,
     max_pages: int | None,
 ) -> tuple[list[dict[str, Any]], int]:
-    records = []
+    records: list[dict[str, Any]] = []
     cursor = None
     pages = 0
     seen_cursors = set()

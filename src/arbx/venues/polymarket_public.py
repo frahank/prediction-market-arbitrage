@@ -205,7 +205,7 @@ def _to_fixture_shape(payload: dict[str, Any], market_id: str) -> dict[str, Any]
 
 
 def _levels_from_poly(raw_levels: Any, *, complement: bool) -> list[dict[str, float]]:
-    levels = []
+    levels: list[dict[str, float]] = []
     if not isinstance(raw_levels, list):
         return levels
     for raw_level in raw_levels:

@@ -326,9 +326,10 @@ class PairRegistryServiceImpl:
         limit: int,
         status_override: str | None = None,
     ) -> dict[str, Any] | OpError:
-        limit = self._coerce_limit(limit)
-        if isinstance(limit, OpError):
-            return limit
+        bounded = self._coerce_limit(limit)
+        if isinstance(bounded, OpError):
+            return bounded
+        limit = bounded
         start = 0
         if cursor:
             for index, pair in enumerate(pairs):
@@ -437,7 +438,8 @@ class PairRegistryServiceImpl:
         if not isinstance(episodes, dict) and not isinstance(survival, dict):
             return None
         rows = episodes if isinstance(episodes, dict) else {}
-        episode_rows = rows.get("episodes") if isinstance(rows.get("episodes"), list) else []
+        raw_episodes = rows.get("episodes")
+        episode_rows: list[Any] = raw_episodes if isinstance(raw_episodes, list) else []
         buckets = Counter(str(item.get("bucket") or "unknown") for item in episode_rows)
         behavior: dict[str, Any] = {
             "edge_rows": int(rows.get("edge_rows") or 0),

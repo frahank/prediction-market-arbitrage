@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![CI](https://github.com/frahank/prediction-market-arbitrage/actions/workflows/ci.yml/badge.svg)](https://github.com/frahank/prediction-market-arbitrage/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-84%25-brightgreen.svg)](#) [![Typed](https://img.shields.io/badge/mypy-clean-blue.svg)](#)
 
 I built a cross-venue research platform to answer one question: **is there
 capturable arbitrage between Kalshi and Polymarket?**
@@ -20,8 +21,8 @@ carries no execution layer, no database tier, and no live-order path. What it
 does carry is the part worth reading — the capture, normalization, fee,
 equivalence, and safety machinery, plus the evidence that killed the strategy.
 
-By **[Farhan M Khan](https://farhank.dev)** · MIT licensed · 414 tests, CI on
-Linux and macOS
+By **[Farhan M Khan](https://farhank.dev)** · MIT licensed · 416 tests at 84%
+coverage · mypy clean · CI on Linux and macOS
 
 ```bash
 git clone https://github.com/frahank/prediction-market-arbitrage
@@ -167,6 +168,8 @@ Operator commands:
 ./run --check                 # bootstrap + offline release check; no UI
 make test                     # full offline suite
 make lint                     # pinned lint policy
+make typecheck                # mypy over src/arbx
+make coverage                 # test suite with a coverage report
 make pair-health              # live, read-only validation of active pairs
 ```
 
@@ -204,8 +207,8 @@ headers.
 - Pair-equivalence registries and review tooling
 - Fee, executable-edge, survival, latency, and profitability analysis
 - A local FastAPI research cockpit
-- 414 tests, including architecture tests that assert account clients stay
-  read-only by type and that no live-execution module exists
+- 416 tests at 84% coverage, including architecture tests that assert account
+  clients stay read-only by type and that no live-execution module exists
 
 The multi-gigabyte raw capture archive and the private research corpus are
 deliberately not in Git. This repository is the software, not the data.

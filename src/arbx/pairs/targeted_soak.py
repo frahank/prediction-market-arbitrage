@@ -156,7 +156,10 @@ def _liquidity_profile(data_dir: Path, pair: PairSpec, *,
     """Liquidity evidence: per-hour top-5 depth per venue, spreads, depth ratio."""
     from arbx.data.legacy import unswap_legacy_book_row
 
-    depth_by = {"kalshi": defaultdict(list), "polymarket": defaultdict(list)}
+    depth_by: dict[str, defaultdict[Any, list[Any]]] = {
+        "kalshi": defaultdict(list),
+        "polymarket": defaultdict(list),
+    }
     spreads: dict[str, list[float]] = {"kalshi": [], "polymarket": []}
     for row in _iter_book_rows(data_dir):
         venue = row.get("venue")

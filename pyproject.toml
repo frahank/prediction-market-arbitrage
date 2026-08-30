@@ -53,8 +53,11 @@ arbx-pair-health = "arbx.pairs.health:main"
 dev = [
   "build==1.5.0",
   "httpx2==2.12.0",
+  "mypy==2.3.1",
   "pytest==9.1.1",
+  "pytest-cov==7.1.0",
   "ruff==0.16.5",
+  "types-PyYAML==6.0.12.20260815",
 ]
 # Optional analytics tier (Parquet/DuckDB warehouse). The recorder,
 # data-quality report, and edge tooling all run on pure stdlib without this.
@@ -73,6 +76,17 @@ where = ["src"]
 testpaths = ["tests"]
 pythonpath = ["src"]
 addopts = "-q"
+
+[tool.mypy]
+python_version = "3.12"
+files = ["src/arbx"]
+# Third-party stubs are not installed for every optional dependency (duckdb,
+# pyarrow), so missing imports are tolerated; everything inside src/arbx is not.
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+check_untyped_defs = true
 
 [tool.ruff]
 src = ["src", "tests", "scripts"]

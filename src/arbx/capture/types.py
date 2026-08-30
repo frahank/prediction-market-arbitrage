@@ -74,7 +74,6 @@ class BookSnapshot:
     ) -> dict[str, Any]:
         best_bid = self.bids[0][0] if self.bids else None
         best_ask = self.asks[0][0] if self.asks else None
-        both = best_bid is not None and best_ask is not None
         staleness_seconds, freshness_status = compute_freshness(
             self.capture_ts_utc,
             self.venue_book_ts,
@@ -91,8 +90,18 @@ class BookSnapshot:
             "venue_book_ts": self.venue_book_ts.isoformat() if self.venue_book_ts else None,
             "best_bid": best_bid,
             "best_ask": best_ask,
-            "mid": ((best_bid + best_ask) / 2.0) if both else None,
-            "spread": (best_ask - best_bid) if both else None,
+            # Narrowed on the operands themselves; `both` is the same
+            # condition but a type checker cannot correlate it with them.
+            "mid": (
+                (best_bid + best_ask) / 2.0
+                if best_bid is not None and best_ask is not None
+                else None
+            ),
+            "spread": (
+                (best_ask - best_bid)
+                if best_bid is not None and best_ask is not None
+                else None
+            ),
             "staleness_seconds": staleness_seconds,
             "freshness_status": freshness_status,
             "freshness_threshold_seconds": DEFAULT_FRESHNESS_THRESHOLD_SECONDS,

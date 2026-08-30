@@ -356,7 +356,8 @@ class ScannerControllerImpl:
             self._finalize_process(process)
         with self._lock:
             state = self._state.to_record()
-        summary = state.get("summary") if isinstance(state.get("summary"), dict) else {}
+        raw_summary = state.get("summary")
+        summary: dict[str, Any] = raw_summary if isinstance(raw_summary, dict) else {}
         return {
             "running": bool(state["running"]),
             "state": state["state"],

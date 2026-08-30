@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/frahank/prediction-market-arbitrage/security/advisories/new
+    about: Report privately through GitHub Security Advisories, not a public issue.
+  - name: Project write-up
+    url: https://farhank.dev
+    about: Background on the research and what it found.

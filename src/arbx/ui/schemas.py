@@ -17,7 +17,7 @@ the operation envelope.
 from __future__ import annotations
 
 from dataclasses import dataclass, fields
-from typing import Any
+from typing import Any, cast
 
 
 def _json_safe(value: Any) -> Any:
@@ -31,7 +31,8 @@ def _json_safe(value: Any) -> Any:
 class _ToDictMixin:
     def to_dict(self) -> dict[str, Any]:
         """Flat JSON-safe dict: field name → primitive/list/dict value."""
-        return {f.name: _json_safe(getattr(self, f.name)) for f in fields(self)}
+        # Every subclass is a dataclass; the mixin itself cannot say so.
+        return {f.name: _json_safe(getattr(self, f.name)) for f in fields(cast(Any, self))}
 
 
 @dataclass(frozen=True)

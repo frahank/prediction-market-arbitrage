@@ -81,7 +81,7 @@ def _fetch_all_pages(
     page_size: int,
     max_pages: int | None,
 ) -> tuple[list[dict[str, Any]], int]:
-    events = []
+    events: list[dict[str, Any]] = []
     offset = 0
     pages = 0
 
@@ -175,8 +175,8 @@ def _normalize_market(
         best_yes_ask = yes_metrics["best_ask"]
         best_no_bid = no_metrics["best_bid"]
         best_no_ask = no_metrics["best_ask"]
-        yes_depth = yes_metrics["ask_depth"]
-        no_depth = no_metrics["ask_depth"]
+        yes_depth = yes_metrics["ask_depth"] or 0.0
+        no_depth = no_metrics["ask_depth"] or 0.0
 
     spread = _spread(best_yes_bid, best_yes_ask)
     if spread is None:

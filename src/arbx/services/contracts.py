@@ -9,16 +9,12 @@ are constructed in ``scripts/run_ui.py`` (the composition root) and injected via
 """
 from __future__ import annotations
 
+from collections.abc import Awaitable
 from dataclasses import dataclass
 from typing import Any, Literal, Protocol
 
 from arbx.ui.envelope import OpError
-from arbx.ui.schemas import (
-    AnalysisSummary,
-    PairSummary,
-    StandardizedDataRow,
-    StandardizedEdgeRow,
-)
+from arbx.ui.schemas import AnalysisSummary, PairSummary
 
 ReadMethod = Literal["GET"]
 WriteMethod = Literal["POST"]
@@ -171,10 +167,13 @@ class DataService(Protocol):
     def list_soak_rows(
         self,
         soak_id: str,
-        kind: str,
+        kind: str = "edges",
         cursor: str | None = None,
         limit: int = 50,
-    ) -> list[StandardizedEdgeRow | StandardizedDataRow] | OpError: ...
+    ) -> dict[str, Any] | OpError:
+        """Paged read: ``{"items": [StandardizedEdgeRow | StandardizedDataRow],
+        "next_cursor": str | None}``."""
+        ...
 
 
 class PairRegistryService(Protocol):
@@ -234,5 +233,10 @@ class TestSuiteRunner(Protocol):
 
 class LiveController(Protocol):
     def get_live_status(self) -> dict[str, Any] | OpError: ...
-    def engage_killswitch(self, reason: str) -> dict[str, Any] | OpError: ...
+    def engage_killswitch(
+        self, reason: str
+    ) -> dict[str, Any] | OpError | Awaitable[dict[str, Any] | OpError]:
+        """Sync or async: ``arbx.ui.app._call_handler`` awaits an awaitable
+        result, so an implementation may be either."""
+        ...
     def store_credentials(self, venue: str, profile: str, fields: dict[str, Any]) -> dict[str, Any] | OpError: ...

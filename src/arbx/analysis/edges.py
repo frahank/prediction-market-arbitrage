@@ -278,8 +278,7 @@ def _as_float(value: Any) -> float | None:
 
 
 def _max_number(*values: Any) -> float | None:
-    numbers = [_as_float(value) for value in values]
-    numbers = [value for value in numbers if value is not None]
+    numbers = [number for number in (_as_float(value) for value in values) if number is not None]
     return max(numbers) if numbers else None
 
 
@@ -458,10 +457,10 @@ def derive_edges(
         if row_transform is not None:
             row = row_transform(row)
         ns = row.get("recv_monotonic_ns")
-        key = (row.get("venue"), row.get("market_id"))
-        if not isinstance(ns, int) or None in key:
+        venue, market_id = row.get("venue"), row.get("market_id")
+        if not isinstance(ns, int) or venue is None or market_id is None:
             continue
-        by_market.setdefault(key, []).append((ns, row))
+        by_market.setdefault((str(venue), str(market_id)), []).append((ns, row))
     for series in by_market.values():
         series.sort(key=lambda t: t[0])
 

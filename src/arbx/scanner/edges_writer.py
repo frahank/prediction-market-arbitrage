@@ -42,7 +42,7 @@ import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import IO, Any
 
 from arbx.ui.schemas import StandardizedEdgeRow
 
@@ -178,7 +178,7 @@ class EdgesWriter:
                 datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
             )
         self.path = self.data_dir / f"EDGES_{timestamp}.jsonl"
-        self._fh = None
+        self._fh: IO[Any] | None = None
         self.count = 0
 
     def write(self, pair: Any, record: dict[str, Any]) -> None:

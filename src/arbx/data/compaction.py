@@ -41,7 +41,7 @@ def _sql_str(path: Path | str) -> str:
 
 def _duckdb() -> Any:
     try:
-        import duckdb  # type: ignore
+        import duckdb
     except ImportError as exc:  # pragma: no cover - exercised only without the extra
         raise RuntimeError(
             "compaction requires the optional 'analytics' extra: "

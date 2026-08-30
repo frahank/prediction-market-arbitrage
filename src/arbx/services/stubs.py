@@ -46,7 +46,7 @@ class StubDataService:
     def list_soak_rows(
         self,
         soak_id: str,
-        kind: str,
+        kind: str = "edges",
         cursor: str | None = None,
         limit: int = 50,
     ) -> OpError:

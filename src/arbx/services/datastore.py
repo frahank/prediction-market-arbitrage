@@ -153,8 +153,14 @@ class SoakStoreImpl:
         raise KeyError(soak_id)
 
     def _all_meta(self) -> list[SoakFileMeta]:
-        metas = [self._meta_for(path, legacy_root=legacy) for path, legacy in self._candidate_dirs()]
-        metas = [meta for meta in metas if meta is not None]
+        metas = [
+            meta
+            for meta in (
+                self._meta_for(path, legacy_root=legacy)
+                for path, legacy in self._candidate_dirs()
+            )
+            if meta is not None
+        ]
         return sorted(metas, key=lambda meta: (meta.started_at, meta.soak_id), reverse=True)
 
     def _candidate_dirs(self) -> list[tuple[Path, bool]]:

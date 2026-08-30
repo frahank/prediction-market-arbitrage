@@ -24,7 +24,7 @@ import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Awaitable, Callable
+from typing import IO, Any, Awaitable, Callable
 
 from arbx.analysis.edges import EdgePair, edge_rows_for_capture
 from arbx.analysis.episodes import qualifies
@@ -64,7 +64,7 @@ class OpportunitySink:
     def __init__(self, data_dir: Path) -> None:
         self._dir = Path(data_dir) / "scan" / "opportunities"
         self._dir.mkdir(parents=True, exist_ok=True)
-        self._fh = None
+        self._fh: IO[Any] | None = None
         self._date: str | None = None
         self.count = 0
 
@@ -72,13 +72,14 @@ class OpportunitySink:
         date = (record.get("scanned_at") or "")[:10] or datetime.now(
             timezone.utc
         ).date().isoformat()
-        if date != self._date:
+        if date != self._date or self._fh is None:
             if self._fh is not None:
                 self._fh.close()
             self._fh = (self._dir / f"{date}.jsonl").open("a", encoding="utf-8")
             self._date = date
-        self._fh.write(json.dumps(record) + "\n")
-        self._fh.flush()
+        handle = self._fh
+        handle.write(json.dumps(record) + "\n")
+        handle.flush()
         self.count += 1
 
     def close(self) -> None:

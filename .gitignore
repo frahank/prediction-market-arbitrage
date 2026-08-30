@@ -41,3 +41,6 @@ secrets/
 *.swo
 .coverage
 htmlcov/
+coverage.xml
+.coverage
+.mypy_cache/

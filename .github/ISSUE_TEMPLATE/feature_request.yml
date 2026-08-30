@@ -1,0 +1,31 @@
+name: Feature request
+description: Suggest an improvement to reproducibility, analysis, docs, or safety
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is archived research. Contributions that improve reproducibility,
+        read-only data collection, analysis correctness, documentation, or
+        safety are welcome. **Order creation, cancellation, and any other
+        live-execution capability are out of scope** and will be declined.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What is hard or impossible today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This does not add order-submission or live-execution capability
+          required: true

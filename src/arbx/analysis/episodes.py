@@ -229,8 +229,8 @@ def _episode_from_run(pair_key: str, direction: str, run: list[tuple[float, dict
         pair_key=pair_key,
         kalshi_market=kalshi_market(pair_key),
         direction=direction,
-        start_ts=run[0][1].get("capture_ts_utc"),
-        end_ts=run[-1][1].get("capture_ts_utc"),
+        start_ts=str(run[0][1].get("capture_ts_utc") or ""),
+        end_ts=str(run[-1][1].get("capture_ts_utc") or ""),
         # a single snapshot proves >=30s of presence only implicitly; report the
         # observed span (0s for a lone snapshot) so blips are visible as such.
         duration_s=run[-1][0] - run[0][0],
@@ -366,6 +366,7 @@ def classify_pairs(
             bucket = BUCKET_BASIS
             reason = f"persistent basis — in-edge in {prof.in_edge_frac:.0%} of {prof.total_cycles} cycles"
         elif transient_eps:
+            assert best is not None  # non-empty transient_eps selected it above
             bucket, reason = BUCKET_TRANSIENT, best.reason
         else:
             bucket = BUCKET_UNUSABLE

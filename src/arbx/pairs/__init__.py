@@ -1,0 +1,1 @@
+"""arbx.pairs subpackage."""

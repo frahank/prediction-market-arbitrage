@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Corrector for legacy book rows with swapped bid/ask sides.
+# Corrector for legacy book rows with swapped bid/ask sides.
 """Recover book rows recorded before the bid/ask semantics fix.
 
 Some rows recorded before docs/book_semantics_fix.md have their sides mislabeled: the

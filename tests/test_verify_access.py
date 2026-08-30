@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — verify_access + Live-tab accounts payload (Task E backend).
+# verify_access + Live-tab accounts payload (Task E backend).
 """Per-venue read-only connectivity: no creds → no network; probe result maps
 to the connected boolean; the live status payload carries it; failures never
 leak values. Keys are generated at runtime only."""

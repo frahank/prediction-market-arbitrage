@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — CLI for the live round-robin arbitrage scanner.
+# CLI for the live round-robin arbitrage scanner.
 #
 # Cycles the pair universe in fixed batches (default 20 pairs/tick, 1 tick/s),
 # fires both venues concurrently per pair, prices the cross with real fees, and
@@ -100,9 +100,9 @@ async def _run(args: argparse.Namespace) -> dict:
         else None
     )
     opp_sink = OpportunitySink(data_dir)
-    # Always-on standardized EDGES output (M2-T3): edges-only runs persist
+    # Always-on standardized EDGES output: edges-only runs persist
     # every detected row; full-record runs persist qualifying rows, so
-    # Module 4's edges view is uniform across run shapes.
+    # the Data tab's edges view is uniform across run shapes.
     edges_writer = EdgesWriter(
         data_dir,
         depth_haircut=load_depth_haircut(),

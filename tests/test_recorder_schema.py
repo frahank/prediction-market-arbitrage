@@ -1,4 +1,4 @@
-# Scope: TEST — book_to_observation emits every dataset_schema.md §2.1 column.
+# book_to_observation emits every book_observations column.
 from __future__ import annotations
 
 from datetime import datetime, timezone
@@ -20,7 +20,7 @@ def _synthetic_book() -> OrderBook:
     )
 
 
-# Column contract from docs/dataset_schema.md §2.1 (verbatim per the Phase 1
+# Column contract from docs/soak_layout.md (verbatim per the
 # module-contract block), with the top-5 ladders expanded.
 _CONTRACT_COLUMNS = [
     "venue",

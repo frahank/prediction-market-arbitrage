@@ -1,10 +1,10 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Module A: displayed edge -> actually capturable edge (P5-T1).
+# Displayed edge -> actually capturable edge.
 """Executable-edge model: what fraction of a displayed edge is capturable.
 
 Starts from ``depth_adj_edge`` (already VWAP/depth-adjusted, so spread and
-slippage are paid) and applies the Module A knobs from ``configs/modeling.yaml``:
+slippage are paid) and applies the executable-edge knobs from ``configs/modeling.yaml``:
 
 * rows whose legs were captured further apart than ``max_skew_ms`` are
   untrustworthy -> ``None``;
@@ -102,7 +102,7 @@ def expected_fill_size(row: dict[str, Any], params: ExecutableEdgeParams) -> flo
 
 
 def load_modeling_config(path: Path = DEFAULT_MODELING_YAML) -> dict[str, Any]:
-    """Raw ``configs/modeling.yaml`` mapping (all Module A–G knobs)."""
+    """Raw ``configs/modeling.yaml`` mapping (all modeling knobs)."""
     import yaml
 
     data = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
@@ -112,7 +112,7 @@ def load_modeling_config(path: Path = DEFAULT_MODELING_YAML) -> dict[str, Any]:
 
 
 def load_scenarios(path: Path = DEFAULT_MODELING_YAML) -> dict[str, ExecutableEdgeParams]:
-    """Module A params per labeled skew scenario, from ``configs/modeling.yaml``.
+    """Executable-edge params per labeled skew scenario, from ``configs/modeling.yaml``.
 
     Shared knobs (haircut, staleness penalty, blip floor) come from
     ``executable:``; each entry under ``executable.scenarios:`` overrides

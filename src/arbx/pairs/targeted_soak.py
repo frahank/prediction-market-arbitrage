@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Targeted per-pair soak and evidence pack.
+# Targeted per-pair soak and evidence pack.
 """Single-pair streaming soak and the per-pair evidence pack.
 
 ``run_targeted_soak`` captures one pair with the same hybrid StreamingSource
@@ -8,7 +8,7 @@ the broad soaks use (Polymarket WS + Kalshi REST poll unless authenticated
 Kalshi WS is configured), deriving real-fee edge rows live and firing the
 sub-110ms probe ladder on qualifying edges. ``build_evidence_pack`` is the
 pure post-processing half: DQ gate, episodes, survival summary, liquidity
-profile (R7), and the time-of-day strike map, written into
+profile, and the time-of-day strike map, written into
 ``evidence/<kalshi_market_id>/<date>/``.
 
 When the Kalshi leg of "streaming" is a REST-poll stopgap, sub-110ms survival
@@ -153,7 +153,7 @@ def _hour_of(ts: Any) -> int | None:
 
 def _liquidity_profile(data_dir: Path, pair: PairSpec, *,
                        legacy_book_fix: bool) -> dict:
-    """R7 evidence: per-hour top-5 depth per venue, spreads, depth ratio."""
+    """Liquidity evidence: per-hour top-5 depth per venue, spreads, depth ratio."""
     from arbx.data.legacy import unswap_legacy_book_row
 
     depth_by = {"kalshi": defaultdict(list), "polymarket": defaultdict(list)}

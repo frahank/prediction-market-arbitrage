@@ -1,11 +1,11 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Tier-2 compaction of raw JSONL landing into Parquet/DuckDB (Phase 4).
+# Compaction of the raw JSONL landing into Parquet/DuckDB.
 """
-Compact the recorder's append-only raw JSONL landing (Tier 1) into a columnar
-Parquet store (Tier 2) and build a DuckDB warehouse of views over it.
+Compact the recorder's append-only raw JSONL landing into a columnar
+Parquet store and build a DuckDB warehouse of views over it.
 
-Per docs/dataset_schema.md §3:
+Compaction rules:
   - Only *closed* day-files (date strictly before the watermark, default today
     UTC) are compacted, so this never races the live writer.
   - Dedupe on ``capture_seq`` so a crash/restart that re-appended rows produces
@@ -113,7 +113,7 @@ def compact(
                     result.book_partitions.append(str(out_file))
                     result.rows_written += int(cnt)
 
-        # ---- edge_observations (if the Phase 5 layer wrote any) ----
+        # ---- edge_observations (if the analysis layer wrote any) ----
         edge_base = data_dir / "raw" / "edge"
         if edge_base.exists():
             for f in sorted(edge_base.glob("*.jsonl")):
@@ -161,7 +161,7 @@ def _build_warehouse(duckdb: Any, data_dir: Path, parquet_root: Path) -> Path | 
             SELECT * FROM read_parquet({_sql_str(book_glob)}, hive_partitioning=true);
             """
         )
-        # latency_observations: Tier-0 data-fetch latency derived from book rows.
+        # latency_observations: data-fetch latency derived from book rows.
         con.execute(
             """
             CREATE OR REPLACE VIEW latency_observations AS

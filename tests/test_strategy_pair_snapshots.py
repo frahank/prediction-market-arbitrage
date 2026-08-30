@@ -1,4 +1,4 @@
-# Scope: TEST — Regression tests for v2.4 strategy-pair recorder snapshots.
+# Regression tests for v2.4 strategy-pair recorder snapshots.
 from __future__ import annotations
 
 import json

@@ -1,4 +1,4 @@
-"""Extended sub-110ms survival rungs (P3-T6): new tiers resolve, old rows still classify."""
+"""Extended sub-110ms survival rungs: new tiers resolve, old rows still classify."""
 
 from arbx.analysis.survival import (
     STREAMING_PROBE_DELAYS_MS,

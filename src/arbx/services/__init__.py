@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Service seam package (F-T4).
+# Service seam package.
 """Protocol seam between the UI facade and backend services."""
 
 from arbx.services.contracts import (

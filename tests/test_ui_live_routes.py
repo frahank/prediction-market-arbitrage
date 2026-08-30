@@ -1,4 +1,4 @@
-# Scope: TEST — M1-T4 Main/Live dashboard scaffold wiring.
+# Access & Safety dashboard wiring.
 from __future__ import annotations
 
 import json

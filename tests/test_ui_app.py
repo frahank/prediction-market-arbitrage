@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — F-T3 FastAPI shell tests.
+# FastAPI shell tests.
 from __future__ import annotations
 
 from fastapi.testclient import TestClient

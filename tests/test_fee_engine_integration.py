@@ -1,4 +1,4 @@
-# Scope: TEST — FeeEngine composition and its wiring into derive_edges (P2-T4).
+# FeeEngine composition and its wiring into derive_edges.
 from __future__ import annotations
 
 import json

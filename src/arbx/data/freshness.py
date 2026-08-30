@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Single source of truth for per-row market-data freshness.
+# Single source of truth for per-row market-data freshness.
 """
 Freshness / staleness for recorded book observations.
 
@@ -19,7 +19,7 @@ venue-specific. For a venue whose timestamp means "last time the book changed",
 an illiquid-but-valid market will legitimately read as stale without any
 recorder fault. Treat staleness as a *market-activity / freshness* signal, not
 as a recorder-health failure (see ``data_quality`` for the health/freshness
-split and ``docs/modeling_readiness_north_stars.md``).
+split).
 """
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 # Default freshness threshold. Kept here so the recorder column and the DQ
-# acceptance metric share one constant. Tune per-venue later (north stars).
+# acceptance metric share one constant. Tune per-venue later.
 DEFAULT_FRESHNESS_THRESHOLD_SECONDS = 60.0
 
 # freshness_status values

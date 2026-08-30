@@ -1,7 +1,7 @@
-# Scope: BOT_RUNTIME — F-T5: UI-layer extension of the executable safety boundary.
-"""Executable proof the UI cannot place an order or flip mode (F-T5).
+# UI-layer extension of the executable safety boundary.
+"""Executable proof the UI cannot place an order or flip mode.
 
-Extends the P1-T9 boundary (``tests/test_safety_boundary.py``) to the UI seam,
+Extends the boundary in ``tests/test_safety_boundary.py`` to the UI seam,
 per ``docs/SAFETY.md``:
 the UI is a thin facade over named operations; no path may convert a paper
 opportunity into a venue order, and no UI route may change mode, enable real

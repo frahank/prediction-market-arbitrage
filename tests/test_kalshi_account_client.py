@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — KalshiAccountClient tests over mocked HTTP (no network).
+# KalshiAccountClient tests over mocked HTTP (no network).
 from __future__ import annotations
 
 import asyncio

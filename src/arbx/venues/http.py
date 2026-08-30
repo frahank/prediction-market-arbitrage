@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Public HTTP support; never sends authenticated trade requests.
+# Public HTTP support; never sends authenticated trade requests.
 from __future__ import annotations
 
 import json

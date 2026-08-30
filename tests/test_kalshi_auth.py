@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — Kalshi RSA-PSS signer tests (keys generated at runtime only).
+# Kalshi RSA-PSS signer tests (keys generated at runtime only).
 """Signer correctness against a locally generated keypair.
 
 No key material is ever committed: every test generates its RSA key with

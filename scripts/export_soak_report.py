@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Export compact per-soak analysis artifacts for comparison.
+# Export compact per-soak analysis artifacts for comparison.
 #
 # Writes reports/<run_id>/{dq_summary,episode_rankings,basis_suspects,
 # survival_summary}.json + profitability_summary.md so soaks can be compared

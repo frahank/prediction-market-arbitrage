@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — M5-T1 DocStore implementation tests.
+# DocStore implementation tests.
 from __future__ import annotations
 
 from pathlib import Path

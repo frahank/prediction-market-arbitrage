@@ -1,4 +1,4 @@
-# Scope: TEST — P4-T5 decision workflow: append-only log, strategy gate, archive.
+# Pair-decision workflow: append-only log, strategy gate, archive.
 from __future__ import annotations
 
 from pathlib import Path

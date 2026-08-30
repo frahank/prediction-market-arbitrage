@@ -1,4 +1,4 @@
-# Scope: TEST — configs/modeling.yaml provenance + coverage (P5-T3).
+# configs/modeling.yaml provenance + coverage.
 from __future__ import annotations
 
 import re

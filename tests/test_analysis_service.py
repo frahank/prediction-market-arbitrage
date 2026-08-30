@@ -1,4 +1,4 @@
-# Scope: TEST — M2-T4 AnalysisService: pinned AnalysisSummary v1 pipeline.
+# AnalysisService: pinned AnalysisSummary pipeline.
 from __future__ import annotations
 
 import dataclasses

@@ -1,4 +1,4 @@
-# Scope: TEST — M2-T3 EDGES writer: standardized rows persisted at capture time.
+# EDGES writer: standardized rows persisted at capture time.
 from __future__ import annotations
 
 import dataclasses
@@ -153,7 +153,7 @@ def test_qualifying_only_gate(tmp_path: Path):
 
 
 def test_written_file_reads_back_through_data_service(tmp_path: Path):
-    """DoD: Module 4 consumes writer output with no mapping fallbacks."""
+    """The Data tab consumes writer output with no mapping fallbacks."""
     soaks_root = tmp_path / "data" / "soaks"
     soak = soaks_root / "scan_20260705-141530_EDGES"
     writer = EdgesWriter(soak, depth_haircut=DEPTH_HAIRCUT)

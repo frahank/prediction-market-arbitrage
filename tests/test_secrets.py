@@ -1,4 +1,4 @@
-# Scope: TEST — M1-T2 credential store (storage/load/redaction only).
+# Credential store (storage/load/redaction only).
 """Adversarial coverage for ``arbx.accounts.secrets``.
 
 Everything runs against a tmp HOME — the real ``~/.arbx`` is never touched.

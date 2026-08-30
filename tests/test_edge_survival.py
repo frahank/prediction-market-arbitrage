@@ -22,7 +22,7 @@ def test_classify_survival_tiers_buckets_by_contiguous_lifetime():
     yellow = [_rung("d", ms, ms <= 500) for ms in (0, 50, 100, 250, 500, 1000)]
     # orange: survives 250ms then dies at 500ms
     orange = [_rung("d", ms, ms <= 250) for ms in (0, 50, 100, 250, 500, 1000)]
-    # blue: survives 100ms then dies (resolvable since the Phase 3 rungs)
+    # blue: survives 100ms then dies (resolvable at the streaming rungs)
     blue = [_rung("d", ms, ms <= 100) for ms in (0, 50, 100, 250, 500, 1000)]
     # gray: an edge existed at observation but died at the first delayed rung
     gray = [_rung("d", ms, ms == 0) for ms in (0, 50, 100, 250, 500, 1000)]

@@ -56,7 +56,7 @@ you see the distribution, not just the winners.
 > **Displayed-book estimate, never a fill or profit claim.** An "opportunity"
 > here is a cross on public order books after modeled fees. Whether it is
 > *equivalent* (a true hedge vs. basis) is a separate registry question
-> (`arbx.pairs.equivalence`); whether it would *fill* is P6 (replay) / P12
+> (`arbx.pairs.equivalence`); whether it would *fill* is replay / live-fill
 > (tiny live). Scanning an un-audited pair can surface a basis cross that is not
 > arbitrage — prescreen the universe first.
 

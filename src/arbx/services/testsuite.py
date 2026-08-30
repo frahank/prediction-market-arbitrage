@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — M2-T5 TestSuiteRunner service.
+# Background pytest runner for the dashboard health check.
 """Background pytest runner for the Paper Dashboard health check."""
 from __future__ import annotations
 

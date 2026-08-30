@@ -1,4 +1,4 @@
-# Scope: TEST — Unit tests for the Phase 4 data-quality report.
+# Unit tests for the data-quality report.
 from __future__ import annotations
 
 import json

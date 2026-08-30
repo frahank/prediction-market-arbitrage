@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — StreamingSource: unify venue streams behind MarketDataSource.
+# StreamingSource: unify venue streams behind MarketDataSource.
 """StreamingSource: one ``MarketDataSource`` over both venue book streams.
 
 Holds the latest ``BookSnapshot`` per leg; whenever either leg updates, emits

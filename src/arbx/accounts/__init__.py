@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Account credential surface.
+# Account credential surface.
 """Accounts package.
 
 The public package exposes storage-only credential helpers. Authenticated

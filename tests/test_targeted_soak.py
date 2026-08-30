@@ -1,4 +1,4 @@
-# Scope: TEST — P4-T4 evidence-pack post-processing over the soak_mini fixture.
+# Evidence-pack post-processing over the soak_mini fixture.
 from __future__ import annotations
 
 import json

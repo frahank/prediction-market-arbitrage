@@ -1,4 +1,4 @@
-# Scope: TEST — latency-study report schema on a local stub server (P5-T4).
+# latency-study report schema on a local stub server.
 from __future__ import annotations
 
 import sys

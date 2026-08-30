@@ -1,4 +1,4 @@
-# Scope: TEST — Unit tests for Phase 4 Parquet/DuckDB compaction (optional analytics extra).
+# Unit tests for Parquet/DuckDB compaction (optional analytics extra).
 from __future__ import annotations
 
 import json

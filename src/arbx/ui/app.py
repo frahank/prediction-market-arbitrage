@@ -1,11 +1,11 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — FastAPI shell and facade operation wrapper (F-T3).
+# FastAPI shell and facade operation wrapper.
 """Five-tab local cockpit shell.
 
 The UI layer is intentionally thin: page routes render templates, and API
 routes call named operation handlers through the standard envelope. Concrete
-service protocols and stubs are pinned in F-T4; this module keeps the registry
+service protocols and stubs live in ``arbx.services``; this module keeps the registry
 shape ready without importing backend internals.
 """
 from __future__ import annotations

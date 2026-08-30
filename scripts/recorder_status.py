@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Quick live-glance monitor for an in-flight recorder soak (Phase 4).
+# Quick live-glance monitor for an in-flight recorder soak.
 """
 Quick status of a running (or finished) recorder soak.
 

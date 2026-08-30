@@ -1,16 +1,12 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Public Polymarket fee-metadata resolution.
+# Public Polymarket fee-metadata resolution.
 """Polymarket public fee-metadata resolution.
 
-Port of ``arb_bot/src/arb_bot/market_fees.py`` with imports rewritten for
-arbx (P2-T3). Paper-runtime residue was stripped in the port: the
-``FeeConfig`` schedule object (arb_bot paper engine) and the
-``ConnectorSource``/``ValueClassification`` reporting fields are gone;
-:class:`PublicFeeResult` carries the resolved numbers directly. The
-resolution logic — cross-checking the ``/clob-markets`` and ``/fee-rate``
-endpoints and failing closed on any mismatch or malformed payload — is
-unchanged.
+Cross-checks the ``/clob-markets`` and ``/fee-rate`` endpoints and fails closed
+on any mismatch or malformed payload, so a fee rate is either corroborated by
+both sources or refused. :class:`PublicFeeResult` carries the resolved numbers
+directly; there is no schedule object and no reporting metadata attached.
 """
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""NTP offset stamping in the recorder (P3-T2): rows carry it, big offsets warn."""
+"""NTP offset stamping in the recorder: rows carry it, big offsets warn."""
 
 import json
 import logging

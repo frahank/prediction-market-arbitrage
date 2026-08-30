@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Global kill switch.
+# Global kill switch.
 """The operator's one hard off-switch.
 
 Engaged means: the sentinel file exists OR the environment variable

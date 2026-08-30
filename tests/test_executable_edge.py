@@ -1,4 +1,4 @@
-# Scope: TEST — Module A executable-edge model (P5-T1).
+# Executable-edge model.
 from __future__ import annotations
 
 from pathlib import Path
@@ -72,6 +72,6 @@ def test_both_skew_scenarios_produced():
     assert clean.max_skew_ms == 50.0
     assert hybrid.max_skew_ms > 1000.0  # seconds-scale REST-poll skew
     assert hybrid.validity == "kalshi_rest_poll_stopgap"
-    # shared Module A knobs come from the executable block
+    # shared knobs come from the executable block
     assert clean.depth_haircut == hybrid.depth_haircut == 0.50
     assert clean.min_episode_snapshots == 2

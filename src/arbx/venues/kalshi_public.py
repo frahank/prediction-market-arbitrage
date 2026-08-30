@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Kalshi public-data adapter + provider; no account access.
+# Kalshi public-data adapter + provider; no account access.
 """Kalshi public order-book adapter.
 
 Merges the former ``adapters/kalshi.py`` (normalization + ``KalshiAdapter``) and

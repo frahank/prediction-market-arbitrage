@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — CLI for the recorder data-quality report (Phase 4).
+# CLI for the recorder data-quality report.
 """
 Data-quality report for the market-data recorder dataset.
 
@@ -11,7 +11,7 @@ Usage:
     python scripts/data_quality.py --json                # machine-readable
     python scripts/data_quality.py --strict              # exit 1 if thresholds fail
 
-The report is the acceptance gate for an unattended soak (docs/dataset_schema.md §5).
+The report is the acceptance gate for an unattended soak (docs/soak_layout.md).
 """
 from __future__ import annotations
 

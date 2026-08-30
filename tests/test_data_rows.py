@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — M4-T2 bounded standardized row-read tests.
+# Bounded standardized row-read tests.
 from __future__ import annotations
 
 import dataclasses

@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — Tests targeted public Kalshi series discovery.
+# Tests targeted public Kalshi series discovery.
 from __future__ import annotations
 
 import scripts.discover_kalshi_public_markets as discovery_script

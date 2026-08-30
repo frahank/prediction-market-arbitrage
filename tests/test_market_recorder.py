@@ -1,4 +1,4 @@
-# Scope: TEST — Unit tests for the Phase 1 market-data recorder.
+# Unit tests for the market-data recorder.
 """
 Tests for market_recorder.py.
 
@@ -241,7 +241,7 @@ def test_registry_universe_falls_back_to_condition_id(tmp_path: Path):
 
 
 # ---------------------------------------------------------------------------
-# load_universe_from_discovery (Phase 2 — coverage)
+# load_universe_from_discovery (coverage)
 # ---------------------------------------------------------------------------
 
 def _write_discovery(path: Path, venue: str, markets: list[dict]) -> None:
@@ -440,7 +440,7 @@ def test_recorder_heartbeat_file_created(tmp_path: Path):
 
 
 # ---------------------------------------------------------------------------
-# Continuity: lifecycle events, refresh, restart-gap (Phase 2)
+# Continuity: lifecycle events, refresh, restart-gap
 # ---------------------------------------------------------------------------
 
 def _latency_rows(tmp_path: Path) -> list[dict]:

@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — Tests targeted public Polymarket event discovery.
+# Tests targeted public Polymarket event discovery.
 from __future__ import annotations
 
 import scripts.discover_polymarket_public_markets as discovery_script

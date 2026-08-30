@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: SHARED_CORE — Fee breakdown type shared by all venue fee models (Phase 2).
+# Fee breakdown type shared by all venue fee models.
 """Common fee types for the arbx fee engine.
 
 :class:`FeeBreakdown` is the single return type of every per-venue fee model

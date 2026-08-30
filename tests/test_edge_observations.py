@@ -1,4 +1,4 @@
-# Scope: TEST — Unit tests for Phase 5 edge derivation.
+# Unit tests for edge derivation.
 from __future__ import annotations
 
 import json

@@ -1,4 +1,4 @@
-# Scope: TEST — CLI wrapper for store_credentials.
+# CLI wrapper for store_credentials.
 """Coverage for scripts/store_credentials.py CLI.
 
 The CLI prompts for credential fields and calls the store function.

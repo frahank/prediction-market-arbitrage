@@ -1,4 +1,4 @@
-# Scope: TEST — Unit tests for Phase 5 heatmap builders.
+# Unit tests for the heatmap builders.
 from __future__ import annotations
 
 from arbx.analysis.heatmap import (

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: SHARED_CORE — Shared redaction helpers for logs, UI, and CLI output.
+# Shared redaction helpers for logs, UI, and CLI output.
 """Value-targeted redaction for anything that leaves the process.
 
 The rule that matters: **redact the secret, not the label**. A pattern that

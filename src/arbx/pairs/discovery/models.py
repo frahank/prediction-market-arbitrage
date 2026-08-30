@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Public-market discovery records for the actual paper bot.
+# Public-market discovery records for the actual paper bot.
 from __future__ import annotations
 
 import json

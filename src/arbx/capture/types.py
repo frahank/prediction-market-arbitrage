@@ -1,12 +1,12 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Capture-layer types: the one seam between capture, decision, and replay.
-"""Capture-layer snapshot types (Phase 3 contract).
+# Capture-layer types: the one seam between capture, decision, and replay.
+"""Capture-layer snapshot types.
 
 ``PairedSnapshot`` is the ONE seam between capture, decision, and replay:
-Phase 6's replay source and Phase 7's decision engine both code against
+A replay source and a decision engine both code against
 ``MarketDataSource``. ``BookSnapshot.to_observation_row`` emits rows
-dict-compatible with ``book_observations`` (docs/dataset_schema.md §2.1),
+dict-compatible with ``book_observations`` (docs/soak_layout.md),
 matching ``arbx.data.recorder.book_to_observation`` column-for-column.
 
 Price convention (post docs/book_semantics_fix.md): ``bids``/``asks`` are in

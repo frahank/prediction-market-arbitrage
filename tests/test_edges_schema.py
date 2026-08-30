@@ -1,4 +1,4 @@
-# Scope: TEST — Derived edge rows carry every dataset_schema.md §2.2 non-probe column.
+# Derived edge rows carry every edge_observations non-probe column.
 from __future__ import annotations
 
 from datetime import datetime, timezone

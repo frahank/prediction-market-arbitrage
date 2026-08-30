@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Persist capture snapshots as recorder-compatible JSONL rows.
+# Persist capture snapshots as recorder-compatible JSONL rows.
 """ObservationSink: write ``BookSnapshot`` rows to the recorder's landing.
 
-Same Tier-1 layout the recorder writes (``data_<run>/raw/book/venue=*/
+Same raw-JSONL layout the recorder writes (``data_<run>/raw/book/venue=*/
 <date>.jsonl``, via the recorder's ``_DailyWriter``), so the existing DQ
 report, edge derivation, and compaction tooling read capture output with no
 changes. ``capture_seq`` is monotonically increasing per sink, resuming from

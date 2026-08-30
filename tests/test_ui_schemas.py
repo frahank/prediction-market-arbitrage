@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — F-T2: pinned envelope + standardized-schema contract tests.
+# Pinned envelope and standardized-schema contract tests.
 from __future__ import annotations
 
 import json

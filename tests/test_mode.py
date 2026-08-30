@@ -1,4 +1,4 @@
-# Scope: TEST — Runtime mode guard: deny-by-default, three-gate real-order enable.
+# Runtime mode guard: deny-by-default, three-gate real-order enable.
 from __future__ import annotations
 
 from pathlib import Path

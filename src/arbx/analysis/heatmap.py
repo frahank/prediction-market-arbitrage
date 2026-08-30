@@ -1,18 +1,18 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Heatmap builders over recorder-derived tables (Phase 5).
+# Heatmap builders over recorder-derived tables.
 """
 Heatmap tooling for the recorder dataset.
 
 Three views, each derivable from data the recorder already collects:
 
-  - ``latency_heatmap``: median data-fetch latency by venue × hour (Tier-0, the
+  - ``latency_heatmap``: median data-fetch latency by venue × hour (the
     public half of the executability question — needs no credentials).
   - ``edge_heatmap``: positive-edge rate by pair × hour from edge_observations.
   - ``survival_heatmap``: edge-survival rate by pair × probe-ladder bucket. This
     is the cross-venue latency heatmap from DATA_PLATFORM_PLAN.md §5; it renders
     only once ``benchmark_ms``/``survived`` are populated (by the opportunity
-    runner's latency ladder or Phase 3 streaming), so it is empty on plain
+    runner's latency ladder or streaming capture), so it is empty on plain
     snapshot data and that is reported honestly rather than faked.
 
 Pure stdlib: builds grids and renders to text or self-contained HTML.

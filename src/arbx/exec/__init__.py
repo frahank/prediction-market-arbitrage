@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Runtime safety primitives.
+# Runtime safety primitives.
 """Execution package.
 
 Only the kill switch lives here. This package contains no order clients or

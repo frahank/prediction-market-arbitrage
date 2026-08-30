@@ -1,4 +1,4 @@
-# Scope: TEST — EV model with carry, survival, and failed-leg costs (P5-T2).
+# EV model with carry, survival, and failed-leg costs.
 from __future__ import annotations
 
 import pytest

@@ -1,15 +1,15 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Data-quality report over the recorder's raw landing (Phase 4).
+# Data-quality report over the recorder's raw landing.
 """
 Data-quality report for the market-data recorder dataset.
 
-Reads the Tier-1 raw landing written by ``market_recorder.py``:
+Reads the raw JSONL landing written by ``market_recorder.py``:
 
     data/raw/book/venue=<venue>/<date>.jsonl     # book_observations
     data/raw/latency/<date>.jsonl                # continuity log
 
-and computes the acceptance statistics in ``docs/dataset_schema.md`` §5:
+and computes the acceptance statistics:
 rows/market/day, sampling-interval distribution, gap rate, duplicate rate,
 staleness rate, and the per-run NTP offset flag. Pure stdlib — no pandas,
 duckdb, or network — so it runs anywhere the recorder runs.
@@ -22,7 +22,7 @@ Two distinct axes (kept separate on purpose):
   Staleness is a market-activity signal (an illiquid-but-valid market reads as
   stale through no recorder fault), so it is reported as a distribution and is
   *not* part of the hard gate. See ``arbx.data.freshness`` and
-  ``docs/modeling_readiness_north_stars.md``.
+  the freshness thresholds documented in ``arbx.data.freshness``.
 
 Caching: pass ``cache_dir`` to memoize per-source-file partial stats keyed by
 (size, mtime). Closed day-files are never reparsed; only changed/active files
@@ -50,7 +50,7 @@ from arbx.data.freshness import (
     parse_ts,
 )
 
-# Acceptance thresholds (docs/dataset_schema.md §5), Phase 1–2 30s polling.
+# Acceptance thresholds (docs/soak_layout.md), 30s polling.
 MIN_ROWS_PER_MARKET_DAY = 1_440
 MAX_GAP_RATE = 0.05
 MAX_STALENESS_RATE = 0.10
@@ -333,7 +333,7 @@ class DataQualityReport:
         results["ntp_offset"] = (
             not bad_ntp,
             f"{len(bad_ntp)} run(s) with |offset| > {MAX_NTP_OFFSET_MS:.0f}ms"
-            + (" (offsets null until Phase 3)" if all(r.get("ntp_offset_ms") is None for r in self.runs) else ""),
+            + (" (offsets null until streaming capture)" if all(r.get("ntp_offset_ms") is None for r in self.runs) else ""),
         )
         return results
 

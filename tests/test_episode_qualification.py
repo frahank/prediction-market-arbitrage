@@ -1,4 +1,4 @@
-# Scope: TEST — qualifies() predicate unchanged after the port.
+# qualifies() predicate unchanged after the port.
 from __future__ import annotations
 
 from arbx.analysis.episodes import qualifies

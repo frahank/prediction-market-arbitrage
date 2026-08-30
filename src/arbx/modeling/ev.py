@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Modules B/D/E/F/G: survival-, carry-, and failure-adjusted EV (P5-T2).
-"""Per-pair EV model implementing the Phase 5 north-star equation:
+# Modules B/D/E/F/G: survival-, carry-, and failure-adjusted EV.
+"""Per-pair expected-value model:
 
     EV_per_opportunity =
         P(both_legs_fill) x (depth_adjusted_edge - real_fees - carry_cost)
@@ -11,18 +11,18 @@
 Everything reads from episode lists + the pair registry; no I/O. All knobs come
 from ``configs/modeling.yaml`` (see :func:`EVParams.from_config`):
 
-* Module B — ``P(both_legs_fill)`` maps the best observed survival tier through
+* **Fill probability** — ``P(both_legs_fill)`` maps the best observed survival tier through
   the ``fill_probability.tiers`` table (survival in a public re-fetch probe is a
   PROXY for fillability, not a fill guarantee; un-probed pairs take the
-  ``unprobed`` knob). Every number is provisional pending P6/P12.
-* Module D — carry: both legs post full collateral released at resolution, so
+  ``unprobed`` knob). Every number is provisional until replay and live-fill evidence exist.
+* **Carry** — both legs post full collateral released at resolution, so
   ``carry = (kalshi_price + poly_price) x capital_apr x days/365`` with the
   price sum recovered as ``1 - gross_edge``.
-* Module E — failed leg: with probability ``leg_failure_prob`` one leg fills
+* **Failed leg** — with probability ``leg_failure_prob`` one leg fills
   alone; ``cross_spread`` prices the unwind as crossing the filled leg's spread,
   ``hold_to_resolution`` as carrying that leg's collateral to resolution.
-* Module F — ``opportunities_per_day = qualifying_episodes / soak_days``.
-* Module G — the viable/marginal/not_viable verdict against operator thresholds.
+* **Opportunity rate** — ``opportunities_per_day = qualifying_episodes / soak_days``.
+* **Verdict** — the viable/marginal/not_viable call against operator thresholds.
 """
 from __future__ import annotations
 
@@ -40,7 +40,7 @@ VERDICT_NOT_VIABLE = "not_viable"
 UNWIND_CROSS_SPREAD = "cross_spread"
 UNWIND_HOLD_TO_RESOLUTION = "hold_to_resolution"
 
-# Module B placeholder table; overridden by configs/modeling.yaml at load time.
+# Placeholder fill-probability table; overridden by configs/modeling.yaml at load time.
 DEFAULT_FILL_PROBABILITY_TIERS: Mapping[str, float] = {
     "survived_1000ms": 0.80,
     "survived_500ms": 0.50,
@@ -68,8 +68,8 @@ class EVParams:
     def from_config(
         cls, config: Mapping[str, Any], executable: ExecutableEdgeParams
     ) -> EVParams:
-        """Bind the modeling.yaml Module B/C/D/E knobs to one skew scenario's
-        Module A params (``arbx.modeling.executable.load_scenarios``)."""
+        """Bind the modeling.yaml expected-value knobs to one skew scenario's
+        executable-edge params (``arbx.modeling.executable.load_scenarios``)."""
         carry = config.get("carry") or {}
         failed = config.get("failed_leg") or {}
         fees = config.get("fees") or {}
@@ -117,10 +117,10 @@ class EVBreakdown:
     soak_days: float
     gross_edge_per_unit: float
     fees_per_unit: float
-    survival_probability: float          # Module B P(both_legs_fill); provisional
+    survival_probability: float          # P(both_legs_fill); provisional
     survival_tier: str | None
     fill_probability_basis: str          # "tier:<name>" | "unprobed" | "no_episodes"
-    expected_fill_size: float            # haircut depth, thinner-leg constrained (R7)
+    expected_fill_size: float            # haircut depth, thinner-leg constrained
     carry_cost_per_unit: float
     unwind_cost_per_unit: float
     failed_leg_expected_cost_per_unit: float
@@ -134,7 +134,7 @@ class EVBreakdown:
 
     @property
     def net_edge_per_unit(self) -> float:
-        """The Module B-weighted term: gross - fees - carry."""
+        """The fill-probability-weighted term: gross - fees - carry."""
         return self.gross_edge_per_unit - self.fees_per_unit - self.carry_cost_per_unit
 
     def to_dict(self) -> dict[str, Any]:
@@ -190,7 +190,7 @@ def _zero_breakdown(pair_key: str, direction: str, params: EVParams, soak_days: 
 def _qualifying(
     episodes: Iterable[Episode], pair_key: str, direction: str, params: EVParams
 ) -> list[Episode]:
-    """Module A gates at episode granularity: no blips, no over-skew captures,
+    """Executable-edge gates at episode granularity: no blips, no over-skew captures,
     and persistent-basis episodes are never opportunities."""
     return [
         ep
@@ -263,7 +263,7 @@ def pair_ev(
         return _zero_breakdown(pair_key, direction, params, soak_days)
 
     # Gross depth edge per unit: median episode depth-adjusted edge, with the
-    # flat fee it was derived at added back (Module C separates real fees).
+    # flat fee it was derived at added back (real fees are separated downstream).
     gross_edge = median(ep.median_depth_edge for ep in qualifying) + params.depth_fee_base
     fees = fees_per_unit if fees_per_unit is not None else params.depth_fee_base
 
@@ -312,7 +312,7 @@ def pair_ev(
 
 
 def verdict(breakdown: EVBreakdown, thresholds: ViabilityThresholds) -> str:
-    """Module G: the go/no-go label under the pinned operator thresholds."""
+    """The go/no-go label under the pinned operator thresholds."""
     if (
         breakdown.ev_per_day_usd >= thresholds.min_ev_per_day_usd
         and breakdown.opportunities_per_week >= thresholds.min_opportunities_per_week

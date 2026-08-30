@@ -1,4 +1,4 @@
-"""Pinned Kalshi fee-schedule config sanity (P2-T1).
+"""Pinned Kalshi fee-schedule config sanity.
 
 The numbers themselves are verified against the official sources cited in
 configs/fees_kalshi.yaml and docs/fees_kalshi.md; this test guards the

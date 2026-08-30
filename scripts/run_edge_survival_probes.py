@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Public edge-survival probe runner for verified pairs.
+# Public edge-survival probe runner for verified pairs.
 from __future__ import annotations
 
 import argparse

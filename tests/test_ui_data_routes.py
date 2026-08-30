@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — M4-T3 Data tab route/API wiring tests.
+# Data tab route and API wiring tests.
 from __future__ import annotations
 
 import json

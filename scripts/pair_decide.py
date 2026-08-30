@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — P4-T5 CLI: record a pair decision; archive moves the entry.
+# CLI: record a pair decision; archive moves the entry.
 #
 # Appends an append-only decision_log entry ({at, decision, rationale, auditor})
 # to the pair in configs/pairs.approved.yaml and re-hashes the sha256 sidecar.

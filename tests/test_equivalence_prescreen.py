@@ -1,4 +1,4 @@
-# Scope: TEST — P4-T3 equivalence prescreen, audit prompt, verdict parsing.
+# Equivalence prescreen, audit prompt, and verdict parsing.
 from __future__ import annotations
 
 import json
@@ -49,17 +49,17 @@ def test_date_delta_flagged():
         datetime(2026, 8, 1, 4, 59, tzinfo=timezone.utc),
     )
     result = prescreen(_pair(), snap, now=NOW)
-    assert any(f.startswith("R4:") for f in result.flags)
+    assert any(f.startswith("Cutoff:") for f in result.flags)
     assert result.score == "flagged"
 
-    # within ±1h → no R4 flag
+    # within ±1h → no cutoff flag
     snap2 = _snapshot(
         "If X wins the match, resolves Yes.", "Resolves Yes if X wins the match.",
         datetime(2026, 8, 1, 15, tzinfo=timezone.utc),
         datetime(2026, 8, 1, 14, 30, tzinfo=timezone.utc),
     )
     result2 = prescreen(_pair(), snap2, now=NOW)
-    assert not any(f.startswith("R4:") for f in result2.flags)
+    assert not any(f.startswith("Cutoff:") for f in result2.flags)
 
 
 def test_long_dated_flagged():
@@ -70,11 +70,11 @@ def test_long_dated_flagged():
         datetime(2028, 11, 7, 15, tzinfo=timezone.utc),
     )
     result = prescreen(_pair(), snap, now=NOW)
-    assert any(f.startswith("R5:") for f in result.flags)
+    assert any(f.startswith("Duration:") for f in result.flags)
 
 
 def test_subjective_language_flagged_and_registry_fallback():
-    # No close times in the snapshot → registry raw fallback used for R4/R5.
+    # No close times in the snapshot → registry raw fallback used for cutoff/duration.
     snap = _snapshot(
         "If any federal agency definitively states that aliens exist, resolves Yes.",
         "Resolves Yes if the government definitively states aliens exist.",
@@ -84,9 +84,9 @@ def test_subjective_language_flagged_and_registry_fallback():
            "polymarket_close_time": "2026-12-31T00:00:00Z"}
     result = prescreen(_pair(raw), snap, now=NOW)
     assert result.structure == "subjective"
-    assert any(f.startswith("R2:") for f in result.flags)
-    assert any(f.startswith("R4:") and "delta" in f for f in result.flags)
-    assert any(f.startswith("R5:") for f in result.flags)
+    assert any(f.startswith("Resolution structure:") for f in result.flags)
+    assert any(f.startswith("Cutoff:") and "delta" in f for f in result.flags)
+    assert any(f.startswith("Duration:") for f in result.flags)
 
 
 def test_prompt_contains_both_rule_texts():
@@ -153,5 +153,5 @@ def test_prescreen_on_real_lead_pair_snapshot():
     # Subjective dominates by design (highest basis risk wins the classification).
     assert result.structure == "subjective"
     assert "continent" in snap.poly_description  # the grouping layer is still there
-    assert any(f.startswith("R2:") for f in result.flags)
-    assert any(f.startswith("R4:") for f in result.flags)  # 14-day resolution asymmetry
+    assert any(f.startswith("Resolution structure:") for f in result.flags)
+    assert any(f.startswith("Cutoff:") for f in result.flags)  # 14-day resolution asymmetry

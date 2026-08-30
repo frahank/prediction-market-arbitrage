@@ -1,13 +1,14 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — First-class market-data recorder, independent of pair registry.
+# First-class market-data recorder, independent of pair registry.
 """
-Decoupled market-data recorder (Phase 1).
+Decoupled market-data recorder.
 
 Records book_observations for any (venue, market_id) universe, regardless of
 whether the market appears in configs/pairs.approved.yaml. Output is flat
 NDJSON written to data/raw/book/venue=<venue>/<date>.jsonl — one row per
-capture event, matching the schema in docs/dataset_schema.md.
+capture event. The exact column contract is asserted by
+``tests/test_recorder_schema.py``.
 
 This module has no dependency on the paper-simulation subsystem (executor,
 positions, risk, live_paper). It is public-data only and requires no
@@ -407,7 +408,7 @@ def load_universe_from_discovery(
 
     This decouples the recorder's coverage from the 24-pair registry: re-running
     discovery and re-loading here is how the universe grows and retires markets
-    over time (Phase 2 — coverage). Missing or malformed files are skipped so a
+    over time (coverage). Missing or malformed files are skipped so a
     failed discovery refresh never takes the recorder down.
     """
     candidates: list[tuple[float, str, str]] = []

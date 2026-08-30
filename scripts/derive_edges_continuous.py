@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Incremental public-data edge derivation for verified pairs,
+# Incremental public-data edge derivation for verified pairs,
 # with optional persistence-gated event-triggered survival probes.
 from __future__ import annotations
 

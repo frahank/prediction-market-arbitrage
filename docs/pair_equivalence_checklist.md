@@ -25,11 +25,11 @@ memory or the market title), with both venue pages open for cross-checking.
 3. **Enumerate the winners.** List the realistic outcome set (actual countries /
    candidates / teams). For each, mark Kalshi YES/NO and Polymarket YES/NO from
    the rules. Any mismatch on a realistic outcome ⇒ `basis`, stop here.
-4. **Check grouping labels (R3).** If either venue resolves by a grouping scheme
+4. **Check grouping labels.** If either venue resolves by a grouping scheme
    (confederation vs geographic continent, party vs registration, etc.), name
    both schemes and verify they partition the realistic outcome set identically.
    List every member whose label differs — each is a tail risk or a basis.
-5. **Compare cutoffs to the minute (R4).** Kalshi `close_time` vs Polymarket
+5. **Compare cutoffs to the minute.** Kalshi `close_time` vs Polymarket
    `endDate` (registry `polymarket_close_time` if the API omits it). Record the
    delta in hours and what real-world event inside the window would resolve the
    venues apart.
@@ -74,4 +74,4 @@ date:
   re-audited.
 - Subjective resolution language ("definitively states", "announces",
   "normalizes") caps the verdict at `tail_divergence_documented` — never
-  `verified_equivalent` — regardless of wording similarity (R2).
+  `verified_equivalent` — regardless of wording similarity.

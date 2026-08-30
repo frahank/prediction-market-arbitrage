@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Read-only access and runtime-safety service.
+# Read-only access and runtime-safety service.
 """Storage-only access and safety facade for the local dashboard.
 
 This service deliberately does not know how to trade. It exposes only the
@@ -51,7 +51,7 @@ def _credential_row(venue: str, profile: str) -> dict[str, Any] | None:
 
 
 class LiveControllerImpl:
-    """Implements the inert Module 1 scaffold contract."""
+    """Storage-only access and safety facade for the Access & Safety tab."""
 
     def __init__(
         self,

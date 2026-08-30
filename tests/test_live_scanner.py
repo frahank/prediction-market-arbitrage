@@ -1,4 +1,4 @@
-# Scope: TEST — Live arbitrage scanner: batching, detection, capture toggles.
+# Live arbitrage scanner: batching, detection, capture toggles.
 """Drives ``ArbScanner`` with an injected paired-fetch callable (no network).
 
 Verifies the rolling cursor covers the universe inside each refresh window and

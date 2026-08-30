@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Shared local filesystem defaults.
+# Shared local filesystem defaults.
 from __future__ import annotations
 
 from pathlib import Path

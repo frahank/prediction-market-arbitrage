@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Kalshi WebSocket order-book stream (subscribe-only, market data).
+# Kalshi WebSocket order-book stream (subscribe-only, market data).
 """KalshiBookStream: local order books from the Kalshi WS orderbook_delta channel.
 
 Verified against the official docs (2026-07-03,

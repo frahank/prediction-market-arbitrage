@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME - M3-T3 Pairs tab UI route/API wiring tests.
+# Pairs tab route and API wiring tests.
 from __future__ import annotations
 
 from pathlib import Path

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Post-hoc laser-focused opportunity analysis over edge rows.
+# Post-hoc laser-focused opportunity analysis over edge rows.
 #
 # Reads derived edge rows, classifies persistent basis-suspect pairs (excluded),
 # collapses transient dislocations into episodes, attaches probe survival tiers,

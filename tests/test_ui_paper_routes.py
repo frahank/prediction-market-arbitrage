@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME - M2-T6 Paper tab route/API wiring tests.
+# Paper tab route and API wiring tests.
 from __future__ import annotations
 
 from pathlib import Path

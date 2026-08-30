@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: SHARED_PAPER_CORE — Edge episode + persistence analysis for laser-focused
+# Edge episode + persistence analysis for laser-focused
 # opportunity discovery over public recorder/edge data.
 #
 # Core interpretive rule:

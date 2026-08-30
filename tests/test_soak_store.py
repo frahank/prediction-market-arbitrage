@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — M4-T1 soak metadata store tests.
+# Soak metadata store tests.
 from __future__ import annotations
 
 import json

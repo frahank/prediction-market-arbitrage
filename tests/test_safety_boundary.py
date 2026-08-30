@@ -1,21 +1,22 @@
-"""Executable safety boundary (P1-T9).
+"""Executable safety boundary.
 
 Enforcement layer for the invariants stated in docs/SAFETY.md:
 
 1. No file under ``src/arbx`` may contain a venue order-mutation endpoint
    string ("/portfolio/orders" on Kalshi, "clob.polymarket.com/order" on
    Polymarket CLOB) or combine "POST" with "order". The allowlist is
-   deliberately empty; Phase 12 adds exactly the two import-guarded
+   deliberately empty; a future live tier would add exactly the two import-guarded
    live-client files and nothing else.
 2. ``configs/runtime.yaml`` ships in paper mode with real orders disabled.
-3. No module under ``src/arbx`` imports ``arb_bot`` — the source research
-   repo must never become a runtime dependency of the execution bot.
+3. No module under ``src/arbx`` imports ``arb_bot``, the private predecessor
+   codebase this release was extracted from. It must never become a runtime
+   dependency; everything needed to run is in this repository.
 
 These tests are the safety net itself; nothing meta-tests them. Keep them
 strict: a false positive costs an allowlist entry, a false negative is a
 hole in the paper/real boundary.
 
-F-T5 extends the boundary to the UI seam: ``tests/test_ui_safety.py`` holds
+``tests/test_ui_safety.py`` extends the boundary to the UI seam and holds
 the UI-layer import walk and route/Protocol scans, and
 ``test_tree_scan_covers_ui_and_services_layers`` below proves this file's
 tree-scan reaches ``src/arbx/ui`` and ``src/arbx/services`` (templates and
@@ -38,7 +39,7 @@ RUNTIME_YAML = REPO_ROOT / "configs" / "runtime.yaml"
 # needs GET /portfolio/orders (listing resting orders — Kalshi's *placement*
 # endpoint is POST on the same path). Its read-only-ness is enforced by
 # tests/test_accounts_readonly.py: no order-shaped method names anywhere in
-# arbx.accounts and no POST/PUT/DELETE strings in its source. Phase 12 adds
+# arbx.accounts and no POST/PUT/DELETE strings in its source. A future live tier adds
 # exactly "src/arbx/exec/live_kalshi.py" and "src/arbx/exec/live_polymarket.py"
 # and nothing else.
 ORDER_ENDPOINT_ALLOWLIST: frozenset[str] = frozenset({"src/arbx/accounts/kalshi.py"})
@@ -84,7 +85,7 @@ def test_no_order_endpoints_in_tree():
 
 
 def test_tree_scan_covers_ui_and_services_layers():
-    """The order-endpoint scan must reach the UI seam (F-T5).
+    """The order-endpoint scan must reach the UI seam.
 
     If ``src/arbx/ui`` or ``src/arbx/services`` ever fell out of the walk
     (moved, excluded, renamed), the endpoint scan above would silently stop
@@ -122,6 +123,6 @@ def test_no_source_repo_imports():
                 if name == "arb_bot" or name.startswith("arb_bot."):
                     violations.append(f"{_rel(path)}:{node.lineno}: imports {name!r}")
     assert not violations, (
-        "modules import the source research repo (arb_bot must never be a "
-        "runtime dependency):\n" + "\n".join(violations)
+        "modules import the private predecessor codebase (arb_bot must never "
+        "be a runtime dependency):\n" + "\n".join(violations)
     )

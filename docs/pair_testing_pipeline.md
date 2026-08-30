@@ -26,7 +26,7 @@ capturable. Test in the order that can kill a pair cheapest, first.
 
 ### Stage 0 — Equivalence gate (do this before spending soak time)
 Answers: *is this pair even a hedge?* Cheapest kill. Pull both venues' rules,
-prescreen the R1–R7 taxonomy, and get an AI + human rules-diff.
+prescreen the pair taxonomy, and get an LLM plus human rules-diff.
 
 ```
 .venv/bin/python scripts/run_targeted_soak.py --pair <PAIR_KEY> --hours 0 \

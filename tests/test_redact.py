@@ -1,4 +1,4 @@
-# Scope: TEST — Value-targeted redaction (labels stay readable, secrets do not).
+# Value-targeted redaction (labels stay readable, secrets do not).
 """Regression coverage for ``arbx.core.redact``.
 
 The bug these guard against: matching a sensitive *word* and blanking that word

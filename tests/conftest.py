@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — shared test configuration.
+# shared test configuration.
 """Test-suite defaults.
 
 ``TestClient`` defaults to ``base_url="http://testserver"``, which means every

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Actual Kalshi public-market discovery; no account access.
+# Actual Kalshi public-market discovery; no account access.
 from __future__ import annotations
 
 from datetime import datetime, timezone

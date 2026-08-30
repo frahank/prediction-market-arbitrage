@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: SHARED_CORE — Adapter contract for public venue feeds.
+# Adapter contract for public venue feeds.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod

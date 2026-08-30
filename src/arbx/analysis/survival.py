@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Public-data edge survival probes for strategy pairs.
+# Public-data edge survival probes for strategy pairs.
 from __future__ import annotations
 
 import time
@@ -14,7 +14,7 @@ from arbx.data.recorder import _book_to_observation
 
 DEFAULT_PROBE_DELAYS_MS = (50, 100, 250, 500, 1000)
 
-# Phase 3 streaming rungs: with single-digit-ms paired skew the 25/50/100ms
+# Streaming-capture rungs: with single-digit-ms paired skew the 25/50/100ms
 # tiers become measurable, so the ladder extends below the old 110ms floor.
 # Defaults stay unchanged for reproducibility of pre-streaming probes.
 STREAMING_PROBE_DELAYS_MS = (25, 50, 100, 250, 500, 1000)
@@ -33,14 +33,14 @@ STREAMING_PROBE_DELAYS_MS = (25, 50, 100, 250, 500, 1000)
 #
 # NOTE: with sequential public fetches the capture skew (~150 ms median) is the
 # same order as the 50/100 ms rungs, so only the 250 ms+ tiers are trustworthy
-# without concurrent per-rung fetches or streaming (Phase 3).
+# without concurrent per-rung fetches or streaming.
 SURVIVAL_TIER_THRESHOLDS_MS = (25, 100, 250, 500, 1000)
 SURVIVAL_TIER_COLORS = {
     "survived_1000ms": "green",
     "survived_500ms": "yellow",
     "survived_250ms": "orange",
     "survived_100ms": "blue",   # sub-250ms tiers: only measurable with
-    "survived_25ms": "purple",  # concurrent/streaming capture (Phase 3)
+    "survived_25ms": "purple",  # concurrent/streaming capture
     "expired_lt_250ms": "gray",
 }
 

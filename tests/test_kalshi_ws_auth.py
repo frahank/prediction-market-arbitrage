@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — P8-T6: authenticated Kalshi WS handshake wiring.
+# Authenticated Kalshi WebSocket handshake wiring.
 """ws_auth_headers → KalshiBookStream: the stream passes correctly shaped
 signed headers to the connect factory. Keys are generated at runtime only.
 

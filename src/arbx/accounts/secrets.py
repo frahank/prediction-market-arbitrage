@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Storage-only credential store with redaction.
+# Storage-only credential store with redaction.
 """Credential storage, status, and loading — nothing else.
 
 Files live at ``~/.arbx/credentials/<venue>.<profile>.yaml`` with mode 600,

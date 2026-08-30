@@ -1,4 +1,4 @@
-# Scope: TEST — Typed pair-registry loader + sha256 integrity gate.
+# Typed pair-registry loader + sha256 integrity gate.
 from __future__ import annotations
 
 import shutil

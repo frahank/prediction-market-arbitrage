@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Module 2 ScannerController service.
+# ScannerController service backing the Paper tab.
 """Subprocess-backed controller for the paper scanner.
 
 The service layer intentionally does not import venue or capture internals. It

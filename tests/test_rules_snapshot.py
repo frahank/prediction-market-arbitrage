@@ -1,4 +1,4 @@
-# Scope: TEST — P4-T2 rules-snapshot fetcher on canned real payloads.
+# Rules-snapshot fetcher on canned real payloads.
 from __future__ import annotations
 
 import json

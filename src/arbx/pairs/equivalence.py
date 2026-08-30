@@ -1,12 +1,12 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — P4-T3 pair-equivalence workflow: prescreen + AI audit prompt.
+# Pair-equivalence workflow: deterministic prescreen plus an LLM rules-diff audit prompt.
 """Deterministic equivalence pre-screens and the LLM rules-diff audit prompt.
 
 Pair equivalence is the one failure mode that can silently lose unbounded
 money (a "hedge" that is a different bet). The workflow is three layers:
 
-1. ``prescreen`` — deterministic R2/R4/R5 checks over the pinned rules
+1. ``prescreen`` — deterministic resolution-structure, cutoff, and duration checks over the pinned rules
    snapshot. It can only *flag*, never clear: the machine defaults to
    ``needs_human``.
 2. ``build_audit_prompt`` — a fixed rules-diff prompt for an LLM auditor,
@@ -15,7 +15,7 @@ money (a "hedge" that is a different bet). The workflow is three layers:
 3. The human checklist (docs/pair_equivalence_checklist.md) — the final,
    signed layer; nothing is tradeable on machine + model output alone.
 
-``record_decision`` / ``archive_pair`` (P4-T5) are the recorded decision
+``record_decision`` / ``archive_pair`` are the recorded decision
 workflow: append-only ``decision_log`` entries and the archive path, both
 re-hashing the sha256 sidecar so unaudited manual edits stay detectable.
 """
@@ -56,7 +56,7 @@ _DATE_PATTERNS = ("before ", "by the end of", "on or before", "prior to", "deadl
 @dataclass(frozen=True)
 class PrescreenResult:
     pair_key: str
-    structure: str          # R2 heuristic: subjective|categorical_grouping|date_cutoff|objective_single_event|needs_human
+    structure: str          # resolution-structure heuristic: subjective|categorical_grouping|date_cutoff|objective_single_event|needs_human
     flags: list[str]
     score: str              # "flagged" when any deterministic check fired, else "needs_human"
 
@@ -66,7 +66,7 @@ class PrescreenResult:
 
 
 def _classify_structure(text: str) -> str:
-    """R2 keyword heuristic. Subjective dominates (highest basis risk)."""
+    """Resolution-structure keyword heuristic. Subjective dominates (highest basis risk)."""
     lowered = text.lower()
     if not lowered.strip():
         return "needs_human"
@@ -90,34 +90,35 @@ def _parse_raw_ts(value: Any) -> datetime | None:
 
 def prescreen(pair: PairSpec, snapshot: RulesSnapshot,
               *, now: datetime | None = None) -> PrescreenResult:
-    """Deterministic R2/R4/R5 checks. R7 (liquidity) needs soak data — not here."""
+    """Deterministic resolution-structure, cutoff, and duration checks.
+    Liquidity needs soak data and is not evaluated here."""
     now = now or datetime.now(timezone.utc)
     flags: list[str] = []
 
     combined = "\n".join((snapshot.kalshi_rules_text, snapshot.poly_description))
     structure = _classify_structure(combined)
     if structure == "subjective":
-        flags.append("R2: subjective resolution language — high basis risk even "
+        flags.append("Resolution structure: subjective resolution language — high basis risk even "
                      "with identical wording")
     elif structure == "needs_human":
-        flags.append("R2: no rules text available to classify")
+        flags.append("Resolution structure: no rules text available to classify")
 
-    # R4 — exact cutoff comparison; snapshot first, registry close times as fallback.
+    # Cutoff — exact comparison; snapshot first, registry close times as fallback.
     k_close = snapshot.kalshi_close_time or _parse_raw_ts(pair.raw.get("kalshi_close_time"))
     p_close = snapshot.poly_end_date or _parse_raw_ts(pair.raw.get("polymarket_close_time"))
     if k_close and p_close:
         delta_h = (k_close - p_close).total_seconds() / 3600.0
         if abs(delta_h) > R4_MAX_CUTOFF_DELTA_HOURS:
-            flags.append(f"R4: cutoff delta {delta_h:+.1f}h (kalshi − poly) exceeds "
+            flags.append(f"Cutoff: cutoff delta {delta_h:+.1f}h (kalshi − poly) exceeds "
                          f"±{R4_MAX_CUTOFF_DELTA_HOURS:.0f}h — timing-basis window")
     else:
-        flags.append("R4: could not compare cutoffs (missing close time on a leg)")
+        flags.append("Cutoff: could not compare cutoffs (missing close time on a leg)")
 
-    # R5 — carry filter.
+    # — carry filter.
     if k_close is not None:
         ttr_days = (k_close - now).total_seconds() / 86400.0
         if ttr_days > R5_LONG_DATED_DAYS:
-            flags.append(f"R5: long-dated ({ttr_days:.0f}d to resolution) — carry "
+            flags.append(f"Duration: long-dated ({ttr_days:.0f}d to resolution) — carry "
                          "dominates fee-band edges")
 
     for w in snapshot.warnings:
@@ -156,12 +157,12 @@ from the rule texts below; do not assume good intent from matching titles.
 1. QUOTE the operative resolution criterion of each venue in one sentence each.
 2. ENUMERATE the realistic outcomes (list actual entities: countries, candidates,
    teams) and for each mark Kalshi YES/NO and Polymarket YES/NO.
-3. GROUPING CHECK (R3): if either venue resolves by a grouping scheme
+3. GROUPING CHECK: if either venue resolves by a grouping scheme
    (confederation, continent, category), name BOTH schemes and list every member
    of the realistic outcome set whose label differs between schemes.
-4. DATE CHECK (R4): compare the exact cutoff timestamps; state the boundary
+4. DATE CHECK: compare the exact cutoff timestamps; state the boundary
    window and what event inside it would resolve the venues apart.
-5. CLASSIFY per R2: objective_single_event | categorical_grouping | date_cutoff |
+5. CLASSIFY the resolution structure: objective_single_event | categorical_grouping | date_cutoff |
    subjective. Subjective language ("definitively states", "announces",
    "normalizes") is high basis risk even when wording matches verbatim.
 6. VERDICT.

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Standardized UI objects.
+# Standardized UI objects.
 """Canonical standardized schemas for the local research UI.
 
 These frozen dataclasses define the service/UI boundary. Field *semantics* are
@@ -36,7 +36,7 @@ class _ToDictMixin:
 
 @dataclass(frozen=True)
 class StandardizedEdgeRow(_ToDictMixin):
-    """Module 2 EDGES files + Module 4 edge rows.
+    """Paper-tab EDGES files and Data-tab edge rows.
 
     Field → source edge-row column mapping (edge rows are produced by
     ``arbx.analysis.edges`` and stamped by ``arbx.scanner.live_scanner``):
@@ -115,7 +115,7 @@ class StandardizedEdgeRow(_ToDictMixin):
 
 @dataclass(frozen=True)
 class StandardizedDataRow(_ToDictMixin):
-    """Module 4 soak rows (book-level)."""
+    """Data-tab soak rows (book-level)."""
 
     pair_key: str
     display_name: str
@@ -132,7 +132,7 @@ class StandardizedDataRow(_ToDictMixin):
 
 @dataclass(frozen=True)
 class SoakFileMeta(_ToDictMixin):
-    """Module 4 list rows / Module 2 outputs."""
+    """Data-tab list rows and Paper-tab outputs."""
 
     soak_id: str                    # dir name, e.g. "scan_20260705-141530[_EDGES]"
     label: str
@@ -152,7 +152,7 @@ class SoakFileMeta(_ToDictMixin):
 
 @dataclass(frozen=True)
 class AnalysisSummary(_ToDictMixin):
-    """Module 2 "run full analysis"."""
+    """Paper-tab "run full analysis"."""
 
     soak_ids: tuple[str, ...]
     generated_at: str
@@ -172,7 +172,7 @@ class AnalysisSummary(_ToDictMixin):
 
 @dataclass(frozen=True)
 class PairSummary(_ToDictMixin):
-    """Module 3."""
+    """Pairs-tab summary row."""
 
     pair_key: str
     display_name: str
@@ -199,7 +199,7 @@ class PairSummary(_ToDictMixin):
 
 @dataclass(frozen=True)
 class TestSuiteResult(_ToDictMixin):
-    """Module 2 "run full test suite"."""
+    """Paper-tab "run full test suite"."""
 
     __test__ = False  # contract-pinned name; not a pytest test class
 

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Module 4 soak metadata store and data service.
+# Soak metadata store and data service backing the Data tab.
 from __future__ import annotations
 
 import hashlib
@@ -286,7 +286,7 @@ def _sample_pair_keys(path: Path, *, limit: int) -> set[str]:
 
 
 # ---------------------------------------------------------------------------
-# M4-T2: bounded standardized row reads (edges + books)
+# Bounded standardized row reads (edges + books)
 # ---------------------------------------------------------------------------
 
 # Mirror of configs/modeling.yaml executable.depth_haircut (the composition
@@ -378,7 +378,7 @@ def _edge_source_files(path: Path) -> tuple[list[Path], str]:
 
 
 def _pair_freshness(row: dict[str, Any]) -> str:
-    """Worst of the two venue freshness labels (see F-T2 mapping docstring)."""
+    """Worst of the two venue freshness labels (see the schema mapping docstring)."""
     kalshi = row.get("kalshi_freshness_status")
     polymarket = row.get("polymarket_freshness_status")
     statuses = {kalshi, polymarket}
@@ -399,7 +399,7 @@ def _map_edge_row(
 ) -> StandardizedEdgeRow:
     """Map a scanner-opportunity / raw-edge row into ``StandardizedEdgeRow``.
 
-    Mapping follows the F-T2 docstring on the schema. Conservative defaults
+    Mapping follows the schema docstring. Conservative defaults
     for missing fields:
 
     - ``arb_detected`` (pre-scanner rows) is *derived* as the permissive
@@ -438,7 +438,7 @@ def _map_edge_row(
     return StandardizedEdgeRow(
         edge_id=edge_id,
         pair_key=pair_key,
-        # Registry display names land in M3 (registry v2.1); until a row
+        # Registry display names are not yet joined here; until a row
         # carries one, the pair key is the honest display fallback.
         display_name=str(row.get("display_name") or pair_key),
         direction=str(row.get("direction") or ""),
@@ -507,7 +507,7 @@ def _map_book_row(row: dict[str, Any], *, legacy_fix: bool) -> StandardizedDataR
     bare book row is never a strategy input (``include_in_strategy_metrics``
     ``False``, deny-by-default). Book rows are per venue-market, not per
     pair; ``pair_key`` falls back to ``venue:market_id`` — the pair join is
-    Module 2's job.
+    the Paper tab's job.
     """
     if legacy_fix:
         row = unswap_legacy_book_row(row)
@@ -540,7 +540,7 @@ def _map_book_row(row: dict[str, Any], *, legacy_fix: bool) -> StandardizedDataR
 
 
 class DataServiceImpl:
-    """UI-facing Module 4 data service."""
+    """UI-facing data service backing the Data tab."""
 
     def __init__(self, store: SoakStoreImpl, *, depth_haircut: float | None = None) -> None:
         self.store = store

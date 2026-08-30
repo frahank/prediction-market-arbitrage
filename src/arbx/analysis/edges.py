@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Derive edge_observations from paired book_observations (Phase 5).
+# Derive edge_observations from paired book_observations.
 """
 Derive the ``edge_observations`` table from the recorder's ``book_observations``.
 
@@ -17,14 +17,14 @@ difference between the two venue fetches.
 
 The probe-ladder columns (``benchmark_ms``, ``survived``, ``survived_edge``) are
 left null here: edge *survival by latency* requires delayed re-fetches (the
-opportunity runner's latency ladder, or Phase 3 streaming), not plain snapshots.
+opportunity runner's latency ladder, or streaming capture), not plain snapshots.
 The heatmap tooling reads those columns when a richer source populates them.
 
 Pure stdlib. The edge is only *meaningful* for genuinely contract-equivalent
-pairs (see docs/pair_approval_guide.md); for connectivity-only pairs it measures
+pairs (see docs/pair_equivalence_checklist.md); for connectivity-only pairs it measures
 noise between unrelated markets and is flagged via ``include_in_strategy_metrics``.
 
-Real fees (P2-T4): pass ``fee_engine`` to :func:`derive_edges` and
+Real fees: pass ``fee_engine`` to :func:`derive_edges` and
 ``fee_adj_edge`` / ``max_profitable_size`` use per-venue real fees instead of
 the flat ``fee_round_trip``; rows gain ``fee_model_version`` and
 ``fee_usd_at_target``. With ``fee_engine=None`` the output is byte-identical
@@ -208,8 +208,7 @@ def edge_rows_for_capture(
     target_size: float = 1.0,
     fee_engine: FeeEngine | None = None,
 ) -> list[dict[str, Any]]:
-    """Public seam over :func:`_edge_rows_for_capture` for streaming callers
-    (Phase 3): derive both directions' edge rows from one paired capture."""
+    """Public seam over :func:`_edge_rows_for_capture` for streaming callers: derive both directions' edge rows from one paired capture."""
     return _edge_rows_for_capture(
         pair,
         k_row,
@@ -256,7 +255,7 @@ def _real_fee_fields(
     polymarket_price: float,
     target_size: float,
 ) -> dict[str, Any]:
-    """Real-fee columns: overrides ``fee_adj_edge``, adds the P2-T4 stamps."""
+    """Real-fee columns: overrides ``fee_adj_edge``, adds the real-fee stamps."""
     per_unit = _marginal_fee_per_unit(fee_engine, pair)(
         kalshi_price, polymarket_price, target_size
     )
@@ -316,10 +315,10 @@ def _levels(row: dict[str, Any], side: str) -> list[tuple[float, float]]:
     levels: list[tuple[float, float]] = []
     if side == "yes_ask":
         px_prefix, sz_prefix = "ask_px_", "ask_sz_"
-        transform = lambda price: price  # noqa: E731 — ported verbatim
+        transform = lambda price: price  # noqa: E731 — paired with the branch below
     elif side == "no_ask":
         px_prefix, sz_prefix = "bid_px_", "bid_sz_"
-        transform = lambda price: 1.0 - price  # noqa: E731 — ported verbatim
+        transform = lambda price: 1.0 - price  # noqa: E731 — paired with the branch below
     else:
         raise ValueError(f"unknown side {side!r}")
 
@@ -447,7 +446,7 @@ def derive_edges(
     With ``fee_engine`` set, ``fee_adj_edge`` and ``max_profitable_size`` use
     real per-venue fees and rows gain ``fee_model_version`` /
     ``fee_usd_at_target``; with ``None`` the flat path is byte-identical to
-    the pre-P2-T4 output.
+    the flat-fee output.
 
     ``row_transform`` is applied to every book row before matching — used to
     recover legacy rows with swapped bid/ask labels
@@ -493,7 +492,7 @@ def derive_edges(
 
 
 def write_edges_jsonl(data_dir: Path, edges: list[dict[str, Any]], *, date: str | None = None) -> Path:
-    """Append derived edge rows to data/raw/edge/<date>.jsonl (Tier-1 landing)."""
+    """Append derived edge rows to data/raw/edge/<date>.jsonl (raw JSONL landing)."""
     if date is None:
         date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     out_dir = data_dir / "raw" / "edge"

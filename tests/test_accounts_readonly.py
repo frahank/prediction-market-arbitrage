@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — Read-only-by-type enforcement for every account client.
+# Read-only-by-type enforcement for every account client.
 """HARD RAIL: no class under ``arbx.accounts`` may ever grow an order-shaped
 method. This scan imports every module in the package (so a new client is
 covered the day it is added), collects every class defined there, and fails on

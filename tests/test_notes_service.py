@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — M5-T2 NotesStore implementation tests.
+# NotesStore implementation tests.
 from __future__ import annotations
 
 from pathlib import Path

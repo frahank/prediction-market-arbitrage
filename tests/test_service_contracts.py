@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — F-T4 service seam registration tests.
+# Service seam registration tests.
 from __future__ import annotations
 
 from fastapi.testclient import TestClient

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Detects unaudited manual changes to paper-pair registries.
+# Detects unaudited manual changes to paper-pair registries.
 from __future__ import annotations
 
 import hashlib
@@ -62,13 +62,13 @@ class RegistryIntegrityError(RuntimeError):
 
 @dataclass(frozen=True)
 class PairTaxonomy:
-    """R1–R7 taxonomy (schema v2). Defaults are the honest v1 unknowns."""
+    """Pair taxonomy (registry schema v2). Defaults are honest unknowns."""
 
-    resolution_structure: str = "unknown"   # R2: objective_single_event|categorical_grouping|date_cutoff|subjective|unknown
-    grouping_alignment: str = "n/a"         # R3: clean|dirty|n/a
-    date_cutoff_delta_hours: float | None = None   # R4: kalshi_close − poly_close
-    time_to_resolution_days: float | None = None   # R5
-    persistence_cause: str = "unknown"      # R1: contract_basis|price_stickiness|none|unknown
+    resolution_structure: str = "unknown"   # objective_single_event|categorical_grouping|date_cutoff|subjective|unknown
+    grouping_alignment: str = "n/a"         # clean|dirty|n/a
+    date_cutoff_delta_hours: float | None = None   # kalshi_close − poly_close
+    time_to_resolution_days: float | None = None   #
+    persistence_cause: str = "unknown"      # contract_basis|price_stickiness|none|unknown
 
 
 @dataclass(frozen=True)
@@ -234,10 +234,10 @@ def load_pairs(path: Path, *, verify_sha256: bool = True) -> list[PairSpec]:
 
     Both schema versions load: v1 entries get ``equivalence.status="unreviewed"``
     and unknown/null taxonomy; v2 (``schema_version: 2``) entries carry the
-    R1–R7 ``taxonomy``, ``equivalence``, ``orientation_confirmed``, and
+    ``taxonomy``, ``equivalence``, ``orientation_confirmed``, and
     ``decision_log`` blocks.
 
-    Deny-by-default strategy gate (P4-T5): ``include_in_strategy_metrics`` is
+    Deny-by-default strategy gate: ``include_in_strategy_metrics`` is
     forced ``False`` unless the pair's equivalence status is
     ``verified_equivalent``/``tail_divergence_documented`` AND its latest
     decision-log entry is ``approve``. The YAML flag alone is never sufficient.

@@ -1,4 +1,4 @@
-"""KalshiFeeModel against the pinned schedule (P2-T2).
+"""KalshiFeeModel against the pinned schedule.
 
 The worked-example assertions mirror docs/fees_kalshi.md exactly; those
 values are in turn traced to the official Kalshi fee schedule (see the

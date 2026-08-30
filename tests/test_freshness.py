@@ -1,4 +1,4 @@
-# Scope: TEST — Unit tests for the shared freshness definition.
+# Unit tests for the shared freshness definition.
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone

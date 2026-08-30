@@ -1,4 +1,4 @@
-# Scope: TEST — M2-T1 scanner rotation scheduler contract.
+# Scanner rotation scheduler contract.
 from __future__ import annotations
 
 import json

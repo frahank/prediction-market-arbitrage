@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — One-shot soak analysis battery + dated markdown summary.
+# One-shot soak analysis battery + dated markdown summary.
 #
 # Runs the full post-soak battery in one pass: DQ gate, evidence-pack export,
 # candidate ranking + fee sensitivity, the survival deep-dive (transient vs basis),
@@ -233,7 +233,7 @@ def main(argv: list[str] | None = None) -> int:
     run_id = _resolve_run_id(data_dir, rows)
     soak_date = _soak_date(run_id, data_dir)
 
-    # --- Tier 1: trust + evidence pack + heatmaps (best-effort subprocesses) ---
+    # --- Stage 1: trust + evidence pack + heatmaps (best-effort subprocesses) ---
     dq = analyze(data_dir).to_dict()
     py = sys.executable
     if args.legacy_book_fix:
@@ -258,7 +258,7 @@ def main(argv: list[str] | None = None) -> int:
     # The assumed-fee ladder is only meaningful on flat-fee derived rows.
     fees = None if args.real_fees else fee_sensitivity(rows)
 
-    # --- Tiers 2-4 ---
+    # --- Stages 2-4 ---
     survival = _survival_split(rows, bucket_by_market)
     timing = _recurrence_timing(ranked)
     depthdir = _depth_and_direction(rows, basis)

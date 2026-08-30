@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — M2-T7 operator harness: drive a long true-concurrent
+# Operator harness: drive a long true-concurrent
 # recorded soak through the tested ScannerController service, with graceful
 # SIGINT/SIGTERM finalization.
 #
-# This is the "agent may drive via the API" path from ticket M2-T7: it starts
+# It starts
 # an all-approved-pairs recorded scan (record on, edges-only off,
 # confirm_survival_ms=200) via arbx.services.scanner.ScannerControllerImpl —
 # the same service the Paper Dashboard uses — and on a stop signal calls
@@ -47,7 +47,7 @@ def _legacy_roots() -> list[Path]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="M2-T7 concurrent soak driver")
+    parser = argparse.ArgumentParser(description="Concurrent soak driver")
     parser.add_argument("--confirm-survival-ms", type=int, default=200)
     parser.add_argument("--heartbeat-s", type=float, default=60.0)
     args = parser.parse_args(argv)

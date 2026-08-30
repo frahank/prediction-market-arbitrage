@@ -1,4 +1,4 @@
-# Scope: TEST — Public venue adapters normalize raw payloads without mocks/fixtures.
+# Public venue adapters normalize raw payloads without mocks/fixtures.
 from __future__ import annotations
 
 from datetime import datetime, timezone

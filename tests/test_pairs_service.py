@@ -1,4 +1,4 @@
-# Scope: TEST - M3-T2 PairRegistryService reads and guarded review.
+# PairRegistryService reads and guarded review.
 from __future__ import annotations
 
 import json

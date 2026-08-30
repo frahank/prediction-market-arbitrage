@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — M2-T3 EDGES file writer: StandardizedEdgeRow at capture time.
+# EDGES file writer: StandardizedEdgeRow at capture time.
 """Persist ``StandardizedEdgeRow`` rows into ``EDGES_<ts>.jsonl`` as they are
-detected — the capture-time twin of Module 4's read-side mapping.
+detected — the capture-time twin of the Data tab's read-side mapping.
 
 This is where the product's honesty gets persisted. The pinned semantics:
 
@@ -24,7 +24,7 @@ This is where the product's honesty gets persisted. The pinned semantics:
   (``configs/modeling.yaml`` ``executable.depth_haircut``).
   ``max_profitable_size`` is the pairwise-min fee-profitable depth walk, so
   it is ≤ the raw min(leg fillable) — strictly more conservative — and it
-  matches the pinned F-T2 schema mapping and Module 4's read side, keeping
+  matches the pinned schema mapping and the Data tab's read side, keeping
   the edges view uniform. Never the visible size.
 - Honest fields come from the registry: ``contract_equivalent`` ← the pair's
   equivalence status, ``include_in_strategy_metrics`` ← the loader's
@@ -33,7 +33,7 @@ This is where the product's honesty gets persisted. The pinned semantics:
 File layout per ``docs/soak_layout.md``: one ``StandardizedEdgeRow.to_dict()``
 per line, appended at the soak root, flushed per row, fsync on close.
 ``edge_id`` is stamped at write time as ``<soak_id>:<filename>:<byte_offset>``
-— the same shape Module 4 synthesizes for non-EDGES sources.
+— the same shape the Data tab synthesizes for non-EDGES sources.
 """
 from __future__ import annotations
 

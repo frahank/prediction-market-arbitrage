@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Restart-safe fair rotation over scanner pair keys.
+# Restart-safe fair rotation over scanner pair keys.
 """Deterministic rolling-cursor batching for the live scanner.
 
 The scheduler is intentionally small and stateful: one call returns the next

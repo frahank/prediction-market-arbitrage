@@ -1,4 +1,4 @@
-# Scope: BOT_RUNTIME — M5-T3 Documents tab route/API wiring tests.
+# Documents tab route and API wiring tests.
 from __future__ import annotations
 
 from pathlib import Path

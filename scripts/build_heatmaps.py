@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Derive edges and render modeling heatmaps (Phase 5).
+# Derive edges and render modeling heatmaps.
 """
 Derive edge_observations from the recorder's book data and render heatmaps.
 
@@ -17,7 +17,7 @@ Notes:
   - The edge is only *meaningful* on genuinely contract-equivalent pairs. With
     --strategy-only the edge heatmap is restricted to pairs whose registry flag
     include_in_strategy_metrics is true; until curation approves such pairs
-    (docs/pair_approval_guide.md), that view is empty by design.
+    (docs/pair_equivalence_checklist.md), that view is empty by design.
   - The survival heatmap needs probe-ladder data (benchmark_ms/survived) and
     stays empty on plain snapshots — that is reported, not faked.
 """

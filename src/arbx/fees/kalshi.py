@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — Kalshi trading-fee model against the pinned schedule (Phase 2).
+# Kalshi trading-fee model against the pinned schedule.
 """Kalshi fee model backed by the pinned, versioned ``configs/fees_kalshi.yaml``.
 
 Formula (see docs/fees_kalshi.md for the derivation and worked examples)::

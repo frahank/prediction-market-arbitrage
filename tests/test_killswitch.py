@@ -1,7 +1,7 @@
-# Scope: TEST — M1-T1 KillSwitch contract + global wiring.
+# KillSwitch contract and global wiring.
 """The kill switch is the operator's one hard off-switch.
 
-These tests pin the OLD-PLAN P7 contract verbatim: sentinel-or-env engagement,
+These tests pin the kill-switch contract verbatim: sentinel-or-env engagement,
 atomic sentinel write followed by ``cancel_all()``, the no-``clear()``
 invariant, scanner start refusal, and the app-status surface. All tests use
 tmp sentinel paths only — never the real ``~/.arbx/KILL``.

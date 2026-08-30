@@ -1,4 +1,4 @@
-# Scope: TEST — M2-T5 TestSuiteRunner service.
+# Background pytest runner for the dashboard health check.
 from __future__ import annotations
 
 import subprocess

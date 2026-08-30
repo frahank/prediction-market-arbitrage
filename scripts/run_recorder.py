@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Farhan M Khan <https://farhank.dev>
 # SPDX-License-Identifier: MIT
-# Scope: BOT_RUNTIME — CLI entry point for the market-data recorder (Phase 1–2).
+# CLI entry point for the market-data recorder.
 """
 Run the market-data recorder.
 
-Universe sources (Phase 2 — coverage):
+Universe sources (coverage):
     --universe-source registry   derive the universe from configs/pairs.approved.yaml
     --universe-source discovery  derive it from discovery JSON dumps (a broad universe)
 
-Continuity (Phase 2 — continuity):
+Continuity:
     The recorder runs until stopped (Ctrl-C / SIGTERM); restarts resume cleanly
     by continuing capture_seq and annotating the downtime as a restart gap.
     --supervise auto-restarts the recorder process loop on an unexpected crash.

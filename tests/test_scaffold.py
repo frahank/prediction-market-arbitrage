@@ -1,7 +1,7 @@
-"""Scaffold-level tests for the arbx repository (P1-T1).
+"""Scaffold-level tests for the arbx repository.
 
 These assert the deny-by-default runtime configuration and that the package
-imports. The full safety-boundary scan lands later in P1-T9.
+imports. The full safety-boundary scan lives in ``tests/test_safety_boundary.py``.
 """
 
 from pathlib import Path

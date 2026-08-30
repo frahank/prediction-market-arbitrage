@@ -1,4 +1,4 @@
-"""PolymarketFeeModel against the per-token fee-rate endpoint (P2-T3).
+"""PolymarketFeeModel against the per-token fee-rate endpoint.
 
 The worked-example assertions mirror docs/fees_polymarket.md: on-chain
 formula ``size x (base_fee_bps / 10_000) x min(P, 1 - P)``, makers never

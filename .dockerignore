@@ -1,0 +1,28 @@
+# Keep the build context small and secret-free.
+.git
+.github
+.venv
+venv
+__pycache__
+**/__pycache__
+*.pyc
+.mypy_cache
+.pytest_cache
+.ruff_cache
+.DS_Store
+
+# Never ship credentials or captured data into an image layer.
+.env
+.env.*
+*.pem
+credentials/
+data/
+reports/
+*.duckdb
+*.parquet
+
+# Docs, tests, and dev-only lockfiles are not needed at runtime.
+docs/
+tests/
+requirements-dev.lock
+requirements-analytics.lock

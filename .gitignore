@@ -1,0 +1,43 @@
+/data_*/
+/logs/
+# Generated research artifacts are deliberately excluded from the public project.
+/reports/
+/evidence/
+__pycache__/
+.venv/
+venv/
+*.egg-info/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+/build/
+/dist/
+# local artifacts (never commit)
+/data/
+/logs_*.log
+.DS_Store
+/.claude/
+
+# Credentials and local secret material — never commit.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.mobileprovision
+*credentials*.yaml
+*credentials*.yml
+secrets/
+.arbx/
+
+# Common local/editor artifacts.
+.idea/
+.vscode/
+*.swp
+*.swo
+.coverage
+htmlcov/

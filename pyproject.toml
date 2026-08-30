@@ -1,0 +1,74 @@
+# Archived cross-venue (Kalshi ↔ Polymarket) arbitrage research bot.
+# Package and test configuration for the arbx research repository.
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arbx"
+version = "0.1.0"
+description = "Archived paper-only cross-venue prediction-market arbitrage research bot."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+keywords = ["kalshi", "polymarket", "prediction-markets", "research", "paper-trading"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+  "cryptography==50.0.0",
+  "fastapi==0.141.1",
+  "jinja2==3.1.6",
+  "markdown-it-py==4.2.0",
+  "pyyaml==6.0.3",
+  "httpx==0.28.1",
+  "uvicorn==0.52.4",
+  "websockets==17.0.1",
+]
+
+[project.scripts]
+arbx-ui = "arbx.launcher:main"
+arbx-store-credentials = "arbx.credentials_cli:main"
+arbx-release-check = "arbx.release_check:main"
+arbx-pair-health = "arbx.pairs.health:main"
+
+[project.optional-dependencies]
+dev = [
+  "build==1.3.0",
+  "httpx2==2.12.0",
+  "pytest==9.1.1",
+  "ruff==0.16.4",
+]
+# Optional analytics tier (Parquet/DuckDB warehouse). The recorder,
+# data-quality report, and edge tooling all run on pure stdlib without this.
+analytics = [
+  "duckdb==1.4.1",
+  "pyarrow==21.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"arbx.ui" = ["templates/*.html", "static/*.css", "static/*.js"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+src = ["src", "tests", "scripts"]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "SIM"]
+ignore = ["B007", "B904", "B905", "SIM103", "SIM105", "SIM108", "SIM222"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*.py" = ["E402"]
+"tests/*.py" = ["B011"]

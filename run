@@ -1,0 +1,109 @@
+#!/bin/sh
+# One-command macOS/Linux bootstrap for the paper-only research cockpit.
+set -eu
+
+ARBX_RUN_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+cd "$ARBX_RUN_DIR"
+
+ARBX_SKIP_CREDENTIALS=0
+ARBX_CHECK_ONLY=0
+
+for ARBX_RUN_ARG in "$@"; do
+    case "$ARBX_RUN_ARG" in
+        --no-credentials)
+            ARBX_SKIP_CREDENTIALS=1
+            ;;
+        --check)
+            ARBX_CHECK_ONLY=1
+            ARBX_SKIP_CREDENTIALS=1
+            ;;
+        -h|--help)
+            printf '%s\n' \
+                'Usage: ./run [--no-credentials] [--check]' \
+                '' \
+                '  --no-credentials  Skip first-run Kalshi credential onboarding.' \
+                '  --check           Bootstrap and run offline release checks; do not start UI.'
+            exit 0
+            ;;
+        *)
+            printf 'Unknown argument: %s\n' "$ARBX_RUN_ARG" >&2
+            exit 2
+            ;;
+    esac
+done
+
+if command -v python3.12 >/dev/null 2>&1; then
+    ARBX_PYTHON=$(command -v python3.12)
+elif command -v python3 >/dev/null 2>&1 && python3 -c \
+    'import sys; raise SystemExit(0 if sys.version_info >= (3, 12) else 1)'; then
+    ARBX_PYTHON=$(command -v python3)
+else
+    printf '%s\n' \
+        'Python 3.12 or newer is required.' \
+        'macOS: install Python 3.12 with Homebrew or python.org.' \
+        'Linux: install your distribution Python 3.12 package, then rerun ./run.' >&2
+    exit 1
+fi
+
+if [ ! -x .venv/bin/python ]; then
+    printf '%s\n' 'Creating local Python environment...'
+    "$ARBX_PYTHON" -m venv .venv
+fi
+
+if [ ! -f .venv/.arbx-runtime-lock ] || ! cmp -s requirements.lock .venv/.arbx-runtime-lock; then
+    printf '%s\n' 'Installing pinned runtime dependencies...'
+    .venv/bin/python -m pip install --disable-pip-version-check -r requirements.lock
+    cp requirements.lock .venv/.arbx-runtime-lock
+fi
+
+.venv/bin/python -m pip install --disable-pip-version-check \
+    --no-build-isolation --no-deps -e . >/dev/null
+
+# Verify the editable install actually resolves. On macOS the .pth file that
+# implements it can be created with the UF_HIDDEN flag, and Python's site module
+# silently skips hidden .pth files (site.addpackage) — pip reports success and
+# `import arbx` still fails. Clear the flag and re-check rather than starting a
+# UI that would die on its first import.
+if ! .venv/bin/python -c 'import arbx' >/dev/null 2>&1; then
+    if command -v chflags >/dev/null 2>&1; then
+        chflags nohidden .venv/lib/python*/site-packages/*.pth 2>/dev/null || true
+    fi
+    if ! .venv/bin/python -c 'import arbx' >/dev/null 2>&1; then
+        printf '%s\n' \
+            'The arbx package installed but cannot be imported.' \
+            'Try removing the environment and re-running: rm -rf .venv && ./run' >&2
+        exit 1
+    fi
+fi
+
+if [ "$ARBX_CHECK_ONLY" -eq 1 ]; then
+    exec .venv/bin/python -m arbx.release_check
+fi
+
+# Only prompt on an interactive terminal. Under `set -e` a `read` at EOF returns
+# non-zero and would kill the script, so a piped/Docker/CI `./run` must skip the
+# prompt entirely rather than fail at it.
+if [ "$ARBX_SKIP_CREDENTIALS" -eq 0 ] && [ -t 0 ] && ! .venv/bin/python -c \
+    'from arbx.accounts.secrets import credential_path; raise SystemExit(0 if credential_path("kalshi", "paper").is_file() else 1)'; then
+    printf '%s\n' \
+        '' \
+        'Kalshi credentials are optional for public REST data.' \
+        'They enable authenticated, read-only WebSocket market data.'
+    printf 'Configure a Kalshi read-only key now? [Y/n] '
+    if ! read -r ARBX_CREDENTIAL_REPLY; then
+        ARBX_CREDENTIAL_REPLY=n
+    fi
+    case "$ARBX_CREDENTIAL_REPLY" in
+        n|N|no|NO|No)
+            ;;
+        *)
+            .venv/bin/arbx-store-credentials kalshi paper
+            ;;
+    esac
+fi
+
+printf '%s\n' \
+    '' \
+    'Starting the paper-only research cockpit at http://127.0.0.1:8710' \
+    'Press Ctrl+C to stop.'
+exec .venv/bin/arbx-ui

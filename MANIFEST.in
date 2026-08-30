@@ -1,0 +1,14 @@
+include LICENSE
+include README.md
+include SECURITY.md
+include Makefile
+include run
+include requirements.lock
+include requirements-dev.lock
+include requirements-analytics.lock
+recursive-include configs *.yaml *.sha256
+recursive-include docs *.md *.yaml *.png
+recursive-include scripts *.py
+recursive-include src/arbx/ui/static *.css *.js
+recursive-include src/arbx/ui/templates *.html
+recursive-include tests/fixtures *.json *.jsonl

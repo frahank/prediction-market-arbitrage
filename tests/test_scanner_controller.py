@@ -346,13 +346,14 @@ def test_large_child_output_does_not_block_and_is_tailed(tmp_path: Path):
     that matters is simply that this test terminates.
     """
     controller = _controller(tmp_path)
-    payload = "x" * 200_000  # ~3x a typical pipe buffer
     log_dir = tmp_path / "logs"
     log_dir.mkdir()
     stdout_log = log_dir / "scan_stdout.log"
+    # The child generates the payload; passing 200 KB as an argv entry exceeds
+    # Linux's per-argument limit (MAX_ARG_STRLEN, ~128 KB) and fails to exec.
     with stdout_log.open("w", encoding="utf-8") as handle:
         completed = subprocess.run(
-            [sys.executable, "-c", f"print({payload!r})"],
+            [sys.executable, "-c", "print('x' * 200_000)"],
             stdout=handle,
             stderr=subprocess.DEVNULL,
             timeout=30,

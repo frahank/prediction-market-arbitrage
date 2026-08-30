@@ -20,7 +20,7 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 dependencies = [
-  "cryptography==50.0.0",
+  "cryptography==50.0.1",
   "fastapi==0.141.1",
   "jinja2==3.1.6",
   "markdown-it-py==4.2.0",

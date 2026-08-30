@@ -1,0 +1,5 @@
+# arbx credential template — Kalshi, paper profile. KEYS ONLY, never values.
+# Copy to ~/.arbx/credentials/kalshi.paper.yaml and chmod 600, or enter via
+# the credential form (storage only — not connected to trading).
+api_key_id: ""
+private_key_pem_path: ""

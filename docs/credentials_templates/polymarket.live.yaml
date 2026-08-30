@@ -1,0 +1,8 @@
+# arbx credential template — Polymarket, live profile. KEYS ONLY, never values.
+# Copy to ~/.arbx/credentials/polymarket.live.yaml and chmod 600. Loading live
+# credentials additionally requires the env gate ARBX_ALLOW_LIVE_CREDS=1.
+wallet_private_key: ""
+api_key: ""
+api_secret: ""
+api_passphrase: ""
+funder_address: ""

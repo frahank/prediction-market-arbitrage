@@ -1,0 +1,5 @@
+# arbx credential template — Kalshi, live profile. KEYS ONLY, never values.
+# Copy to ~/.arbx/credentials/kalshi.live.yaml and chmod 600. Loading live
+# credentials additionally requires the env gate ARBX_ALLOW_LIVE_CREDS=1.
+api_key_id: ""
+private_key_pem_path: ""

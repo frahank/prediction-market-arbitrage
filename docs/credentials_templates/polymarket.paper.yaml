@@ -1,0 +1,8 @@
+# arbx credential template — Polymarket, paper profile. KEYS ONLY, never values.
+# Copy to ~/.arbx/credentials/polymarket.paper.yaml and chmod 600, or enter via
+# the credential form (storage only — not connected to trading).
+wallet_private_key: ""
+api_key: ""
+api_secret: ""
+api_passphrase: ""
+funder_address: ""

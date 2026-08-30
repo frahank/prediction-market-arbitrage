@@ -1,0 +1,17 @@
+# Local UI configuration. The run script refuses non-loopback hosts.
+host: 127.0.0.1
+port: 8710
+docs_roots:
+  - docs
+  - README.md
+notes_dir: docs/notes
+soaks_root: data/soaks
+# Add repo-relative or absolute paths to your own legacy soak directories.
+legacy_soak_roots: []
+pairs_approved_path: configs/pairs.approved.yaml
+pairs_candidates_path: configs/pairs.candidates.yaml
+# Optional extra candidate registries merged into the review queue.
+pairs_imported_paths: []
+pairs_archived_path: configs/pairs.archived.yaml
+evidence_root: evidence
+scanner_config_path: configs/scanner.yaml

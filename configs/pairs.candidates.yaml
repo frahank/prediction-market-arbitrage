@@ -1,0 +1,9 @@
+# Empty review queue. Populate it with scripts/review_pair_candidates.py.
+version: 1
+queue_type: candidate_only
+auto_approval_enabled: false
+kalshi_markets_seen: 0
+polymarket_markets_seen: 0
+comparisons_run: 0
+rejected_comparisons: 0
+candidates: []

@@ -1,0 +1,7 @@
+# Runtime safety configuration. These values are asserted by tests
+# (tests/test_scaffold.py and tests/test_safety_boundary.py).
+# Deny-by-default: the repo ships in paper mode with real orders disabled.
+mode: paper
+real_orders: 0
+enable_real_orders: false
+killswitch_path: "~/.arbx/KILL"

@@ -1,0 +1,45 @@
+# Kalshi trading-fee schedule, pinned and versioned.
+#
+# Every number here is traceable to the sources in `source_urls`; the
+# derivations and worked examples live in docs/fees_kalshi.md. Consumed by
+# arbx.fees.kalshi.KalshiFeeSchedule.load.
+#
+# Semantics:
+#   taker fee per order  = ceil_to_cent(taker_multiplier x C x P x (1 - P))
+#   maker fee per order  = ceil_to_cent(maker_multiplier x C x P x (1 - P))
+#   where C = contract count, P = price in dollars (0 < P < 1).
+# The venue's per-series `fee_multiplier` (public API field) scales the
+# 0.07 base; overrides below are the *effective* multipliers, already scaled.
+#
+# Values are pinned to the state scheduled to take effect 2026-07-03T17:00Z
+# (the day after retrieved_at): Kalshi's published fee-change feed removes
+# the 0.5x index-series discount then, so pinning the discount would
+# understate fees for the config's whole life. Worst-case wins.
+version: 1
+retrieved_at: "2026-07-02"
+source_urls:
+  # Official fee schedule PDF, "Last updated and effective: Feb 5, 2026"
+  # (live URL is bot-gated; retrieved via the Internet Archive capture below).
+  - "https://kalshi.com/docs/kalshi-fee-schedule.pdf"
+  - "http://web.archive.org/web/20260218003606/https://kalshi.com/docs/kalshi-fee-schedule.pdf"
+  # Official API docs: fee rounding mechanics and the fee-change feed.
+  - "https://docs.kalshi.com/getting_started/fee_rounding.md"
+  - "https://docs.kalshi.com/api-reference/exchange/get-series-fee-changes.md"
+  # Live public API queried on retrieved_at (per-series fee_type/fee_multiplier
+  # and the scheduled 2026-07-03T17:00Z changes).
+  - "https://external-api.kalshi.com/trade-api/v2/series/fee_changes?show_historical=true"
+  - "https://api.elections.kalshi.com/trade-api/v2/series/{series_ticker}"
+general:
+  taker_multiplier: 0.07
+  maker_multiplier: 0.0
+  rounding: ceil_cent_per_order
+series_overrides:
+  # fee_type: quadratic_with_maker_fees, fee_multiplier: 1 from
+  # 2026-07-03T17:00Z (per the fee-change feed). Maker formula per the
+  # official PDF: ceil_to_cent(0.0175 x C x P x (1 - P)).
+  KXINXY:
+    taker_multiplier: 0.07
+    maker_multiplier: 0.0175
+  KXNASDAQ100Y:
+    taker_multiplier: 0.07
+    maker_multiplier: 0.0175

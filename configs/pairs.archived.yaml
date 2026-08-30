@@ -1,0 +1,257 @@
+schema_version: 2.1
+registry_type: archived_pairs
+notice: Pairs rejected or retired by the local review workflow are written here.
+pairs:
+- pair_key: KXWCCONTINENT-26-AFR|0xd71197329e1145258b960c36269870229ee816b0aa089e8f1b64ea196d7e2d08
+  kalshi_market_id: KXWCCONTINENT-26-AFR
+  polymarket_market_id: '0xd71197329e1145258b960c36269870229ee816b0aa089e8f1b64ea196d7e2d08'
+  kalshi_question: Will Africa (CAF) win the 2026 Men's World Cup?
+  polymarket_question: Will Africa (CAF) win the 2026 FIFA World Cup?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.961
+  candidate_warnings: []
+  kalshi_close_time: '2026-08-03T00:00:00Z'
+  polymarket_close_time: '2026-07-20T00:00:00+00:00'
+  category: sports
+  kalshi_identifiers:
+    market_ticker: KXWCCONTINENT-26-AFR
+  polymarket_identifiers:
+    condition_id: '0xd71197329e1145258b960c36269870229ee816b0aa089e8f1b64ea196d7e2d08'
+    yes_token_id: '1592099975156656573745061572642427093819000123828108257356891175030364428770'
+    no_token_id: '105933029641124149476040127626722302831560342486456292015033100559176356663875'
+  review_snapshot:
+    kalshi:
+      market_id: KXWCCONTINENT-26-AFR
+      question: Will Africa (CAF) win the 2026 Men's World Cup?
+      rules: If any country that competes in Africa (CAF) qualification is the 2026 FIFA Men's World Cup
+        champion, then the market resolves to Yes.
+      close_time: '2026-08-03T00:00:00Z'
+      liquidity: 0
+      volume_24h: 15739
+      yes_ask: 0.03
+      url: https://kalshi.com/markets/KXWCCONTINENT-26/KXWCCONTINENT-26-AFR
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0xd71197329e1145258b960c36269870229ee816b0aa089e8f1b64ea196d7e2d08'
+      question: Will Africa (CAF) win the 2026 FIFA World Cup?
+      rules: This market will resolve to the continent of the country that wins the 2026 FIFA World Cup,
+        currently scheduled for June 11-July 19, 2026.  For example, if France wins the tournament, the
+        market will resolve to Europe.  If the 2026 FIFA World Cup is cancelled, postponed after December
+        31, 2026, or t
+      close_time: '2026-07-20T00:00:00+00:00'
+      liquidity: 176533
+      volume_24h: 1738065
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-africa-win-the-2026-fifa-world-cup
+      yes_depth: 88266.5
+      no_depth: 88266.5
+  taxonomy:
+    resolution_structure: categorical_grouping
+    grouping_alignment: clean
+    date_cutoff_delta_hours: 336.0
+    time_to_resolution_days: 30.5
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: CAF ≈ geographic Africa; both venues price the longshot near zero and agree.
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Africa (CAF) win the 2026 Men's World Cup?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:03.484980+00:00'
+    decision: needs_more_data
+    rationale: verified_equivalent (CAF≈Africa clean) but no edge on corrected books — both venues agree
+      on the longshot. Revisit only if pricing diverges.
+    auditor: automated follow-up review 2026-07-03
+  - at: '2026-08-21T05:17:26.203435+00:00'
+    decision: archive
+    rationale: 2026 World Cup completed; 2026-08-21 public pair-health check returned no complete cross-venue
+      book
+    auditor: release-readiness-audit
+  display_name: World Cup 2026 - Africa (CAF) wins
+- pair_key: KXWCCONTINENT-26-NA|0x7eff94953c3d8aa9a36e45a545e57564100ef003a90f088b3eff4a798b35eb5e
+  kalshi_market_id: KXWCCONTINENT-26-NA
+  polymarket_market_id: '0x7eff94953c3d8aa9a36e45a545e57564100ef003a90f088b3eff4a798b35eb5e'
+  kalshi_question: Will North America (CONCACAF) win the 2026 Men's World Cup?
+  polymarket_question: Will North America (CONCACAF) win the 2026 FIFA World Cup?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.969
+  candidate_warnings: []
+  kalshi_close_time: '2026-08-03T00:00:00Z'
+  polymarket_close_time: '2026-07-20T00:00:00+00:00'
+  category: sports
+  kalshi_identifiers:
+    market_ticker: KXWCCONTINENT-26-NA
+  polymarket_identifiers:
+    condition_id: '0x7eff94953c3d8aa9a36e45a545e57564100ef003a90f088b3eff4a798b35eb5e'
+    yes_token_id: '96570915933183650323624717300751327226821728969018565701035634346205052779472'
+    no_token_id: '55137248409845150074636402224503490015952871256243768795325302668198270928545'
+  review_snapshot:
+    kalshi:
+      market_id: KXWCCONTINENT-26-NA
+      question: Will North America (CONCACAF) win the 2026 Men's World Cup?
+      rules: If any country that competes in North America (CONCACAF) qualification is the 2026 FIFA Men's
+        World Cup champion, then the market resolves to Yes.
+      close_time: '2026-08-03T00:00:00Z'
+      liquidity: 0
+      volume_24h: 32900
+      yes_ask: 0.08
+      url: https://kalshi.com/markets/KXWCCONTINENT-26/KXWCCONTINENT-26-NA
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x7eff94953c3d8aa9a36e45a545e57564100ef003a90f088b3eff4a798b35eb5e'
+      question: Will North America (CONCACAF) win the 2026 FIFA World Cup?
+      rules: This market will resolve to the continent of the country that wins the 2026 FIFA World Cup,
+        currently scheduled for June 11-July 19, 2026.  For example, if France wins the tournament, the
+        market will resolve to Europe.  If the 2026 FIFA World Cup is cancelled, postponed after December
+        31, 2026, or t
+      close_time: '2026-07-20T00:00:00+00:00'
+      liquidity: 95895
+      volume_24h: 1077464
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-north-america-win-the-2026-fifa-world-cup
+      yes_depth: 47947.5
+      no_depth: 47947.5
+  taxonomy:
+    resolution_structure: categorical_grouping
+    grouping_alignment: clean
+    date_cutoff_delta_hours: 336.0
+    time_to_resolution_days: 30.5
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: CONCACAF ≈ WPR North America (incl. Central America/Caribbean); realistic winners USA/Mexico/Canada
+      unambiguous both ways.
+    tail_risks:
+    - Non-NA-geography CONCACAF edge cases; none among realistic winners
+  orientation_confirmed:
+    kalshi_yes_meaning: Will North America (CONCACAF) win the 2026 Men's World Cup?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:03.311774+00:00'
+    decision: approve
+    rationale: 'verified_equivalent (rules audit 2026-07-03, evidence/KXWCCONTINENT-26-NA): CONCACAF field
+      all WPR-North-America. Lead fee-truth survivor on corrected books (all three soaks); transient (18%
+      in-edge) on corrected data. Targeted soak running.'
+    auditor: automated follow-up review 2026-07-03
+  - at: '2026-08-21T05:17:26.559547+00:00'
+    decision: archive
+    rationale: 2026 World Cup completed; 2026-08-21 public pair-health check returned no complete cross-venue
+      book
+    auditor: release-readiness-audit
+  display_name: World Cup 2026 - North America (CONCACAF) wins
+- pair_key: KXWCCONTINENT-26-SA|0x0ed2e5e985631ab71750ad21a40503508a5f7d928032b2d1f8c901013f4e002f
+  kalshi_market_id: KXWCCONTINENT-26-SA
+  polymarket_market_id: '0x0ed2e5e985631ab71750ad21a40503508a5f7d928032b2d1f8c901013f4e002f'
+  kalshi_question: Will South America (CONMEBOL) win the 2026 Men's World Cup?
+  polymarket_question: Will South America (CONMEBOL) win the 2026 FIFA World Cup?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.968
+  candidate_warnings: []
+  kalshi_close_time: '2026-08-03T00:00:00Z'
+  polymarket_close_time: '2026-07-20T00:00:00+00:00'
+  category: sports
+  kalshi_identifiers:
+    market_ticker: KXWCCONTINENT-26-SA
+  polymarket_identifiers:
+    condition_id: '0x0ed2e5e985631ab71750ad21a40503508a5f7d928032b2d1f8c901013f4e002f'
+    yes_token_id: '114036690755635530230019486612558387907241351352528636183974658009961263219918'
+    no_token_id: '91406376166685457249969745291260796817402882835969733443451859926168141525875'
+  review_snapshot:
+    kalshi:
+      market_id: KXWCCONTINENT-26-SA
+      question: Will South America (CONMEBOL) win the 2026 Men's World Cup?
+      rules: If any country that competes in South America (CONMEBOL) qualification is the 2026 FIFA Men's
+        World Cup champion, then the market resolves to Yes.
+      close_time: '2026-08-03T00:00:00Z'
+      liquidity: 0
+      volume_24h: 56075
+      yes_ask: 0.3
+      url: https://kalshi.com/markets/KXWCCONTINENT-26/KXWCCONTINENT-26-SA
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x0ed2e5e985631ab71750ad21a40503508a5f7d928032b2d1f8c901013f4e002f'
+      question: Will South America (CONMEBOL) win the 2026 FIFA World Cup?
+      rules: This market will resolve to the continent of the country that wins the 2026 FIFA World Cup,
+        currently scheduled for June 11-July 19, 2026.  For example, if France wins the tournament, the
+        market will resolve to Europe.  If the 2026 FIFA World Cup is cancelled, postponed after December
+        31, 2026, or t
+      close_time: '2026-07-20T00:00:00+00:00'
+      liquidity: 1226938
+      volume_24h: 555568
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-south-america-win-the-2026-fifa-world-cup
+      yes_depth: 613469.0
+      no_depth: 613469.0
+  taxonomy:
+    resolution_structure: categorical_grouping
+    grouping_alignment: clean
+    date_cutoff_delta_hours: 336.0
+    time_to_resolution_days: 30.5
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: CONMEBOL ≈ geographic South America for every realistic winner.
+    tail_risks:
+    - Geographically-South-American CONCACAF member (Guyana/Suriname) wins → Poly YES / Kalshi NO (probability
+      ≈ 0)
+    - 'Resolution-timing asymmetry: Poly resolves ~Jul 20, Kalshi ~Aug 3'
+  orientation_confirmed:
+    kalshi_yes_meaning: Will South America (CONMEBOL) win the 2026 Men's World Cup?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:03.137949+00:00'
+    decision: approve
+    rationale: 'verified_equivalent (rules audit 2026-07-03, evidence/KXWCCONTINENT-26-SA): qualified
+      CONMEBOL field all WPR-South-America; Guyana/Suriname tail moot this edition. Historic transient
+      candidate across soaks.'
+    auditor: automated follow-up review 2026-07-03
+  - at: '2026-08-21T05:17:26.896544+00:00'
+    decision: archive
+    rationale: 2026 World Cup completed; 2026-08-21 public pair-health check returned no complete cross-venue
+      book
+    auditor: release-readiness-audit
+  display_name: World Cup 2026 - South America (CONMEBOL) wins

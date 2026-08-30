@@ -1,0 +1,12 @@
+# Capture-layer configuration. Consumed by scripts/run_capture.py.
+#
+# mode:
+#   rest_concurrent — both venues fetched via concurrent REST with RTT
+#                     compensation (arbx.capture.rest_concurrent).
+#   streaming       — Polymarket WS push + Kalshi leg. Without Kalshi
+#                     WebSocket credentials, the Kalshi leg is a REST-poll
+#                     stopgap (see docs/capture_notes.md).
+mode: rest_concurrent
+rest_interval_s: 5
+ws_stale_after_s: 30
+ntp_server: time.google.com

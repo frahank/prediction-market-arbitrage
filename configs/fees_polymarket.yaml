@@ -1,0 +1,31 @@
+# Polymarket fee configuration, pinned and versioned.
+#
+# Unlike Kalshi, Polymarket's taker fee rate is PER-TOKEN LIVE DATA, not a
+# pinned constant: the model resolves `base_fee` (basis points) from
+# `GET https://clob.polymarket.com/fee-rate?token_id=...` and caches it per
+# token for `cache_ttl_hours`. This file pins only the cache policy and the
+# worst-case fallback. Derivations and sources: docs/fees_polymarket.md.
+#
+# Semantics (verified 2026-07-02):
+#   taker fee = size x (base_fee_bps / 10_000) x min(P, 1 - P)
+#   maker fee = 0 (makers are never charged)
+#   no settlement fee documented; CLOB fills are gasless for the trader.
+#
+# fallback_bps is used whenever the fee-rate endpoint fails or returns an
+# unusable payload: worst-case, never zero. 1000 bps is the highest base_fee
+# observed in the wild (NBA/MLB sports tokens, py-clob-client issue #326);
+# the plan's original 200 bps predates Polymarket's 2026 fee rollout and
+# would understate the known worst case 5x.
+version: 1
+retrieved_at: "2026-07-02"
+source_urls:
+  # Official fee page: category rates and the C x feeRate x P x (1-P) curve.
+  - "https://docs.polymarket.com/trading/fees"
+  # Official API reference: /fee-rate endpoint, base_fee in basis points.
+  - "https://docs.polymarket.com/api-reference/market-data/get-fee-rate"
+  # Hybrid architecture: offchain EIP-712 orders, operator settles on Polygon.
+  - "https://docs.polymarket.com/developers/CLOB/introduction"
+  # Documented docs-vs-onchain formula discrepancy and observed 1000 bps.
+  - "https://github.com/Polymarket/py-clob-client/issues/326"
+fallback_bps: 1000
+cache_ttl_hours: 6

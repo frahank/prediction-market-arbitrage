@@ -1,0 +1,1798 @@
+version: 1
+registry_type: approved_for_paper_only
+live_trading_allowed: false
+notice: Active registry contains 23 contract-equivalent, paper-only strategy pairs. Three completed
+  2026 World Cup continent markets were retired by the 2026-08-21 public pair-health check.
+pairs:
+- pair_key: KXPRESNOMD-28-GR|0xcb239105ed21a2420ba4d85090b9bc32755c56601ffdc528afd17fd6282fe930
+  kalshi_market_id: KXPRESNOMD-28-GR
+  polymarket_market_id: '0xcb239105ed21a2420ba4d85090b9bc32755c56601ffdc528afd17fd6282fe930'
+  kalshi_question: Will Gina Raimondo be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Gina Raimondo win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.974
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-GR
+  polymarket_identifiers:
+    condition_id: '0xcb239105ed21a2420ba4d85090b9bc32755c56601ffdc528afd17fd6282fe930'
+    yes_token_id: '35165603539035270209469650915267170915291414186795231160733227083640059691764'
+    no_token_id: '82254794773423437491598574581796732934760602553828664932786984448280136473130'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-GR
+      question: Will Gina Raimondo be the Democratic Presidential nominee in 2028?
+      rules: If Gina Raimondo wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 552
+      yes_ask: 0.002
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-GR
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0xcb239105ed21a2420ba4d85090b9bc32755c56601ffdc528afd17fd6282fe930'
+      question: Will Gina Raimondo win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 2270955
+      volume_24h: 35173430
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-gina-raimondo-win-the-2028-democratic-presidential-nomination-676
+      yes_depth: 1135477.5
+      no_depth: 1135477.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Gina Raimondo be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:04.765277+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Gina Raimondo
+- pair_key: KXPRESNOMD-28-MC|0x9d4f94f82de9d13ff1d3318639ab9000ee2533949e525343156f374fb00bd9b1
+  kalshi_market_id: KXPRESNOMD-28-MC
+  polymarket_market_id: '0x9d4f94f82de9d13ff1d3318639ab9000ee2533949e525343156f374fb00bd9b1'
+  kalshi_question: Will Mark Cuban be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Mark Cuban win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.971
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-MC
+  polymarket_identifiers:
+    condition_id: '0x9d4f94f82de9d13ff1d3318639ab9000ee2533949e525343156f374fb00bd9b1'
+    yes_token_id: '58378309871183461257693288827678410871907006920578755035402846056315798427503'
+    no_token_id: '55392527126713018429304496836617506663024188480522297953714346140749923557790'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-MC
+      question: Will Mark Cuban be the Democratic Presidential nominee in 2028?
+      rules: If Mark Cuban wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 1108
+      yes_ask: 0.009
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-MC
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x9d4f94f82de9d13ff1d3318639ab9000ee2533949e525343156f374fb00bd9b1'
+      question: Will Mark Cuban win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 2146758
+      volume_24h: 22283951
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-mark-cuban-win-the-2028-democratic-presidential-nomination-329
+      yes_depth: 1073379.0
+      no_depth: 1073379.0
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Mark Cuban be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:04.924674+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Mark Cuban
+- pair_key: KXPRESNOMD-28-RW|0xdce84960dce38aa4a5800a5eba7c9ac34d2ce49ba9d44c42572c472d468af264
+  kalshi_market_id: KXPRESNOMD-28-RW
+  polymarket_market_id: '0xdce84960dce38aa4a5800a5eba7c9ac34d2ce49ba9d44c42572c472d468af264'
+  kalshi_question: Will Raphael Warnock be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Raphael Warnock win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.971
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-RW
+  polymarket_identifiers:
+    condition_id: '0xdce84960dce38aa4a5800a5eba7c9ac34d2ce49ba9d44c42572c472d468af264'
+    yes_token_id: '52310257194926233099477326083312959938983447523839326865869372741334281264830'
+    no_token_id: '88403451835230950222119400360490338078378790763472355557584611572247419676051'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-RW
+      question: Will Raphael Warnock be the Democratic Presidential nominee in 2028?
+      rules: If Raphael Warnock wins and accepts the nomination for the Presidency for the Democratic
+        party, then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 4101
+      yes_ask: 0.008
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-RW
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0xdce84960dce38aa4a5800a5eba7c9ac34d2ce49ba9d44c42572c472d468af264'
+      question: Will Raphael Warnock win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 1833327
+      volume_24h: 31376216
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-raphael-warnock-win-the-2028-democratic-presidential-nomination-914
+      yes_depth: 916663.5
+      no_depth: 916663.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Raphael Warnock be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:05.086542+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Raphael Warnock
+- pair_key: KXPRESNOMD-28-GW|0xe39adea057926dc197fe30a441f57a340b2a232d5a687010f78bba9b6e02620f
+  kalshi_market_id: KXPRESNOMD-28-GW
+  polymarket_market_id: '0xe39adea057926dc197fe30a441f57a340b2a232d5a687010f78bba9b6e02620f'
+  kalshi_question: Will Gretchen Whitmer be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Gretchen Whitmer win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.97
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-GW
+  polymarket_identifiers:
+    condition_id: '0xe39adea057926dc197fe30a441f57a340b2a232d5a687010f78bba9b6e02620f'
+    yes_token_id: '57761428076807364758801249497410455358987881775226117256631754592198558850468'
+    no_token_id: '64300336035644500626313522990854070672468621241744347587785777226296613235598'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-GW
+      question: Will Gretchen Whitmer be the Democratic Presidential nominee in 2028?
+      rules: If Gretchen Whitmer wins and accepts the nomination for the Presidency for the Democratic
+        party, then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 661
+      yes_ask: 0.01
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-GW
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0xe39adea057926dc197fe30a441f57a340b2a232d5a687010f78bba9b6e02620f'
+      question: Will Gretchen Whitmer win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 778429
+      volume_24h: 10602006
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-gretchen-whitmer-win-the-2028-democratic-presidential-nomination-676
+      yes_depth: 389214.5
+      no_depth: 389214.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Gretchen Whitmer be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:05.246238+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Gretchen Whitmer
+- pair_key: KXPRESNOMD-28-WM|0x61d9486c0f7e14ed98f3b177b6adcb3cd45646c92e8bbfbf209789b86472d4b6
+  kalshi_market_id: KXPRESNOMD-28-WM
+  polymarket_market_id: '0x61d9486c0f7e14ed98f3b177b6adcb3cd45646c92e8bbfbf209789b86472d4b6'
+  kalshi_question: Will Wes Moore be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Wes Moore win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.97
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-WM
+  polymarket_identifiers:
+    condition_id: '0x61d9486c0f7e14ed98f3b177b6adcb3cd45646c92e8bbfbf209789b86472d4b6'
+    yes_token_id: '90227223115596293448966158151606153337847900483048338623540402385929720677904'
+    no_token_id: '105134691322323565615831879054043168027913414000042547943201361115853277749482'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-WM
+      question: Will Wes Moore be the Democratic Presidential nominee in 2028?
+      rules: If Wes Moore wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 4718
+      yes_ask: 0.021
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-WM
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x61d9486c0f7e14ed98f3b177b6adcb3cd45646c92e8bbfbf209789b86472d4b6'
+      question: Will Wes Moore win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 495535
+      volume_24h: 16780681
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-wes-moore-win-the-2028-democratic-presidential-nomination-714
+      yes_depth: 247767.5
+      no_depth: 247767.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Wes Moore be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:05.406421+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Wes Moore
+- pair_key: KXPRESNOMD-28-KH|0x909659c9436228e2be56d5582ba6188166f2f8bf3c596335512c8f2e380d01ec
+  kalshi_market_id: KXPRESNOMD-28-KH
+  polymarket_market_id: '0x909659c9436228e2be56d5582ba6188166f2f8bf3c596335512c8f2e380d01ec'
+  kalshi_question: Will Kamala Harris be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Kamala Harris win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.969
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-KH
+  polymarket_identifiers:
+    condition_id: '0x909659c9436228e2be56d5582ba6188166f2f8bf3c596335512c8f2e380d01ec'
+    yes_token_id: '38171024903091354977195167437673496224420673639143973968032407064172828043588'
+    no_token_id: '26930844951471612827925270830087046333229637930899178134435055616497220846773'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-KH
+      question: Will Kamala Harris be the Democratic Presidential nominee in 2028?
+      rules: If Kamala Harris wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 5454
+      yes_ask: 0.083
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-KH
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x909659c9436228e2be56d5582ba6188166f2f8bf3c596335512c8f2e380d01ec'
+      question: Will Kamala Harris win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 298914
+      volume_24h: 12407117
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-kamala-harris-win-the-2028-democratic-presidential-nomination-641
+      yes_depth: 149457.0
+      no_depth: 149457.0
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Kamala Harris be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:05.565360+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Kamala Harris
+- pair_key: KXPRESNOMD-28-AOC|0xe6bcc2f1dd025ce5e1833190f7c60a71171c94f805df55b9ab0ded695ec93565
+  kalshi_market_id: KXPRESNOMD-28-AOC
+  polymarket_market_id: '0xe6bcc2f1dd025ce5e1833190f7c60a71171c94f805df55b9ab0ded695ec93565'
+  kalshi_question: Will Alexandria Ocasio-Cortez be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Alexandria Ocasio-Cortez win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.968
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-AOC
+  polymarket_identifiers:
+    condition_id: '0xe6bcc2f1dd025ce5e1833190f7c60a71171c94f805df55b9ab0ded695ec93565'
+    yes_token_id: '107064985435494333113391038470401719113272800530429703182710416066774068907304'
+    no_token_id: '65176072261324737856085688071627118509549293922582857186996392180609764586527'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-AOC
+      question: Will Alexandria Ocasio-Cortez be the Democratic Presidential nominee in 2028?
+      rules: If Alexandria Ocasio-Cortez wins and accepts the nomination for the Presidency for the Democratic
+        party, then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 9595
+      yes_ask: 0.11
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-AOC
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0xe6bcc2f1dd025ce5e1833190f7c60a71171c94f805df55b9ab0ded695ec93565'
+      question: Will Alexandria Ocasio-Cortez win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 342495
+      volume_24h: 13497667
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-alexandria-ocasio-cortez-win-the-2028-democratic-presidential-nomination-653
+      yes_depth: 171247.5
+      no_depth: 171247.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Alexandria Ocasio-Cortez be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:05.726919+00:00'
+    decision: reject
+    rationale: 'reject: carry (R5) — one-soak fee-truth survivor on corrected books, but ~858d to resolution
+      makes the capital lock a non-starter; revisit if early-exit modeling (P5) changes the carry math.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Alexandria Ocasio-Cortez
+- pair_key: KXPRESNOMD-28-JS|0xd65891729ce093cc12236856837eba1a0872fc7998fd4294c21346f7db68079c
+  kalshi_market_id: KXPRESNOMD-28-JS
+  polymarket_market_id: '0xd65891729ce093cc12236856837eba1a0872fc7998fd4294c21346f7db68079c'
+  kalshi_question: Will Josh Shapiro be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Josh Shapiro win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.968
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-JS
+  polymarket_identifiers:
+    condition_id: '0xd65891729ce093cc12236856837eba1a0872fc7998fd4294c21346f7db68079c'
+    yes_token_id: '71169839497420596285841847514123589847893415750912355173877524195175834054354'
+    no_token_id: '55290827599553280245963175724940496753557722439999671239772487781170052583987'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-JS
+      question: Will Josh Shapiro be the Democratic Presidential nominee in 2028?
+      rules: If Josh Shapiro wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 2022
+      yes_ask: 0.05
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-JS
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0xd65891729ce093cc12236856837eba1a0872fc7998fd4294c21346f7db68079c'
+      question: Will Josh Shapiro win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 398141
+      volume_24h: 9020502
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-josh-shapiro-win-the-2028-democratic-presidential-nomination-977
+      yes_depth: 199070.5
+      no_depth: 199070.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Josh Shapiro be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:05.887384+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Josh Shapiro
+- pair_key: KXPRESNOMD-28-REMA|0x3dc47a72ac6bb265e9cefebd2a2eeed00966394cb2d07245b5c94138b60e82a3
+  kalshi_market_id: KXPRESNOMD-28-REMA
+  polymarket_market_id: '0x3dc47a72ac6bb265e9cefebd2a2eeed00966394cb2d07245b5c94138b60e82a3'
+  kalshi_question: Will Rahm Emanuel be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Rahm Emanuel win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.968
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-REMA
+  polymarket_identifiers:
+    condition_id: '0x3dc47a72ac6bb265e9cefebd2a2eeed00966394cb2d07245b5c94138b60e82a3'
+    yes_token_id: '10521981432803570450946212503203364998108630328528216082760514453664705157397'
+    no_token_id: '91949042216127305292438280992722171735754548787382833799906976841509942727662'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-REMA
+      question: Will Rahm Emanuel be the Democratic Presidential nominee in 2028?
+      rules: If Rahm Emanuel wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 92502
+      yes_ask: 0.058
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-REMA
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x3dc47a72ac6bb265e9cefebd2a2eeed00966394cb2d07245b5c94138b60e82a3'
+      question: Will Rahm Emanuel win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 359662
+      volume_24h: 14126172
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-rahm-emanuel-win-the-2028-democratic-presidential-nomination-299
+      yes_depth: 179831.0
+      no_depth: 179831.0
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: price_stickiness
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Rahm Emanuel be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:06.089874+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness confirmed on corrected books (99.4% in-edge under real fees,
+      P4-T0) + ~2.5y carry.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Rahm Emanuel
+- pair_key: KXPRESNOMD-28-TW|0x3265b10daeb30dbcc3214bd02e488551d0a5d3028392f4152e4750b943fbfc91
+  kalshi_market_id: KXPRESNOMD-28-TW
+  polymarket_market_id: '0x3265b10daeb30dbcc3214bd02e488551d0a5d3028392f4152e4750b943fbfc91'
+  kalshi_question: Will Tim Walz be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Tim Walz win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.967
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-TW
+  polymarket_identifiers:
+    condition_id: '0x3265b10daeb30dbcc3214bd02e488551d0a5d3028392f4152e4750b943fbfc91'
+    yes_token_id: '104464678880204778606895232389511543522030897731392516718349574106843434770446'
+    no_token_id: '90935594925886073322524509252821043048115343298080885997215308777385571383769'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-TW
+      question: Will Tim Walz be the Democratic Presidential nominee in 2028?
+      rules: If Tim Walz wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 739
+      yes_ask: 0.002
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-TW
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x3265b10daeb30dbcc3214bd02e488551d0a5d3028392f4152e4750b943fbfc91'
+      question: Will Tim Walz win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 2342610
+      volume_24h: 41863372
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-tim-walz-win-the-2028-democratic-presidential-nomination-475
+      yes_depth: 1171305.0
+      no_depth: 1171305.0
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Tim Walz be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:06.254109+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Tim Walz
+- pair_key: KXPRESNOMD-28-JTAL|0xb91be12388b3d4079c3ed9b5783cb42d8c33051d37746a49300227e0f45fc089
+  kalshi_market_id: KXPRESNOMD-28-JTAL
+  polymarket_market_id: '0xb91be12388b3d4079c3ed9b5783cb42d8c33051d37746a49300227e0f45fc089'
+  kalshi_question: Will James Talarico be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will James Talarico win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.966
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-JTAL
+  polymarket_identifiers:
+    condition_id: '0xb91be12388b3d4079c3ed9b5783cb42d8c33051d37746a49300227e0f45fc089'
+    yes_token_id: '52535923606561722941567320365820395300598958985353103429657683100920373025261'
+    no_token_id: '20643805904661385280242837899001038341346631607217619709766724611396929658707'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-JTAL
+      question: Will James Talarico be the Democratic Presidential nominee in 2028?
+      rules: If James Talarico wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 2022
+      yes_ask: 0.014
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-JTAL
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0xb91be12388b3d4079c3ed9b5783cb42d8c33051d37746a49300227e0f45fc089'
+      question: Will James Talarico win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 316045
+      volume_24h: 9841819
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-james-talarico-win-the-2028-democratic-presidential-nomination
+      yes_depth: 158022.5
+      no_depth: 158022.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will James Talarico be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:06.416032+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - James Talarico
+- pair_key: KXPRESNOMD-28-AB|0x1d519b87999e3d4e90e1e8f57b5eee73a0ba488ff3fdb70867f294733aba84a9
+  kalshi_market_id: KXPRESNOMD-28-AB
+  polymarket_market_id: '0x1d519b87999e3d4e90e1e8f57b5eee73a0ba488ff3fdb70867f294733aba84a9'
+  kalshi_question: Will Andy Beshear be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Andy Beshear win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.966
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-AB
+  polymarket_identifiers:
+    condition_id: '0x1d519b87999e3d4e90e1e8f57b5eee73a0ba488ff3fdb70867f294733aba84a9'
+    yes_token_id: '26468656392978559668331516709623917078428425933265692717836103090220693717685'
+    no_token_id: '26335362363448644358593284423242327477307616743233875606762153873424287882825'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-AB
+      question: Will Andy Beshear be the Democratic Presidential nominee in 2028?
+      rules: If Andy Beshear wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 10932
+      yes_ask: 0.034
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-AB
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x1d519b87999e3d4e90e1e8f57b5eee73a0ba488ff3fdb70867f294733aba84a9'
+      question: Will Andy Beshear win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 458593
+      volume_24h: 12601944
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-andy-beshear-win-the-2028-democratic-presidential-nomination-832
+      yes_depth: 229296.5
+      no_depth: 229296.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Andy Beshear be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:06.577255+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Andy Beshear
+- pair_key: KXPRESNOMD-28-PB|0x4c325469d9b516ef4e6b8f73a81a12607dec075e3c2fd454f91765aaeafc4760
+  kalshi_market_id: KXPRESNOMD-28-PB
+  polymarket_market_id: '0x4c325469d9b516ef4e6b8f73a81a12607dec075e3c2fd454f91765aaeafc4760'
+  kalshi_question: Will Pete Buttigieg be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Pete Buttigieg win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.966
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-PB
+  polymarket_identifiers:
+    condition_id: '0x4c325469d9b516ef4e6b8f73a81a12607dec075e3c2fd454f91765aaeafc4760'
+    yes_token_id: '91031279171981959197361710127213577102576826515163085396576756946418341946256'
+    no_token_id: '18494065527924073750217237765784380365430319396356251245973222791140100738948'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-PB
+      question: Will Pete Buttigieg be the Democratic Presidential nominee in 2028?
+      rules: If Pete Buttigieg wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 4063
+      yes_ask: 0.052
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-PB
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x4c325469d9b516ef4e6b8f73a81a12607dec075e3c2fd454f91765aaeafc4760'
+      question: Will Pete Buttigieg win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 370563
+      volume_24h: 11178127
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-pete-buttigieg-win-the-2028-democratic-presidential-nomination-687
+      yes_depth: 185281.5
+      no_depth: 185281.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Pete Buttigieg be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:06.739423+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Pete Buttigieg
+- pair_key: KXPRESNOMD-28-MK|0x36db77c539bcc8c7bf0686c1b99f30c5a5eed1f53d3b3a27a071550c81f83701
+  kalshi_market_id: KXPRESNOMD-28-MK
+  polymarket_market_id: '0x36db77c539bcc8c7bf0686c1b99f30c5a5eed1f53d3b3a27a071550c81f83701'
+  kalshi_question: Will Mark Kelly be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Mark Kelly win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.966
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-MK
+  polymarket_identifiers:
+    condition_id: '0x36db77c539bcc8c7bf0686c1b99f30c5a5eed1f53d3b3a27a071550c81f83701'
+    yes_token_id: '92325249719485031139867422012514654102580961954747753469470405147070256604118'
+    no_token_id: '5116999494213083595175041146469973274436003044730013359502912125889113751080'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-MK
+      question: Will Mark Kelly be the Democratic Presidential nominee in 2028?
+      rules: If Mark Kelly wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 1683
+      yes_ask: 0.037
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-MK
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x36db77c539bcc8c7bf0686c1b99f30c5a5eed1f53d3b3a27a071550c81f83701'
+      question: Will Mark Kelly win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 513047
+      volume_24h: 16095798
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-mark-kelly-win-the-2028-democratic-presidential-nomination-479
+      yes_depth: 256523.5
+      no_depth: 256523.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Mark Kelly be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:06.906455+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Mark Kelly
+- pair_key: KXPRESNOMD-28-GN|0x0f49db97f71c68b1e42a6d16e3de93d85dbf7d4148e3f018eb79e88554be9f75
+  kalshi_market_id: KXPRESNOMD-28-GN
+  polymarket_market_id: '0x0f49db97f71c68b1e42a6d16e3de93d85dbf7d4148e3f018eb79e88554be9f75'
+  kalshi_question: Will Gavin Newsom be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Gavin Newsom win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.965
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-GN
+  polymarket_identifiers:
+    condition_id: '0x0f49db97f71c68b1e42a6d16e3de93d85dbf7d4148e3f018eb79e88554be9f75'
+    yes_token_id: '54533043819946592547517511176940999955633860128497669742211153063842200957669'
+    no_token_id: '87854174148074652060467921081181402357467303721471806610111179101805869578687'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-GN
+      question: Will Gavin Newsom be the Democratic Presidential nominee in 2028?
+      rules: If Gavin Newsom wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 11610
+      yes_ask: 0.24
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-GN
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x0f49db97f71c68b1e42a6d16e3de93d85dbf7d4148e3f018eb79e88554be9f75'
+      question: Will Gavin Newsom win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 382823
+      volume_24h: 26218486
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-gavin-newsom-win-the-2028-democratic-presidential-nomination-568
+      yes_depth: 191411.5
+      no_depth: 191411.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Gavin Newsom be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:07.069024+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Gavin Newsom
+- pair_key: KXPRESNOMD-28-RKHA|0x20d0bc282552ac5ec6f61cd7101cb42a5948cae07e7651bdf40ede1a8b2c5eac
+  kalshi_market_id: KXPRESNOMD-28-RKHA
+  polymarket_market_id: '0x20d0bc282552ac5ec6f61cd7101cb42a5948cae07e7651bdf40ede1a8b2c5eac'
+  kalshi_question: Will Ro Khanna be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Ro Khanna win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.965
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-RKHA
+  polymarket_identifiers:
+    condition_id: '0x20d0bc282552ac5ec6f61cd7101cb42a5948cae07e7651bdf40ede1a8b2c5eac'
+    yes_token_id: '20374050108659687356429749447884880983779889840007423115803042125707701269498'
+    no_token_id: '2610336024939503976910443133965525155112118948066646227040491461288298872236'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-RKHA
+      question: Will Ro Khanna be the Democratic Presidential nominee in 2028?
+      rules: If Ro Khanna wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 23558
+      yes_ask: 0.026
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-RKHA
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x20d0bc282552ac5ec6f61cd7101cb42a5948cae07e7651bdf40ede1a8b2c5eac'
+      question: Will Ro Khanna win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 323041
+      volume_24h: 10811565
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-ro-khanna-win-the-2028-democratic-presidential-nomination
+      yes_depth: 161520.5
+      no_depth: 161520.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Ro Khanna be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:07.231956+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Ro Khanna
+- pair_key: KXPRESNOMD-28-SAS|0xc8f1cf5d4f26e0fd9c8fe89f2a7b3263b902cf14fde7bfccef525753bb492e47
+  kalshi_market_id: KXPRESNOMD-28-SAS
+  polymarket_market_id: '0xc8f1cf5d4f26e0fd9c8fe89f2a7b3263b902cf14fde7bfccef525753bb492e47'
+  kalshi_question: Will Stephen A. Smith be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Stephen A. Smith win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.965
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-SAS
+  polymarket_identifiers:
+    condition_id: '0xc8f1cf5d4f26e0fd9c8fe89f2a7b3263b902cf14fde7bfccef525753bb492e47'
+    yes_token_id: '60590045489347122735554346200880179420435533609307820342798544098823516727807'
+    no_token_id: '76005700027045000587004110133818166617024719626220722682005164003117993034812'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-SAS
+      question: Will Stephen A. Smith be the Democratic Presidential nominee in 2028?
+      rules: If Stephen A. Smith wins and accepts the nomination for the Presidency for the Democratic
+        party, then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 4690
+      yes_ask: 0.005
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-SAS
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0xc8f1cf5d4f26e0fd9c8fe89f2a7b3263b902cf14fde7bfccef525753bb492e47'
+      question: Will Stephen A. Smith win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 1019253
+      volume_24h: 21051031
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-stephen-a-smith-win-the-2028-democratic-presidential-nomination-914
+      yes_depth: 509626.5
+      no_depth: 509626.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Stephen A. Smith be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:07.394662+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Stephen A. Smith
+- pair_key: KXPRESNOMD-28-JOSS|0x74dba1ce1ae9dd535414e85f2d9ab5ea32c0fb1acc9b7130b67e6d91217e24e1
+  kalshi_market_id: KXPRESNOMD-28-JOSS
+  polymarket_market_id: '0x74dba1ce1ae9dd535414e85f2d9ab5ea32c0fb1acc9b7130b67e6d91217e24e1'
+  kalshi_question: Will Jon Ossoff be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Jon Ossoff win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.963
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-JOSS
+  polymarket_identifiers:
+    condition_id: '0x74dba1ce1ae9dd535414e85f2d9ab5ea32c0fb1acc9b7130b67e6d91217e24e1'
+    yes_token_id: '70071592420137476676935286377781779672157004436137616627487590484756055232944'
+    no_token_id: '107829893465244243112531790315844862173967342141753896250561816305880797209350'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-JOSS
+      question: Will Jon Ossoff be the Democratic Presidential nominee in 2028?
+      rules: If Jon Ossoff wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 27309
+      yes_ask: 0.13
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-JOSS
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x74dba1ce1ae9dd535414e85f2d9ab5ea32c0fb1acc9b7130b67e6d91217e24e1'
+      question: Will Jon Ossoff win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 252771
+      volume_24h: 11908704
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-jon-ossoff-win-the-2028-democratic-presidential-nomination-885
+      yes_depth: 126385.5
+      no_depth: 126385.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Jon Ossoff be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:07.558254+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Jon Ossoff
+- pair_key: KXPRESNOMD-28-ZMAM|0x3535fb2f4aef6619dde8b367cb5e5d209526bb496d5d9778428c58a0252435e3
+  kalshi_market_id: KXPRESNOMD-28-ZMAM
+  polymarket_market_id: '0x3535fb2f4aef6619dde8b367cb5e5d209526bb496d5d9778428c58a0252435e3'
+  kalshi_question: Will Zohran Mamdani be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Zohran Mamdani win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.963
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-ZMAM
+  polymarket_identifiers:
+    condition_id: '0x3535fb2f4aef6619dde8b367cb5e5d209526bb496d5d9778428c58a0252435e3'
+    yes_token_id: '19323997520040734631220675039559156784534982703459512097490198935565229528445'
+    no_token_id: '111309365336519526711604102518316708823622751854213281307404397618571408959194'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-ZMAM
+      question: Will Zohran Mamdani be the Democratic Presidential nominee in 2028?
+      rules: If Zohran Mamdani wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 21905
+      yes_ask: 0.003
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-ZMAM
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x3535fb2f4aef6619dde8b367cb5e5d209526bb496d5d9778428c58a0252435e3'
+      question: Will Zohran Mamdani win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 2354892
+      volume_24h: 38085196
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-zohran-mamdani-win-the-2028-democratic-presidential-nomination-445
+      yes_depth: 1177446.0
+      no_depth: 1177446.0
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Zohran Mamdani be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:07.721603+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Zohran Mamdani
+- pair_key: KXPRESNOMD-28-JBP|0xe883f2fda25a605a184bb5fe583afce6cc21ea0b348b6a3728ec3067553c548d
+  kalshi_market_id: KXPRESNOMD-28-JBP
+  polymarket_market_id: '0xe883f2fda25a605a184bb5fe583afce6cc21ea0b348b6a3728ec3067553c548d'
+  kalshi_question: Will J.B. Pritzker be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will J.B. Pritzker win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.962
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-JBP
+  polymarket_identifiers:
+    condition_id: '0xe883f2fda25a605a184bb5fe583afce6cc21ea0b348b6a3728ec3067553c548d'
+    yes_token_id: '103988345069738240821107916249290759786442703283901164377120414690701074137717'
+    no_token_id: '108650988487983371520585351370999192979899647080710024226285750050382033453124'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-JBP
+      question: Will J.B. Pritzker be the Democratic Presidential nominee in 2028?
+      rules: If J.B. Pritzker wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 17668
+      yes_ask: 0.036
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-JBP
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0xe883f2fda25a605a184bb5fe583afce6cc21ea0b348b6a3728ec3067553c548d'
+      question: Will J.B. Pritzker win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 493513
+      volume_24h: 14723057
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-jb-pritzker-win-the-2028-democratic-presidential-nomination-288
+      yes_depth: 246756.5
+      no_depth: 246756.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will J.B. Pritzker be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:07.884712+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - J.B. Pritzker
+- pair_key: KXPRESNOMD-28-MO|0x3e218c99a1335641b3a5ee6c887521d19b0c28fddd6b99c254a07968e35c0b1b
+  kalshi_market_id: KXPRESNOMD-28-MO
+  polymarket_market_id: '0x3e218c99a1335641b3a5ee6c887521d19b0c28fddd6b99c254a07968e35c0b1b'
+  kalshi_question: Will Michelle Obama be the Democratic Presidential nominee in 2028?
+  polymarket_question: Will Michelle Obama win the 2028 Democratic presidential nomination?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.962
+  candidate_warnings: []
+  kalshi_close_time: '2028-11-07T15:00:00Z'
+  polymarket_close_time: '2028-11-07T00:00:00Z'
+  category: politics
+  kalshi_identifiers:
+    market_ticker: KXPRESNOMD-28-MO
+  polymarket_identifiers:
+    condition_id: '0x3e218c99a1335641b3a5ee6c887521d19b0c28fddd6b99c254a07968e35c0b1b'
+    yes_token_id: '83723134981785004242996949681785273460678873813693556756054904164484296299719'
+    no_token_id: '107146110974011455665373243296921398136854344089489911087344946921091914123046'
+  review_snapshot:
+    kalshi:
+      market_id: KXPRESNOMD-28-MO
+      question: Will Michelle Obama be the Democratic Presidential nominee in 2028?
+      rules: If Michelle Obama wins and accepts the nomination for the Presidency for the Democratic party,
+        then the market resolves to Yes.
+      close_time: '2028-11-07T15:00:00Z'
+      liquidity: 0
+      volume_24h: 7927
+      yes_ask: 0.013
+      url: https://kalshi.com/markets/KXPRESNOMD-28/KXPRESNOMD-28-MO
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x3e218c99a1335641b3a5ee6c887521d19b0c28fddd6b99c254a07968e35c0b1b'
+      question: Will Michelle Obama win the 2028 Democratic presidential nomination?
+      rules: This market will resolve to “Yes” if the named individual wins and accepts the 2028 nomination
+        of the Democratic Party for U.S. president. Otherwise, this market will resolve to “No”.  The
+        resolution source for this market will be a consensus of official Democratic Party sources.  Any
+        replacement of
+      close_time: '2028-11-07T00:00:00Z'
+      liquidity: 2015961
+      volume_24h: 25895815
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-michelle-obama-win-the-2028-democratic-presidential-nomination-777
+      yes_depth: 1007980.5
+      no_depth: 1007980.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 15.0
+    time_to_resolution_days: 858.1
+    persistence_cause: none
+  equivalence:
+    status: verified_equivalent
+    audited_at: '2026-07-03'
+    auditor: automated rules audit 2026-07-01, reaffirmed after the book-semantics fix
+    rules_snapshot_sha256: null
+    notes: 'Near-identical wording: both resolve on winning and accepting the 2028 Democratic presidential
+      nomination; same close date. Long-dated (~2.5y) — carry dominates any fee-band edge (R5).'
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Michelle Obama be the Democratic Presidential nominee in 2028?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:08.050182+00:00'
+    decision: reject
+    rationale: 'reject: price_stickiness + carry (R5) — verified-equivalent wording but ~2.5y to resolution
+      kills any fee-band edge; corrected-book persistence evidence.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: 2028 Democratic nominee - Michelle Obama
+- pair_key: KXF1-26-LN|0x6eec2b6b1c8d62aaacda46471e8caf7320f4ea9235f5ee87cba970a32a4e6985
+  kalshi_market_id: KXF1-26-LN
+  polymarket_market_id: '0x6eec2b6b1c8d62aaacda46471e8caf7320f4ea9235f5ee87cba970a32a4e6985'
+  kalshi_question: Will Lando Norris win the F1 Drivers Championship?
+  polymarket_question: Will Lando Norris be the 2026 F1 Drivers' Champion?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.941
+  candidate_warnings: []
+  kalshi_close_time: '2026-12-22T15:00:00Z'
+  polymarket_close_time: '2026-12-06T00:00:00Z'
+  category: sports
+  kalshi_identifiers:
+    market_ticker: KXF1-26-LN
+  polymarket_identifiers:
+    condition_id: '0x6eec2b6b1c8d62aaacda46471e8caf7320f4ea9235f5ee87cba970a32a4e6985'
+    yes_token_id: '49363857890713679658249116526667302240522215201279074666732334459281427193397'
+    no_token_id: '92810961400014685661454592832771984088831290167084620635197423420158788055855'
+  review_snapshot:
+    kalshi:
+      market_id: KXF1-26-LN
+      question: Will Lando Norris win the F1 Drivers Championship?
+      rules: If Lando Norris wins the F1 Drivers Championship, then the market resolves to Yes.
+      close_time: '2026-12-22T15:00:00Z'
+      liquidity: 0
+      volume_24h: 6340
+      yes_ask: 0.02
+      url: https://kalshi.com/markets/KXF1-26/KXF1-26-LN
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x6eec2b6b1c8d62aaacda46471e8caf7320f4ea9235f5ee87cba970a32a4e6985'
+      question: Will Lando Norris be the 2026 F1 Drivers' Champion?
+      rules: This market will resolve according to the listed driver that finishes 1st in the driver standings
+        for the 2026 F1 season.  This market will resolve as soon as the official results of the final
+        scheduled race of the 2026 F1 season are known.  If multiple drivers tie for first place in the
+        drivers sta
+      close_time: '2026-12-06T00:00:00Z'
+      liquidity: 109411
+      volume_24h: 2746101
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-lando-norris-be-the-2026-f1-drivers-champion
+      yes_depth: 54705.5
+      no_depth: 54705.5
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 399.0
+    time_to_resolution_days: 172.1
+    persistence_cause: none
+  equivalence:
+    status: unreviewed
+    audited_at: null
+    auditor: null
+    rules_snapshot_sha256: null
+    notes: Not covered by the 2026-07-01 deep audit; needs a rules audit.
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Lando Norris win the F1 Drivers Championship?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:08.215075+00:00'
+    decision: needs_more_data
+    rationale: 'unreviewed: not covered by the 7/1 deep audit; needs rules snapshot + equivalence audit
+      before any decision.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: F1 Drivers Championship - Lando Norris
+- pair_key: KXF1-26-MV|0x696576c9b20d20a71e0acd6f84d215f129fa361ed544b0df14f1ae540d84059f
+  kalshi_market_id: KXF1-26-MV
+  polymarket_market_id: '0x696576c9b20d20a71e0acd6f84d215f129fa361ed544b0df14f1ae540d84059f'
+  kalshi_question: Will Max Verstappen win the F1 Drivers Championship?
+  polymarket_question: Will Max Verstappen be the 2026 F1 Drivers' Champion?
+  orientation: same
+  status: approved_for_paper
+  human_approved: true
+  reviewer: project-owner
+  reviewer_notes: Contract-equivalent pair approved by human review on 2026-06-28. Same outcome, same
+    resolution source.
+  approved_at: '2026-06-28T00:00:00+00:00'
+  contract_equivalent: true
+  simulation_scope: strategy
+  include_in_strategy_metrics: true
+  candidate_confidence: 0.939
+  candidate_warnings: []
+  kalshi_close_time: '2026-12-22T15:00:00Z'
+  polymarket_close_time: '2026-12-06T00:00:00Z'
+  category: sports
+  kalshi_identifiers:
+    market_ticker: KXF1-26-MV
+  polymarket_identifiers:
+    condition_id: '0x696576c9b20d20a71e0acd6f84d215f129fa361ed544b0df14f1ae540d84059f'
+    yes_token_id: '1253784411034901624384838438079744067552854611268416006133878658719743556218'
+    no_token_id: '108879872919407003618123992310695745119360422359207656432575295100543906401921'
+  review_snapshot:
+    kalshi:
+      market_id: KXF1-26-MV
+      question: Will Max Verstappen win the F1 Drivers Championship?
+      rules: If Max Verstappen wins the F1 Drivers Championship, then the market resolves to Yes.
+      close_time: '2026-12-22T15:00:00Z'
+      liquidity: 0
+      volume_24h: 26891
+      yes_ask: 0.04
+      url: https://kalshi.com/markets/KXF1-26/KXF1-26-MV
+      yes_depth: 0.0
+      no_depth: 0.0
+    polymarket:
+      market_id: '0x696576c9b20d20a71e0acd6f84d215f129fa361ed544b0df14f1ae540d84059f'
+      question: Will Max Verstappen be the 2026 F1 Drivers' Champion?
+      rules: This market will resolve according to the listed driver that finishes 1st in the driver standings
+        for the 2026 F1 season.  This market will resolve as soon as the official results of the final
+        scheduled race of the 2026 F1 season are known.  If multiple drivers tie for first place in the
+        drivers sta
+      close_time: '2026-12-06T00:00:00Z'
+      liquidity: 134240
+      volume_24h: 2799240
+      yes_price: 0
+      resolution_source: null
+      url: https://polymarket.com/market/will-max-verstappen-be-the-2026-f1-drivers-champion
+      yes_depth: 67120.0
+      no_depth: 67120.0
+  taxonomy:
+    resolution_structure: objective_single_event
+    grouping_alignment: n/a
+    date_cutoff_delta_hours: 399.0
+    time_to_resolution_days: 172.1
+    persistence_cause: none
+  equivalence:
+    status: unreviewed
+    audited_at: null
+    auditor: null
+    rules_snapshot_sha256: null
+    notes: Not covered by the 2026-07-01 deep audit; needs a rules audit.
+    tail_risks: []
+  orientation_confirmed:
+    kalshi_yes_meaning: Will Max Verstappen win the F1 Drivers Championship?
+    poly_yes_token_checked: true
+  decision_log:
+  - at: '2026-07-03T12:53:08.381448+00:00'
+    decision: needs_more_data
+    rationale: 'unreviewed: not covered by the 7/1 deep audit; needs rules snapshot + equivalence audit
+      before any decision.'
+    auditor: automated follow-up review 2026-07-03
+  display_name: F1 Drivers Championship - Max Verstappen
+review_decisions: []
+schema_version: 2.1

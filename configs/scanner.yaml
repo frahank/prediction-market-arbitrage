@@ -1,0 +1,5 @@
+# Scanner controller defaults.
+default_batch_size: 20
+default_tick_s: 1.0
+max_calls_per_s_per_venue: 20
+min_arb_edge: 0.0

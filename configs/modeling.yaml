@@ -1,0 +1,52 @@
+# Modeling assumptions. Every scalar carries a provenance comment enforced by
+# tests/test_modeling_config.py. These are conservative research priors, not
+# measured fill probabilities or profit claims.
+schema_version: 1  # source: current modeling configuration contract
+
+executable:
+  depth_haircut: 0.50  # source: conservative prior because displayed depth is not realized fill depth
+  staleness_penalty_per_s: 0.001  # source: conservative prior of 0.1 cents per second of book age
+  min_episode_snapshots: 2  # source: single-snapshot edges are treated as capture-skew or volatility artifacts
+  scenarios:
+    clean_concurrency:
+      max_skew_ms: 50.0  # source: conservative concurrent-capture threshold; measure again on the current host
+      validity: provisional_small_sample  # source: public-book capture is not fill evidence
+    hybrid_reality:
+      max_skew_ms: 10000.0  # source: conservative ceiling for the Kalshi REST-poll streaming fallback
+      validity: kalshi_rest_poll_stopgap  # source: seconds of polling skew cannot establish simultaneous execution
+
+# Survival in a public re-fetch probe is only a proxy for fillability.
+fill_probability:
+  provisional: true  # source: this project contains no measured live fills
+  tiers:
+    survived_1000ms: 0.80  # source: deliberately pessimistic public-data placeholder
+    survived_500ms: 0.50  # source: deliberately pessimistic public-data placeholder
+    survived_250ms: 0.25  # source: deliberately pessimistic public-data placeholder
+    survived_100ms: 0.05  # source: conservative prior for an edge near local reaction time
+    survived_25ms: 0.0  # source: edge lifetime is below a realistic local round trip
+    expired_lt_250ms: 0.0  # source: edge died before the default reaction-time threshold
+  unprobed: 0.25  # source: conservative placeholder for an edge with no survival ladder
+
+# Real fee calculations come from arbx.fees.engine; maker rebates are ignored.
+fees:
+  depth_fee_base: 0.02  # source: baseline used to recover gross depth edge before real-fee replacement
+
+carry:
+  capital_apr: 0.05  # source: placeholder opportunity cost of locked capital; replace for sensitivity analysis
+  collateral_model: both_legs_full  # source: conservative assumption that both venues hold full collateral to resolution
+
+failed_leg:
+  leg_failure_prob: 0.10  # source: conservative placeholder because no live paired-fill sample exists
+  unwind_cost_model: cross_spread  # source: flattening a filled leg requires crossing its displayed spread
+  unwind_fallback_spread: 0.02  # source: two-tick fallback when no observed median spread is available
+
+frequency:
+  assume_history_predicts: true  # source: explicit simplifying assumption for paper-capture frequency
+  soaks: []  # source: supply your own capture directories; private research paths are not included
+
+analysis:
+  assumed_reaction_latency_ms: 250  # source: conservative placeholder; measure the current host with scripts/latency_study.py
+
+viability:
+  viable_min_ev_per_day_usd: 5.00  # source: placeholder economic bar; edit before interpreting a model verdict
+  viable_min_opportunities_per_week: 5  # source: placeholder frequency bar; edit before interpreting a model verdict

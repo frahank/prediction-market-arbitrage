@@ -39,8 +39,8 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://farhank.dev"
-Repository = "https://github.com/frahank/arb-exec-github"
-Issues = "https://github.com/frahank/arb-exec-github/issues"
+Repository = "https://github.com/frahank/prediction-market-arbitrage"
+Issues = "https://github.com/frahank/prediction-market-arbitrage/issues"
 Author = "https://github.com/frahank"
 
 [project.scripts]

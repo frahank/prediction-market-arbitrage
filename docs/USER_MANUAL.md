@@ -26,7 +26,7 @@ installed Python package is named `arbx`.*
 All commands below run from the repository root:
 
 ```bash
-cd /path/to/arb-exec-github
+cd /path/to/prediction-market-arbitrage
 ```
 
 ## 1. Setup and launch

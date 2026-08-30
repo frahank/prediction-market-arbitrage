@@ -9,6 +9,7 @@ data/soaks/scan_<YYYYMMDD-HHMMSS>[_EDGES]/
   raw/book/venue=*/<date>.jsonl
   scan/opportunities/<date>.jsonl
   EDGES_<YYYYMMDD-HHMMSS>.jsonl
+  scan_progress.json
   scan_stdout.log
   scan_stderr.log
   scan_summary.json
@@ -35,6 +36,9 @@ Files:
   keeps the recorder book-row layout unchanged.
 - `scan/opportunities/<date>.jsonl` is present whenever scanner recording is
   on and stores full edge rows plus scanner fields.
+- `scan_progress.json` holds the counters the scanner publishes after every
+  tick. The final `scan_summary.json` only lands when the process exits, so
+  this is what a watcher reads to see a run's progress.
 - `scan_stdout.log` / `scan_stderr.log` capture the scanner subprocess's
   streams. They are written directly by the child through inherited file
   handles rather than through pipes: a pipe the parent does not drain fills its

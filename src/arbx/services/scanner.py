@@ -51,6 +51,7 @@ ALLOWED_SCANNER_SCRIPTS = frozenset({"scripts/run_scanner.py"})
 SCANNER_LOG_TAIL_CHARS = 4000
 SCANNER_STDOUT_LOG = "scan_stdout.log"
 SCANNER_STDERR_LOG = "scan_stderr.log"
+SCANNER_PROGRESS = "scan_progress.json"
 
 
 def _tail_text(path: Path | None, limit: int = SCANNER_LOG_TAIL_CHARS) -> str:
@@ -212,6 +213,7 @@ class ScannerControllerImpl:
         self._log_handles: list[Any] = []
         self._stdout_log: Path | None = None
         self._stderr_log: Path | None = None
+        self._progress_path: Path | None = None
         self._state = ScannerRunState()
         self._manifest_path: Path | None = None
         self._summary_path: Path | None = None
@@ -303,6 +305,7 @@ class ScannerControllerImpl:
             self._summary_path = data_dir / "scan_summary.json"
             self._stdout_log = data_dir / SCANNER_STDOUT_LOG
             self._stderr_log = data_dir / SCANNER_STDERR_LOG
+            self._progress_path = data_dir / SCANNER_PROGRESS
             try:
                 stdout_handle = self._stdout_log.open("w", encoding="utf-8")
                 stderr_handle = self._stderr_log.open("w", encoding="utf-8")
@@ -358,6 +361,10 @@ class ScannerControllerImpl:
             state = self._state.to_record()
         raw_summary = state.get("summary")
         summary: dict[str, Any] = raw_summary if isinstance(raw_summary, dict) else {}
+        if not summary and state["running"]:
+            # The final summary lands only when the child exits; while it is
+            # running, report the progress it publishes each tick.
+            summary = self._read_progress()
         return {
             "running": bool(state["running"]),
             "state": state["state"],
@@ -591,6 +598,17 @@ class ScannerControllerImpl:
                     )
                 self._process = None
                 return self._state.to_record()
+
+    def _read_progress(self) -> dict[str, Any]:
+        """Per-tick counters from the running child, or empty if not yet there."""
+        path = self._progress_path
+        if path is None:
+            return {}
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return {}
+        return data if isinstance(data, dict) else {}
 
     def _close_log_handles(self) -> None:
         """Release the run's log files; safe to call more than once."""

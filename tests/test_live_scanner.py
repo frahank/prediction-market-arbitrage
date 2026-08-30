@@ -235,3 +235,37 @@ def test_fetch_error_skips_pair_not_tick():
     assert stats.ticks == 1
     assert stats.pairs_scanned == 2
     assert stats.fetch_errors == 1
+
+
+def test_progress_is_published_each_tick(tmp_path: Path):
+    """Counters must be visible during a run, not only after it exits.
+
+    The cockpit reads the summary the child writes on exit, so a scan that was
+    capturing real data showed zeros for its whole duration.
+    """
+    pairs = [_P(f"k{i}|t{i}") for i in range(4)]
+
+    async def fetch(pair):
+        return None
+
+    progress = tmp_path / "scan_progress.json"
+    scanner = _scanner(pairs, {}, fetch, progress_path=progress)
+    asyncio.run(scanner.run(max_ticks=3))
+
+    published = json.loads(progress.read_text(encoding="utf-8"))
+    assert published["ticks"] == 3
+    assert published["run_id"] == scanner.run_id
+    assert "generated_at" in published
+
+
+def test_progress_path_is_optional(tmp_path: Path):
+    """A scanner without a progress path must behave exactly as before."""
+    pairs = [_P("k0|t0")]
+
+    async def fetch(pair):
+        return None
+
+    scanner = _scanner(pairs, {}, fetch)
+    stats = asyncio.run(scanner.run(max_ticks=2))
+    assert stats.ticks == 2
+    assert not list(tmp_path.iterdir())

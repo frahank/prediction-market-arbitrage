@@ -131,6 +131,7 @@ async def _run(args: argparse.Namespace) -> dict:
         edges_writer=edges_writer,
         ntp_offset_ms=ntp,
         rotation_state_path=data_dir / "scan_state.json",
+        progress_path=data_dir / "scan_progress.json",
         ntp_measure=measure_ntp_offset_ms,
     )
 

@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -153,6 +154,7 @@ class ArbScanner:
         edges_writer: EdgesWriter | None = None,
         ntp_offset_ms: float | None = None,
         rotation_state_path: Path | None = None,
+        progress_path: Path | None = None,
         sleeper: Callable[[float], Awaitable[None]] = asyncio.sleep,
         clock: Callable[[], float] = time.monotonic,
         ntp_measure: Callable[[], float | None] | None = None,
@@ -167,6 +169,10 @@ class ArbScanner:
         self._opp_sink = opportunity_sink
         self._edges_writer = edges_writer
         self.ntp_offset_ms = ntp_offset_ms
+        # Written once per tick so a watcher can see a run's progress. The
+        # final summary only lands when the process exits, which left the
+        # cockpit's counters reading zero for the whole of a live scan.
+        self._progress_path = progress_path
         # Readable after run() is cancelled: an operator pressing Stop has
         # still collected real data, and the caller needs it to write a
         # summary instead of discarding the run.
@@ -382,6 +388,23 @@ class ArbScanner:
                 stats.survived_confirmed += int(bool(rec.get("survived_probe")))
                 stats.by_pair[pair.pair_key] = stats.by_pair.get(pair.pair_key, 0) + 1
 
+    def _publish_progress(self, stats: ScanStats) -> None:
+        """Atomically publish current counters; never fail a tick over it."""
+        if self._progress_path is None:
+            return
+        try:
+            payload = {
+                **stats.summary(),
+                "run_id": self.run_id,
+                "edges_written": self._edges_writer.count if self._edges_writer else 0,
+                "generated_at": datetime.now(timezone.utc).isoformat(),
+            }
+            tmp = self._progress_path.with_name(f".{self._progress_path.name}.tmp")
+            tmp.write_text(json.dumps(payload), encoding="utf-8")
+            os.replace(tmp, self._progress_path)
+        except OSError:
+            pass
+
     async def run(
         self, *, duration_s: float | None = None, max_ticks: int | None = None
     ) -> ScanStats:
@@ -405,6 +428,7 @@ class ArbScanner:
                 )
                 tick_index += 1
                 stats.ticks = tick_index
+                self._publish_progress(stats)
 
                 if self._ntp_measure is not None and (
                     self._clock() - last_ntp

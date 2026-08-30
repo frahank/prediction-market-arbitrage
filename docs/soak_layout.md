@@ -9,6 +9,8 @@ data/soaks/scan_<YYYYMMDD-HHMMSS>[_EDGES]/
   raw/book/venue=*/<date>.jsonl
   scan/opportunities/<date>.jsonl
   EDGES_<YYYYMMDD-HHMMSS>.jsonl
+  scan_stdout.log
+  scan_stderr.log
   scan_summary.json
 ```
 
@@ -33,6 +35,12 @@ Files:
   keeps the recorder book-row layout unchanged.
 - `scan/opportunities/<date>.jsonl` is present whenever scanner recording is
   on and stores full edge rows plus scanner fields.
+- `scan_stdout.log` / `scan_stderr.log` capture the scanner subprocess's
+  streams. They are written directly by the child through inherited file
+  handles rather than through pipes: a pipe the parent does not drain fills its
+  OS buffer and blocks the child on its next write, and this controller only
+  reads after the process exits. The UI surfaces the last 4000 characters of
+  each; the full log stays on disk.
 - `EDGES_<YYYYMMDD-HHMMSS>.jsonl` stores one `StandardizedEdgeRow.to_dict()`
   per line, written at capture time by `arbx.scanner.edges_writer.EdgesWriter`
   Edge-only runs persist every detected row; full-record runs also

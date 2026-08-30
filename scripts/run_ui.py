@@ -13,14 +13,20 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from arbx.launcher import (  # noqa: E402
-    app,
     build_services,
+    create_default_app,
     enforce_localhost,
     load_ui_config,
     main,
 )
 
-__all__ = ["app", "build_services", "enforce_localhost", "load_ui_config", "main"]
+__all__ = [
+    "build_services",
+    "create_default_app",
+    "enforce_localhost",
+    "load_ui_config",
+    "main",
+]
 
 if __name__ == "__main__":
     main()

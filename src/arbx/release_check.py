@@ -7,7 +7,8 @@ from pathlib import Path
 
 import yaml
 
-from arbx.launcher import REPO_ROOT, build_services, load_ui_config
+from arbx.launcher import build_services, load_ui_config
+from arbx.launcher import repo_root as discover_root
 from arbx.pairs.registry import (
     SCANNABLE_STATUSES,
     load_pairs,
@@ -21,7 +22,8 @@ def _require(condition: bool, message: str) -> None:
         raise RuntimeError(message)
 
 
-def check_release(repo_root: Path = REPO_ROOT) -> dict[str, int | str]:
+def check_release(repo_root: Path | None = None) -> dict[str, int | str]:
+    repo_root = repo_root or discover_root()
     runtime_path = repo_root / "configs" / "runtime.yaml"
     runtime = yaml.safe_load(runtime_path.read_text(encoding="utf-8")) or {}
     _require(runtime.get("mode") == "paper", "runtime mode must remain paper")

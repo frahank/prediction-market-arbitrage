@@ -43,6 +43,35 @@ DEFAULT_SCANNER_DURATION_S = 7 * 24 * 60 * 60
 # nor a symlinked script can redirect the subprocess.
 ALLOWED_SCANNER_SCRIPTS = frozenset({"scripts/run_scanner.py"})
 
+# The scanner's streams go to files in the run directory, never to pipes. A
+# pipe the parent does not drain fills its OS buffer (~64 KB) and blocks the
+# child forever on its next write; this controller only reads after the process
+# exits, so it could not drain one. Files remove the deadlock entirely and keep
+# the full log for the operator. Only this much is read back for the UI.
+SCANNER_LOG_TAIL_CHARS = 4000
+SCANNER_STDOUT_LOG = "scan_stdout.log"
+SCANNER_STDERR_LOG = "scan_stderr.log"
+
+
+def _tail_text(path: Path | None, limit: int = SCANNER_LOG_TAIL_CHARS) -> str:
+    """Last ``limit`` characters of ``path``, reading only the tail off disk.
+
+    Seeks from the end so a multi-gigabyte log costs the same as an empty one.
+    Over-reads by 4x to stay safe on a multi-byte character boundary, then
+    trims; a partial leading character is dropped by ``errors="replace"``.
+    """
+    if path is None:
+        return ""
+    try:
+        with path.open("rb") as handle:
+            handle.seek(0, os.SEEK_END)
+            size = handle.tell()
+            handle.seek(max(0, size - limit * 4), os.SEEK_SET)
+            raw = handle.read()
+    except OSError:
+        return ""
+    return raw.decode("utf-8", errors="replace")[-limit:]
+
 
 @dataclass(slots=True)
 class ScannerRunState:
@@ -180,6 +209,9 @@ class ScannerControllerImpl:
         self._lock = threading.Lock()
         self._finalize_lock = threading.Lock()
         self._process: subprocess.Popen[str] | None = None
+        self._log_handles: list[Any] = []
+        self._stdout_log: Path | None = None
+        self._stderr_log: Path | None = None
         self._state = ScannerRunState()
         self._manifest_path: Path | None = None
         self._summary_path: Path | None = None
@@ -269,16 +301,22 @@ class ScannerControllerImpl:
                 started_at=started_at,
             )
             self._summary_path = data_dir / "scan_summary.json"
+            self._stdout_log = data_dir / SCANNER_STDOUT_LOG
+            self._stderr_log = data_dir / SCANNER_STDERR_LOG
             try:
+                stdout_handle = self._stdout_log.open("w", encoding="utf-8")
+                stderr_handle = self._stderr_log.open("w", encoding="utf-8")
+                self._log_handles = [stdout_handle, stderr_handle]
                 self._process = self.popen_factory(
                     command,
                     cwd=self.repo_root,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
+                    stdout=stdout_handle,
+                    stderr=stderr_handle,
                     text=True,
                     env=_safe_environment(),
                 )
             except OSError as exc:
+                self._close_log_handles()
                 self._state.state = "failed"
                 self._state.last_error = redact_text(str(exc))
                 self._finalize_manifest(ended_at=_utc_now())
@@ -514,7 +552,12 @@ class ScannerControllerImpl:
             with self._lock:
                 if self._process is not process and self._state.state in TERMINAL_STATES:
                     return self._state.to_record()
-            stdout, stderr = process.communicate()
+            # Every caller reaches here only after the process has exited, so
+            # there is nothing to wait for and nothing to drain: the streams
+            # were written straight to disk.
+            self._close_log_handles()
+            stdout = _tail_text(self._stdout_log)
+            stderr = _tail_text(self._stderr_log)
             completed_at = _utc_now()
             summary = self._read_or_write_summary(
                 completed_at=completed_at,
@@ -524,8 +567,8 @@ class ScannerControllerImpl:
             self._finalize_manifest(ended_at=completed_at)
             with self._lock:
                 self._state.return_code = process.returncode
-                self._state.sanitized_stdout = redact_text(stdout or "")[-4000:]
-                self._state.sanitized_stderr = redact_text(stderr or "")[-4000:]
+                self._state.sanitized_stdout = redact_text(stdout)[-SCANNER_LOG_TAIL_CHARS:]
+                self._state.sanitized_stderr = redact_text(stderr)[-SCANNER_LOG_TAIL_CHARS:]
                 self._state.completed_at = completed_at
                 self._state.stopped_at = stopped_at
                 self._state.summary = summary
@@ -541,6 +584,15 @@ class ScannerControllerImpl:
                     )
                 self._process = None
                 return self._state.to_record()
+
+    def _close_log_handles(self) -> None:
+        """Release the run's log files; safe to call more than once."""
+        for handle in self._log_handles:
+            try:
+                handle.close()
+            except OSError:
+                pass
+        self._log_handles = []
 
     def _read_or_write_summary(
         self,

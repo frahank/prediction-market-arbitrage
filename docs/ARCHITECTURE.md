@@ -135,6 +135,7 @@ data/soaks/scan_<YYYYMMDD-HHMMSS>[_EDGES]/
   raw/book/venue=*/<date>.jsonl        # only when record_books=true
   scan/opportunities/<date>.jsonl      # full edge rows plus scanner fields
   EDGES_<YYYYMMDD-HHMMSS>.jsonl        # one StandardizedEdgeRow per line
+  scan_stdout.log / scan_stderr.log    # child streams, written to files not pipes
   scan_summary.json
 ```
 

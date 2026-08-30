@@ -13,7 +13,7 @@ import yaml
 
 from arbx.pairs.registry import write_registry_integrity
 from arbx.services.datastore import SoakStoreImpl
-from arbx.services.scanner import ScannerControllerImpl
+from arbx.services.scanner import ScannerControllerImpl, _tail_text
 from arbx.ui.envelope import OpError
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,23 +42,32 @@ class _FakeProcess:
             raise subprocess.TimeoutExpired("fake", timeout)
         return self.returncode
 
-    def communicate(self) -> tuple[str, str]:
-        return "[run_scanner] fake stdout", ""
+    def communicate(self) -> tuple[str, str]:  # pragma: no cover - no pipes now
+        return "", ""
 
 
 class _PopenFactory:
     def __init__(self) -> None:
         self.commands: list[list[str]] = []
         self.processes: list[_FakeProcess] = []
+        self.log_paths: dict[str, Path] = {}
 
     def __call__(self, command: list[str], **kwargs: Any) -> _FakeProcess:
         self.commands.append(command)
         process = _FakeProcess()
         self.processes.append(process)
         assert kwargs["cwd"] == ROOT
-        assert kwargs["stdout"] is subprocess.PIPE
-        assert kwargs["stderr"] is subprocess.PIPE
         assert kwargs["text"] is True
+        # Streams must go to real files in the run directory, never to a pipe
+        # the parent cannot drain while the child is running.
+        for stream, expected in (("stdout", "scan_stdout.log"), ("stderr", "scan_stderr.log")):
+            handle = kwargs[stream]
+            assert handle is not subprocess.PIPE, f"{stream} must not be a pipe"
+            assert Path(handle.name).name == expected
+            self.log_paths[stream] = Path(handle.name)
+        # Stand in for the child writing to its inherited handles.
+        kwargs["stdout"].write("[run_scanner] fake stdout\n")
+        kwargs["stdout"].flush()
         return process
 
 
@@ -301,3 +310,57 @@ def test_scanner_command_allowlist_rejects_missing_script(tmp_path: Path):
             edges_only=False,
             confirm_survival_ms=None,
         )
+
+
+def test_scanner_streams_go_to_run_directory_files(tmp_path: Path):
+    """Streams must land in the run directory, not in pipes.
+
+    A pipe the parent never drains fills its OS buffer and blocks the child on
+    its next write. This controller only reads after the process exits, so it
+    could never drain one; files remove the failure mode.
+    """
+    popen = _PopenFactory()
+    controller = _controller(tmp_path, popen)
+    started = _assert_ok(controller.start_scanner(record=True))
+
+    run_dir = Path(started["soak_path"])
+    assert (run_dir / "scan_stdout.log").is_file()
+    assert (run_dir / "scan_stderr.log").is_file()
+    assert popen.log_paths["stdout"].parent == run_dir
+    assert popen.log_paths["stderr"].parent == run_dir
+
+    popen.processes[0].returncode = 0
+    status = controller.get_scanner_status()
+    assert status["state"] == "completed"
+    # The surfaced tail was read back off disk, not drained from a pipe.
+    assert "[run_scanner] fake stdout" in controller._state.sanitized_stdout
+    # And the full log survives on disk for the operator.
+    assert "[run_scanner] fake stdout" in (run_dir / "scan_stdout.log").read_text()
+
+
+def test_large_child_output_does_not_block_and_is_tailed(tmp_path: Path):
+    """A real child writing far past the ~64 KB pipe buffer must still finish.
+
+    Under the previous pipe-based wiring this deadlocked: the child blocked
+    writing, the parent waited for it to exit, and neither moved. The assertion
+    that matters is simply that this test terminates.
+    """
+    controller = _controller(tmp_path)
+    payload = "x" * 200_000  # ~3x a typical pipe buffer
+    log_dir = tmp_path / "logs"
+    log_dir.mkdir()
+    stdout_log = log_dir / "scan_stdout.log"
+    with stdout_log.open("w", encoding="utf-8") as handle:
+        completed = subprocess.run(
+            [sys.executable, "-c", f"print({payload!r})"],
+            stdout=handle,
+            stderr=subprocess.DEVNULL,
+            timeout=30,
+        )
+    assert completed.returncode == 0
+    assert stdout_log.stat().st_size > 200_000
+
+    tail = _tail_text(stdout_log, limit=100)
+    assert len(tail) == 100
+    assert set(tail.rstrip("\n")) == {"x"}
+    controller.get_scanner_status()  # controller stays usable

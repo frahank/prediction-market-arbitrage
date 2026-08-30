@@ -3,6 +3,7 @@
 """Local-only UI composition root used by the script and console entry point."""
 from __future__ import annotations
 
+import functools
 import os
 from pathlib import Path
 from typing import Any
@@ -53,14 +54,26 @@ def discover_repo_root(start: Path | None = None) -> Path:
     )
 
 
-REPO_ROOT = discover_repo_root()
-
-DEFAULT_UI_YAML = REPO_ROOT / "configs" / "ui.yaml"
 LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
 
 
-def load_ui_config(path: Path = DEFAULT_UI_YAML) -> dict[str, Any]:
-    data = yaml.safe_load(path.read_text())
+@functools.cache
+def repo_root() -> Path:
+    """The checkout this process is serving, discovered once and cached.
+
+    Deliberately a function rather than a module constant: importing this
+    module must not require a checkout, and must not raise. Callers that need
+    the root ask for it, and only then can discovery fail.
+    """
+    return discover_repo_root()
+
+
+def default_ui_yaml() -> Path:
+    return repo_root() / "configs" / "ui.yaml"
+
+
+def load_ui_config(path: Path | None = None) -> dict[str, Any]:
+    data = yaml.safe_load((path or default_ui_yaml()).read_text())
     return data if isinstance(data, dict) else {}
 
 
@@ -71,9 +84,10 @@ def enforce_localhost(host: str) -> str:
     return normalized
 
 
-def load_depth_haircut(path: Path = REPO_ROOT / "configs" / "modeling.yaml") -> float:
+def load_depth_haircut(path: Path | None = None) -> float:
     """`executable.depth_haircut` from the modeling config (0.5 fallback)."""
     try:
+        path = path or repo_root() / "configs" / "modeling.yaml"
         modeling = yaml.safe_load(path.read_text())
         return float(modeling["executable"]["depth_haircut"])
     except (OSError, KeyError, TypeError, ValueError):
@@ -106,7 +120,7 @@ def _repo_path(value: Any, *, key: str) -> Path:
     path = Path(value)
     if path.is_absolute() or ".." in path.parts:
         raise ValueError(f"{key} must be a repository-relative path")
-    return REPO_ROOT / path
+    return repo_root() / path
 
 
 def build_services(config: dict[str, Any] | None = None) -> ServiceRegistry:
@@ -120,7 +134,7 @@ def build_services(config: dict[str, Any] | None = None) -> ServiceRegistry:
     notes_dir_path = Path(notes_dir_config)
     if notes_dir_path.is_absolute() or ".." in notes_dir_path.parts:
         raise ValueError("notes_dir must be a repository-relative path")
-    notes_dir = REPO_ROOT / notes_dir_path
+    notes_dir = repo_root() / notes_dir_path
     soaks_root_config = ui_config.get("soaks_root", "data/soaks")
     if not isinstance(soaks_root_config, str) or not soaks_root_config:
         raise ValueError("soaks_root must be a repository-relative path")
@@ -130,8 +144,8 @@ def build_services(config: dict[str, Any] | None = None) -> ServiceRegistry:
     legacy_roots_config = ui_config.get("legacy_soak_roots", [])
     if not isinstance(legacy_roots_config, list) or not all(isinstance(item, str) for item in legacy_roots_config):
         raise ValueError("legacy_soak_roots must be a list of paths")
-    legacy_roots = [Path(item) if Path(item).is_absolute() else REPO_ROOT / item for item in legacy_roots_config]
-    soak_store = SoakStoreImpl(REPO_ROOT / soaks_root_path, legacy_roots)
+    legacy_roots = [Path(item) if Path(item).is_absolute() else repo_root() / item for item in legacy_roots_config]
+    soak_store = SoakStoreImpl(repo_root() / soaks_root_path, legacy_roots)
     approved_path = _repo_path(
         ui_config.get("pairs_approved_path", "configs/pairs.approved.yaml"),
         key="pairs_approved_path",
@@ -162,22 +176,26 @@ def build_services(config: dict[str, Any] | None = None) -> ServiceRegistry:
     )
     # One kill switch, whole system: engage() stops any running scanner, the
     # scanner refuses to start while engaged, and get_app_status surfaces it.
-    async def _stop_scanner_on_kill() -> None:
-        scanner_controller.stop_scanner()  # "no active scanner" OpError is fine
-
+    # The switch is constructed first because the controller needs it, then the
+    # cancel hook is attached once the controller exists - so nothing here
+    # depends on a name that is not yet bound.
     killswitch = KillSwitch(
-        killswitch_path_from_config(REPO_ROOT / "configs" / "runtime.yaml"),
-        cancel_all=_stop_scanner_on_kill,
+        killswitch_path_from_config(repo_root() / "configs" / "runtime.yaml"),
     )
     scanner_controller = ScannerControllerImpl(
-        repo_root=REPO_ROOT,
+        repo_root=repo_root(),
         pair_registry_path=approved_path,
         soak_store=soak_store,
         config_path=scanner_config_path,
         killswitch=killswitch,
     )
+
+    async def _stop_scanner_on_kill() -> None:
+        scanner_controller.stop_scanner()  # "no active scanner" OpError is fine
+
+    killswitch.cancel_all = _stop_scanner_on_kill
     return ServiceRegistry(
-        doc_store=DocStoreImpl(REPO_ROOT, docs_roots),
+        doc_store=DocStoreImpl(repo_root(), docs_roots),
         notes_store=NotesStoreImpl(notes_dir),
         data_service=DataServiceImpl(soak_store, depth_haircut=load_depth_haircut()),
         pair_registry_service=PairRegistryServiceImpl(
@@ -190,13 +208,13 @@ def build_services(config: dict[str, Any] | None = None) -> ServiceRegistry:
         scanner_controller=scanner_controller,
         analysis_service=AnalysisServiceImpl(
             soak_store,
-            REPO_ROOT / "reports" / "analysis_jobs",
+            repo_root() / "reports" / "analysis_jobs",
             registry_path=approved_path,
-            modeling_path=REPO_ROOT / "configs" / "modeling.yaml",
+            modeling_path=repo_root() / "configs" / "modeling.yaml",
         ),
         test_suite_runner=TestSuiteRunnerImpl(
-            REPO_ROOT,
-            REPO_ROOT / "reports" / "test_runs",
+            repo_root(),
+            repo_root() / "reports" / "test_runs",
             scanner_status=scanner_controller.get_scanner_status,
         ),
         live_controller=LiveControllerImpl(killswitch),
@@ -205,7 +223,15 @@ def build_services(config: dict[str, Any] | None = None) -> ServiceRegistry:
     )
 
 
-app = create_app(build_services())
+def create_default_app():
+    """Build the cockpit app from the repository this process is running in.
+
+    Importing this module deliberately builds nothing: the service graph, the
+    kill switch, and the soak store are all constructed here, on demand. Use
+    with an ASGI server's factory mode, e.g.
+    ``uvicorn arbx.launcher:create_default_app --factory``.
+    """
+    return create_app(build_services())
 
 
 def main() -> None:

@@ -1,7 +1,7 @@
 # Archived cross-venue (Kalshi ↔ Polymarket) arbitrage research bot.
 # Package and test configuration for the arbx research repository.
 [build-system]
-requires = ["setuptools==80.9.0"]
+requires = ["setuptools==84.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]

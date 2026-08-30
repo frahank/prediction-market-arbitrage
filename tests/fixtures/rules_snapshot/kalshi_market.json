@@ -1,0 +1,56 @@
+{
+  "market": {
+    "can_close_early": true,
+    "close_time": "2026-08-03T00:00:00Z",
+    "created_time": "2026-04-24T20:40:44.322548Z",
+    "custom_strike": {
+      "Participant": "North America"
+    },
+    "early_close_condition": "This market will close and expire after a title holder is declared.",
+    "event_ticker": "KXWCCONTINENT-26",
+    "expected_expiration_time": "2026-07-20T00:00:00Z",
+    "expiration_time": "2026-08-03T00:00:00Z",
+    "expiration_value": "",
+    "fractional_trading_enabled": true,
+    "last_price_dollars": "0.0900",
+    "latest_expiration_time": "2026-08-03T00:00:00Z",
+    "liquidity_dollars": "0.0000",
+    "market_type": "binary",
+    "no_ask_dollars": "0.9200",
+    "no_bid_dollars": "0.9100",
+    "no_sub_title": "North America",
+    "notional_value_dollars": "1.0000",
+    "occurrence_datetime": "2026-07-20T00:00:00Z",
+    "open_interest_fp": "894218.56",
+    "open_time": "2026-04-24T23:00:00Z",
+    "previous_price_dollars": "0.0700",
+    "previous_yes_ask_dollars": "0.1000",
+    "previous_yes_bid_dollars": "0.0700",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+      {
+        "end": "1.0000",
+        "start": "0.0000",
+        "step": "0.0100"
+      }
+    ],
+    "response_price_units": "usd_cent",
+    "result": "",
+    "rules_primary": "If any country that competes in North America (CONCACAF) qualification is the 2026 FIFA Men's World Cup champion, then the market resolves to Yes.",
+    "rules_secondary": "For settlement purposes, a country is considered part of a continent based on the FIFA World Cup qualification pathway it competes through, rather than strict geographic borders. European nations are those that compete through UEFA qualification, African nations through CAF, North American nations through CONCACAF, South American nations through CONMEBOL, and Asian/Oceanian nations through either AFC or OFC qualification. This market and these products have not been endorsed by FIFA. Any references to \"FIFA\", the \"FIFA World Cup,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between FIFA and Kalshi. Refer to the below country designations.\nEurope/UEFA: France, Spain, England, Portugal, Germany, Netherlands, Norway, Belgium, Croatia, Bosnia and Herzegovina, Czechia, Switzerland, T\u00fcrkiye, Sweden, Austria, Scotland\nSouth America/CONMEBOL: Argentina, Brazil, Colombia, Uruguay, Ecuador, Paraguay\nNorth America/CONCACAF: USA, Mexico, Canada, Cura\u00e7ao, Haiti, Panama\nAfrica/CAF: Morocco, Congo DR, Senegal, Ivory Coast, Egypt, Ghana, Cape Verde, Algeria, South Africa, Tunisia\nAsia or Oceania/AFC or OFC: Japan, Iraq, South Korea, Australia, Iran, Jordan, Qatar, Saudi Arabia, Uzbekistan, New Zealand",
+    "settlement_timer_seconds": 300,
+    "status": "active",
+    "strike_type": "custom",
+    "subtitle": ":: CONCACAF",
+    "ticker": "KXWCCONTINENT-26-NA",
+    "title": "Will North America (CONCACAF) win the 2026 Men's World Cup?",
+    "updated_time": "2026-06-03T17:26:10.052321Z",
+    "volume_24h_fp": "44690.00",
+    "volume_fp": "1116914.88",
+    "yes_ask_dollars": "0.0900",
+    "yes_ask_size_fp": "870.34",
+    "yes_bid_dollars": "0.0800",
+    "yes_bid_size_fp": "277.29",
+    "yes_sub_title": "North America"
+  }
+}

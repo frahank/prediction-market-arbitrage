@@ -1,7 +1,13 @@
 # Prediction Market Arbitrage Research Bot
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/frahank/arb-exec-github/actions/workflows/ci.yml/badge.svg)](https://github.com/frahank/arb-exec-github/actions/workflows/ci.yml)
+
 An archived, paper-only research bot for testing apparent arbitrage between
 Kalshi and Polymarket.
+
+By **[Farhan M Khan](https://farhank.dev)** — see [Author and credits](#author-and-credits).
 
 The repository is named `arb-exec-github`; `arbx` is only the Python import
 namespace used by the source code (for example, `from arbx.analysis import ...`).
@@ -76,6 +82,19 @@ release check passed: mode=paper registry=23 scannable=23 strategy_eligible=0 ui
 
 To make a pair count toward strategy metrics you must review and approve it
 yourself, via the Pairs tab or `scripts/review_pair_candidates.py`.
+
+> **The bundled pairs are a dated snapshot — re-verify them before relying on any of
+> them.** Each was reviewed against the venues' rules text as it read on that pair's
+> recorded approval date. Prediction markets expire, settle, get delisted, get
+> relisted under new tickers, and have their resolution criteria amended after
+> listing, so a pair that was contract-equivalent then may be expired, altered, or no
+> longer equivalent now. `make pair-health` checks that both legs are still live and
+> reachable — that is **liveness, not equivalence**. A pair can be open on both venues
+> and still settle differently. Confirming equivalence means re-reading both venues'
+> current rules text yourself; see
+> [`docs/pair_equivalence_checklist.md`](docs/pair_equivalence_checklist.md).
+> Treat the registry as a worked example of the review format, not as a maintained
+> feed of tradeable pairs.
 
 Useful release/operator checks:
 
@@ -276,12 +295,58 @@ is highlighted as a representative data sample. Other small files under
   addenda before reusing results.
 - The bundled registry is a small, checked-in starting point, not automatic
   proof of continuing market health. Run `make pair-health` before a long
-  collection session.
+  collection session — and note that it proves liveness only, never that two
+  contracts still settle on the same conditions.
+- Pairs expire. Markets from a past election, season, or dated cutoff will
+  eventually settle and stop trading, and the registry does not prune itself.
+  Re-review before reuse and archive what has closed.
 
 The detailed safety boundary is in [`docs/SAFETY.md`](docs/SAFETY.md), and the
 pair-testing workflow is in
 [`docs/pair_testing_pipeline.md`](docs/pair_testing_pipeline.md).
 
+## Author and credits
+
+Built and researched by **Farhan M Khan**.
+
+- Portfolio and project write-up: <https://farhank.dev>
+- GitHub: <https://github.com/frahank>
+- Contact: <Farhan.khanev@gmail.com>
+
+The design decisions, fee and equivalence models, safety boundary, and the
+negative result documented in [`docs/FINAL_VERDICT.md`](docs/FINAL_VERDICT.md)
+are my own work. If you use this code or reproduce the methodology, a link back
+to the repository or the write-up is appreciated but not required.
+
+### Third-party components
+
+This project depends on, but does not vendor, the following open-source
+packages. Each remains under its own license; see the pinned versions in
+[`requirements.lock`](requirements.lock) and
+[`pyproject.toml`](pyproject.toml).
+
+| Package | Purpose | License |
+|---|---|---|
+| [cryptography](https://github.com/pyca/cryptography) | RSA-PSS request signing | Apache-2.0 OR BSD-3-Clause |
+| [FastAPI](https://github.com/fastapi/fastapi) | Local research cockpit | MIT |
+| [Starlette](https://github.com/encode/starlette) / [uvicorn](https://github.com/encode/uvicorn) | ASGI framework and server | BSD-3-Clause |
+| [Jinja2](https://github.com/pallets/jinja) | Cockpit templates | BSD-3-Clause |
+| [markdown-it-py](https://github.com/executablebooks/markdown-it-py) | Document rendering | MIT |
+| [PyYAML](https://github.com/yaml/pyyaml) | Config and registry parsing | MIT |
+| [httpx](https://github.com/encode/httpx) | HTTP client | BSD-3-Clause |
+| [websockets](https://github.com/python-websockets/websockets) | Market-data streams | BSD-3-Clause |
+| [pydantic](https://github.com/pydantic/pydantic) | Response models (via FastAPI) | MIT |
+| [pytest](https://github.com/pytest-dev/pytest) / [ruff](https://github.com/astral-sh/ruff) | Test and lint toolchain (dev only) | MIT |
+| [DuckDB](https://github.com/duckdb/duckdb) / [PyArrow](https://github.com/apache/arrow) | Optional Parquet analytics tier | MIT / Apache-2.0 |
+
+Kalshi and Polymarket are trademarks of their respective owners. This project
+is not affiliated with, endorsed by, or supported by either venue, and it uses
+only their documented public endpoints.
+
 ## License
 
-MIT. See [`LICENSE`](LICENSE).
+MIT — Copyright (c) 2026 Farhan M Khan. See [`LICENSE`](LICENSE) for the full text.
+
+Every source file under [`src/`](src) and [`scripts/`](scripts) carries an
+`SPDX-License-Identifier: MIT` header, so the license travels with any file
+that is copied out of the repository.

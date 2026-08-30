@@ -3,6 +3,16 @@ registry_type: approved_for_paper_only
 live_trading_allowed: false
 notice: Active registry contains 23 contract-equivalent, paper-only strategy pairs. Three completed
   2026 World Cup continent markets were retired by the 2026-08-21 public pair-health check.
+warning: >-
+  THIS REGISTRY IS A DATED SNAPSHOT, NOT A MAINTAINED FEED. Every pair here was
+  reviewed against venue rules as they read on the recorded approval date. Prediction
+  markets expire, settle, get delisted, get relisted under new tickers, and have their
+  resolution criteria amended after listing - so a pair that was contract-equivalent
+  then may be expired, altered, or no longer equivalent now. Re-verify before you rely
+  on any of it: run `make pair-health` for liveness, and re-read both venues' current
+  rules text yourself for equivalence. Liveness is not equivalence; a pair can be open
+  on both venues and still settle differently. See docs/pair_equivalence_checklist.md.
+last_reviewed: '2026-08-30'
 pairs:
 - pair_key: KXPRESNOMD-28-GR|0xcb239105ed21a2420ba4d85090b9bc32755c56601ffdc528afd17fd6282fe930
   kalshi_market_id: KXPRESNOMD-28-GR

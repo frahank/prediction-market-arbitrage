@@ -30,3 +30,19 @@ The repository remains useful as a research artifact: it contains public-data
 discovery, concurrent polling, authenticated Kalshi market-data streaming, public
 Polymarket streaming, normalization, fee and survival analysis, safety controls,
 tests, and documented failure modes.
+
+## What this does not close
+
+One strategy was tested and did not survive. The infrastructure underneath it is
+strategy-agnostic, and these venues are young enough, and changing quickly
+enough, that a negative result on the most crowded trade in the space says
+little about the rest of it. Mean reversion, statistical arbitrage across
+correlated markets, and directional approaches built on attention or information
+flow all reuse this capture, fee, and equivalence work without inheriting the
+requirement that broke this one: two legs filling at once.
+
+If you are testing something here, starting from this is cheaper than rebuilding
+capture and fee modelling from scratch — and the discipline that produced this
+verdict is worth more than the code. Be ready for the answer to be no again.
+
+Questions are welcome at <Farhan.khanev@gmail.com>.

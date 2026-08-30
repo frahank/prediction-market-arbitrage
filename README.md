@@ -81,6 +81,45 @@ these markets, did not find one worth deploying. The full reasoning is in
 This is research software, not financial advice. It makes no claim of
 profitability and has no supported live-order path.
 
+### A closed question, not a closed space
+
+One strategy did not survive contact with real fees, latency, and fine print.
+That is a narrow result, and it should not be read as a verdict on prediction
+markets generally. These venues are young, thinly modelled compared to
+equities, and still changing quickly — which is exactly the condition under
+which edges tend to exist somewhere. Pure two-leg arbitrage is simply the
+first place everyone looks, and the most crowded.
+
+The infrastructure underneath is strategy-agnostic, and it is the part that
+took the longest to get right: concurrent capture with real clock discipline,
+fee models that price both legs at execution prices, settlement-equivalence
+review, and gates that stop a displayed spread being mistaken for a fill.
+None of that cares which strategy sits on top.
+
+I am carrying it forward myself, along lines the same data made visible:
+
+- **Mean reversion.** Arbitrage needed both legs to fill at once, which is what
+  failed. A single contract snapping back toward fair value has no such
+  requirement, and reuses the same capture and normalization pipeline pointed
+  at one venue at a time.
+- **Statistical arbitrage.** Instead of contracts that are supposed to be
+  identical, trade correlated markets whose prices move together — the same
+  fee, depth, and slippage models aimed at a relationship rather than a spread.
+- **Attention and information flow.** Directional rather than market-neutral,
+  and a genuinely different risk profile: real exposure instead of a locked
+  spread.
+
+If you want to test one of those, or something I have not thought of, this is a
+reasonable place to start rather than building capture and fee modelling from
+scratch. Be honest with yourself about what the data says, and be ready for the
+answer to be no again — that is the useful discipline this project has to
+offer, more than any of its code.
+
+**Questions are welcome.** If you are working on something in this space, or
+want to know why a particular decision here went the way it did, email me at
+<Farhan.khanev@gmail.com>. I would rather answer a question than have someone
+repeat a month of my mistakes.
+
 ## What you get on the first scan
 
 The bundled registry ships 23 pairs, all scannable and **none**
@@ -274,11 +313,25 @@ pair-testing workflow in
 
 ## Building on it
 
+Fork it and point it at your own question. The pieces that transfer without
+modification are the fee engine, the capture and normalization layer, the
+freshness and skew gates, the safety controls, and the pair-review workflow.
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) is the honest map of what is
+reusable and what is not — including the fact that the two-venue assumption
+reaches further into the code than it should, so a third venue is real work
+rather than a plug-in.
+
+If you are adding a strategy, `src/arbx/analysis/edges.py` is where this one
+lives and the clearest place to see the shape a new one would take. If you are
+adding markets, start with [`docs/adding_pairs.md`](docs/adding_pairs.md).
+
 The project intentionally ships no live switch or order-capable adapter.
 [`docs/LIVE_ADAPTER_GUIDE.md`](docs/LIVE_ADAPTER_GUIDE.md) maps the reusable
 components, a recommended out-of-tree architecture, the two-leg state machine,
 and the risk and reconciliation requirements for anyone building their own
 execution layer. Third-party adapters are not supported or certified here.
+
+Tell me what you build with it — <Farhan.khanev@gmail.com>.
 
 ## Author and credits
 

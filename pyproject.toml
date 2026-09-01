@@ -63,7 +63,7 @@ dev = [
 # data-quality report, and edge tooling all run on pure stdlib without this.
 analytics = [
   "duckdb==1.4.1",
-  "pyarrow==21.0.0",
+  "pyarrow==25.0.1",
 ]
 
 [tool.setuptools.packages.find]

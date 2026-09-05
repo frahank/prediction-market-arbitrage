@@ -62,7 +62,7 @@ dev = [
 # Optional analytics tier (Parquet/DuckDB warehouse). The recorder,
 # data-quality report, and edge tooling all run on pure stdlib without this.
 analytics = [
-  "duckdb==1.4.1",
+  "duckdb==1.5.5",
   "pyarrow==21.0.0",
 ]
 

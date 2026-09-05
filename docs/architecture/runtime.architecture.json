@@ -1,0 +1,505 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "arbx — Cross-Venue Arbitrage",
+    "output": "docs/architecture/runtime.html",
+    "visual_preset": "signal-flow",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1280,
+      470
+    ],
+    "repository": {
+      "url": "https://github.com/frahank/prediction-market-arbitrage",
+      "revision": "c299402d5fccbf423a5491fd80bdc5c1f561d04e"
+    },
+    "views": [
+      {
+        "id": "happy-path",
+        "label": "Books to measured edge",
+        "focus": [
+          "kalshi",
+          "polymarket",
+          "capture",
+          "scanner",
+          "fees",
+          "analysis"
+        ],
+        "note": "Two public books become one fee-adjusted, depth-adjusted edge row."
+      },
+      {
+        "id": "trust",
+        "label": "Why the no is trustworthy",
+        "focus": [
+          "pairs",
+          "capture",
+          "fees",
+          "analysis",
+          "store"
+        ],
+        "note": "Equivalence, skew, real fees, and depth all gate the result."
+      },
+      {
+        "id": "safety",
+        "label": "Safety and read-only",
+        "focus": [
+          "safety",
+          "launcher",
+          "services",
+          "cockpit",
+          "scanner"
+        ],
+        "note": "Three gates, a kill switch with no un-engage, public GETs only."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "kalshi",
+      "type": "external",
+      "label": "Kalshi public API",
+      "sublabel": "REST + WS, read-only",
+      "pos": [
+        30,
+        20
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/venues/kalshi_public.py",
+          "line": 45,
+          "label": "KalshiApiProvider"
+        },
+        {
+          "path": "src/arbx/capture/kalshi_ws.py",
+          "label": "book stream"
+        }
+      ]
+    },
+    {
+      "id": "polymarket",
+      "type": "external",
+      "label": "Polymarket public API",
+      "sublabel": "CLOB book + Gamma",
+      "pos": [
+        270,
+        20
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/venues/polymarket_public.py",
+          "line": 40,
+          "label": "PolymarketApiProvider"
+        },
+        {
+          "path": "src/arbx/capture/polymarket_ws.py",
+          "line": 85,
+          "label": "PolymarketBookStream"
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "type": "backend",
+      "label": "StreamingSource",
+      "sublabel": "paired books · skew_ms",
+      "pos": [
+        30,
+        190
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/capture/engine.py",
+          "line": 75,
+          "label": "StreamingSource"
+        },
+        {
+          "path": "src/arbx/capture/rest_concurrent.py",
+          "label": "RTT-compensated fetch"
+        }
+      ]
+    },
+    {
+      "id": "scanner",
+      "type": "backend",
+      "label": "ArbScanner",
+      "sublabel": "round-robin batched ticks",
+      "pos": [
+        270,
+        190
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/scanner/live_scanner.py",
+          "line": 140,
+          "label": "ArbScanner"
+        },
+        {
+          "path": "src/arbx/scanner/rotation.py",
+          "label": "rolling cursor"
+        }
+      ]
+    },
+    {
+      "id": "fees",
+      "type": "backend",
+      "label": "FeeEngine",
+      "sublabel": "per-venue, worst-case",
+      "pos": [
+        510,
+        190
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/fees/engine.py",
+          "line": 46,
+          "label": "FeeEngine"
+        },
+        {
+          "path": "src/arbx/fees/kalshi.py",
+          "label": "pinned formula schedule"
+        },
+        {
+          "path": "src/arbx/fees/polymarket.py",
+          "label": "live base_fee"
+        }
+      ]
+    },
+    {
+      "id": "analysis",
+      "type": "backend",
+      "label": "Edge analysis + EV",
+      "sublabel": "depth, survival, executable",
+      "pos": [
+        750,
+        190
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/analysis/edges.py",
+          "line": 202,
+          "label": "edge_rows_for_capture"
+        },
+        {
+          "path": "src/arbx/modeling/executable.py",
+          "line": 63,
+          "label": "executable_edge"
+        },
+        {
+          "path": "src/arbx/modeling/ev.py",
+          "label": "EV per opportunity"
+        }
+      ]
+    },
+    {
+      "id": "launcher",
+      "type": "backend",
+      "label": "arbx-ui launcher",
+      "sublabel": "./run · composition root",
+      "pos": [
+        990,
+        190
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/launcher.py",
+          "line": 237,
+          "label": "main"
+        },
+        {
+          "path": "run",
+          "label": "one-command bootstrap"
+        }
+      ]
+    },
+    {
+      "id": "pairs",
+      "type": "backend",
+      "label": "Pair registry",
+      "sublabel": "equivalence · sha256 pinned",
+      "pos": [
+        30,
+        350
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/pairs/registry.py",
+          "line": 43,
+          "label": "verify_registry_integrity"
+        },
+        {
+          "path": "src/arbx/pairs/equivalence.py",
+          "line": 91,
+          "label": "prescreen, never clears"
+        },
+        {
+          "path": "configs/pairs.approved.yaml",
+          "label": "23 approved pairs"
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "type": "security",
+      "label": "Mode gates + kill switch",
+      "sublabel": "deny by default · no un-engage",
+      "pos": [
+        270,
+        350
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/core/mode.py",
+          "line": 73,
+          "label": "assert_paper, 3 gates"
+        },
+        {
+          "path": "src/arbx/exec/killswitch.py",
+          "line": 55,
+          "label": "KillSwitch, no clear()"
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "type": "backend",
+      "label": "Service layer",
+      "sublabel": "protocol seam + envelope",
+      "pos": [
+        510,
+        350
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/services/contracts.py",
+          "label": "service protocols"
+        },
+        {
+          "path": "src/arbx/services/datastore.py",
+          "label": "DataServiceImpl"
+        }
+      ]
+    },
+    {
+      "id": "store",
+      "type": "database",
+      "label": "NDJSON store",
+      "sublabel": "book · edge · soaks · latency",
+      "pos": [
+        750,
+        350
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/data/recorder.py",
+          "line": 75,
+          "label": "book_to_observation"
+        },
+        {
+          "path": "src/arbx/data/compaction.py",
+          "label": "warehouse compaction"
+        }
+      ]
+    },
+    {
+      "id": "cockpit",
+      "type": "frontend",
+      "label": "Research cockpit",
+      "sublabel": "5 tabs · 127.0.0.1:8710",
+      "pos": [
+        990,
+        350
+      ],
+      "size": [
+        180,
+        74
+      ],
+      "sources": [
+        {
+          "path": "src/arbx/ui/app.py",
+          "line": 267,
+          "label": "create_app"
+        },
+        {
+          "path": "src/arbx/ui/templates/paper.html",
+          "label": "the conclusion tab"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "local host — paper-only, no order path, no database tier",
+      "wraps": [
+        "capture",
+        "scanner",
+        "fees",
+        "analysis",
+        "launcher",
+        "pairs",
+        "safety",
+        "services",
+        "store",
+        "cockpit"
+      ],
+      "pad": 22
+    },
+    {
+      "kind": "security-group",
+      "label": "public GETs only — no order-mutation endpoint is constructed",
+      "wraps": [
+        "capture",
+        "scanner"
+      ],
+      "pad": 14
+    }
+  ],
+  "connections": [
+    {
+      "from": "kalshi",
+      "to": "capture",
+      "label": "books",
+      "variant": "emphasis",
+      "labelDy": 63
+    },
+    {
+      "from": "polymarket",
+      "to": "capture",
+      "label": "books",
+      "variant": "emphasis"
+    },
+    {
+      "from": "capture",
+      "to": "scanner",
+      "label": "paired",
+      "variant": "emphasis",
+      "labelDy": 26
+    },
+    {
+      "from": "scanner",
+      "to": "fees",
+      "label": "cross",
+      "variant": "emphasis"
+    },
+    {
+      "from": "fees",
+      "to": "analysis",
+      "label": "net",
+      "variant": "emphasis"
+    },
+    {
+      "from": "analysis",
+      "to": "store",
+      "label": "edges",
+      "variant": "emphasis",
+      "labelDy": 56
+    },
+    {
+      "from": "pairs",
+      "to": "capture",
+      "label": "specs",
+      "variant": "dashed"
+    },
+    {
+      "from": "safety",
+      "to": "services",
+      "label": "gates",
+      "variant": "security"
+    },
+    {
+      "from": "services",
+      "to": "store",
+      "label": "reads"
+    },
+    {
+      "from": "store",
+      "to": "cockpit",
+      "label": "results"
+    },
+    {
+      "from": "launcher",
+      "to": "cockpit",
+      "label": "wires",
+      "variant": "dashed",
+      "labelDy": 56
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "The finding",
+      "items": [
+        "No capturable Kalshi/Polymarket arbitrage under the conditions tested",
+        "An early run looked profitable until a bid/ask normalization bug was traced",
+        "Once fixed, the opportunity disappeared — that correction is the result",
+        "23 pairs scannable, 0 counting toward strategy metrics, enforced by the loader"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "What makes the no trustworthy",
+      "items": [
+        "Settlement equivalence prescreens can only flag, never clear — default needs_human",
+        "Real per-venue fees; an unknown market resolves worst-case, never zero",
+        "Books captured further apart than max_skew_ms are discarded, not penalized",
+        "Displayed edge is depth-adjusted before any capturable claim is made"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Safety and omissions",
+      "items": [
+        "Real orders need three independent gates; missing any one denies",
+        "The kill switch has no un-engage method anywhere — clearing is a manual rm",
+        "Public research subset: no execution layer, no database tier, no live-order path",
+        "The equivalence LLM audit is an operator step; no model client exists in the repo"
+      ]
+    }
+  ]
+}

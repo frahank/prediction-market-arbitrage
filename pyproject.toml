@@ -33,7 +33,7 @@ dependencies = [
   "markdown-it-py==4.2.0",
   "pyyaml==6.0.3",
   "httpx==0.28.1",
-  "uvicorn==0.52.4",
+  "uvicorn==0.54.0",
   "websockets==17.1",
 ]
 
